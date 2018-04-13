@@ -1,4 +1,4 @@
-package ProfileSettingsTest.generalTab;
+package profileSettingsTest.generalTab;
 
 /**
  * Created by Anna on 06/04/2018.
