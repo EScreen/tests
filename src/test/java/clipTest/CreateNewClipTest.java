@@ -132,6 +132,27 @@ public class CreateNewClipTest {
     }
 
 
+    @Test
+    public void templateSearch1() throws InterruptedException {
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
+        Container container = new Container(driver);
+
+        container.media.click();
+        container.createNewClip.click();
+
+        String searchInput = "FAMAS Reserveringen";
+
+        createNewClipPage.searchField.sendKeys(searchInput);
+
+        String searchedClip = createNewClipPage.nameOfClip.getText();
+
+        Thread.sleep(3000);
+
+        Assert.assertEquals(searchInput,searchedClip);
+
+    }
+
+
 
 
 
