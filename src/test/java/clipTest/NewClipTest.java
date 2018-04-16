@@ -6,19 +6,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import pages.Container;
 import pages.CreateNewClipPage;
 import pages.LoginPage;
-import pages.MainUserBasePage;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Anna on 06/04/2018.
  */
-public class CreateNewClipTest {
+public class NewClipTest {
     WebDriver driver;
 
     @Before
@@ -54,12 +52,12 @@ public class CreateNewClipTest {
 
         String clipName = genData.generateString(6);
 
-        createNewClipPage.templateforTestNameField.sendKeys(clipName);
+        createNewClipPage.templateTestNameField.sendKeys(clipName);
         createNewClipPage.nextButton.click();
 
         Thread.sleep(3000);
 
-        createNewClipPage.templateforTestDurationField.sendKeys("3");
+        createNewClipPage.templateTestDurationField.sendKeys("3");
         createNewClipPage.nextButton.click();
 
         Thread.sleep(3000);
@@ -122,6 +120,8 @@ public class CreateNewClipTest {
         String searchInput = "FAMAS Reserveringen";
 
         createNewClipPage.searchField.sendKeys(searchInput);
+
+        Thread.sleep(3000);
 
         String searchedClip = createNewClipPage.nameOfClip.getText();
 

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,10 +36,16 @@ public class CreateNewClipPage {
     public WebElement nextButton;
 
     @FindBy(id = "fragmentname")
-    public WebElement templateforTestNameField;
+    public WebElement templateTestNameField;
+
+    @FindBy(xpath = "//a[@data-info=\"summary\"]")
+    public WebElement templateSummaryTab;
+
+    @FindBy(xpath = "//ins[@class=\"iCheck-helper\"]")
+    public WebElement templateAvailableforAllUsers;
 
     @FindBy(xpath = "//input[@name=\"duration1\"]")
-    public WebElement templateforTestDurationField;
+    public WebElement templateTestDurationField;
 
     @FindBy(xpath = "//*[@id=\"simplemodal-data\"]/div[4]/div/span[2]/button[3]")
     public WebElement saveClipButton;
@@ -58,5 +65,25 @@ public class CreateNewClipPage {
     public String categoryGetText(WebElement categoryTest){
         return categoryTest.getText();
     }
+
+
+    public void checkAvailableForUsers(){
+        try{
+            driver.findElement(By.xpath("//*[@class=\"icheckbox_flat-aero\"]"));
+            templateAvailableforAllUsers.click();
+
+        }catch (Exception e){
+        }
+    }
+
+    public void unCheckAvailableForUsers(){
+        try{
+            driver.findElement(By.xpath("//*[@class=\"icheckbox_flat-aero checked\"]"));
+            templateAvailableforAllUsers.click();
+
+        }catch (Exception e){
+        }
+    }
+
 
 }

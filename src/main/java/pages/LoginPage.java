@@ -40,7 +40,7 @@ public class LoginPage {
     }
 
     public void login2(String login, String password){
-        driver.get("https://ppmanager.easyscreen.tv/login");
+        driver.get("https://manager.easyscreen.tv/login");
 
         loginField.sendKeys(login);
         passwordField.sendKeys(password);
