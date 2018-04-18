@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
 
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,7 +37,7 @@ public class ClipLibraryTest {
 
     //Test of editing name of clip
     @Test
-    public void editNameOfClip() {
+    public void mainUser_EditNameOfClip() {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Container container = new Container(driver);
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage(driver);
@@ -76,7 +75,7 @@ public class ClipLibraryTest {
 
     //Test of appearance "Share clip" table after unchecking "Available for all users" checkbox.
     @Test
-    public void appearanceShareClipTable() {
+    public void mainUser_AppearanceOfShareClipTable() {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Container container = new Container(driver);
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage(driver);

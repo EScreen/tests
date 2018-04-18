@@ -1,10 +1,13 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Created by Anna on 06/04/2018.
@@ -32,7 +35,7 @@ public class CreateNewClipPage {
     @FindBy(xpath = "//*[@id=\"template-list\"]/div/div[1]/div/div[3]/div/div[1]/div[1]/ul/li[1]/div/a")
     public WebElement templateforTest;
 
-    @FindBy(xpath = "//button[@ng-click=\"nextStep()\"]")
+    @FindBy(css = "#simplemodal-data > div.wizard-modal-footer > div > button.btn.wizard-next.btn-blue.ng-scope")
     public WebElement nextButton;
 
     @FindBy(id = "fragmentname")
@@ -43,6 +46,12 @@ public class CreateNewClipPage {
 
     @FindBy(xpath = "//ins[@class=\"iCheck-helper\"]")
     public WebElement templateAvailableforAllUsers;
+
+    @FindBy(xpath = "//li[@class=\"select2-search-field\"]/input")
+    public WebElement templateExistedPlaylistField;
+
+    @FindBy(xpath = "//div[@ng-bind-html=\"playlist.name | highlight: $select.search\"]")
+    public WebElement firstExistedPlaylist;
 
     @FindBy(xpath = "//input[@name=\"duration1\"]")
     public WebElement templateTestDurationField;
@@ -84,6 +93,5 @@ public class CreateNewClipPage {
         }catch (Exception e){
         }
     }
-
 
 }

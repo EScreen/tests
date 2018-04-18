@@ -7,9 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import pages.Container;
-import pages.CreateNewClipPage;
-import pages.LoginPage;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,14 +36,13 @@ public class NewClipTest {
         driver.quit();
     }
 
-    @Test
-    public void createNewClip() throws InterruptedException {
-        Container container = new Container(driver);
+    @org.junit.Test
+    public void mainUser_CreateNewClip() throws InterruptedException {
+        MainUserDashboardPage mainUserDashboardPage = new MainUserDashboardPage(driver);
         CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
         GenerateData genData = new GenerateData();
 
-        container.media.click();
-        container.createNewClip.click();
+        mainUserDashboardPage.createClipButton.click();
 
         createNewClipPage.searchField.sendKeys("FAMAS Plattegrond");
 
@@ -71,13 +72,60 @@ public class NewClipTest {
 
     }
 
-    @Test
+    @org.junit.Test
+    public void mainUser_CreateAndAddClipToExistedPlayList() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MainUserDashboardPage mainUserDashboardPage = new MainUserDashboardPage(driver);
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
+        GenerateData genData = new GenerateData();
+        Container container = new Container(driver);
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage(driver);
+
+        mainUserDashboardPage.createClipButton.click();
+
+        createNewClipPage.searchField.sendKeys("FAMAS Plattegrond");
+
+        WebDriverWait waitFor = new WebDriverWait (driver, 20);
+        waitFor.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a"))).click();
+
+        String clipName = genData.generateString(6);
+        createNewClipPage.templateTestNameField.sendKeys(clipName);
+
+
+        createNewClipPage.templateExistedPlaylistField.sendKeys("First");
+        createNewClipPage.firstExistedPlaylist.click();
+
+        String playListName = driver.findElement(By.xpath("//li[@class=\"ui-select-match-item select2-search-choice ng-scope\"]/span/span")).getText();
+
+        createNewClipPage.nextButton.click();
+
+        createNewClipPage.templateTestDurationField.sendKeys("3");
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(createNewClipPage.nextButton).click().perform();
+        Thread.sleep(2000);
+        actions.moveToElement(createNewClipPage.saveClipButton).click().perform();
+
+        actions.moveToElement(container.playlists).click();
+        actions.moveToElement(container.managePlayLIsts).click();
+
+        managePlaylistsPage.searchField.sendKeys(playListName);
+
+        managePlaylistsPage.nameOfPlayList.click();
+
+        WebElement createdClip = driver.findElement(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody/tr[1]/td[3]/span"));
+        Thread.sleep(3000);
+        Assert.assertTrue(createdClip.getText().contains(clipName));
+
+
+    }
+
+    @org.junit.Test
     public void sortByCategories () throws InterruptedException {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
-        Container container = new Container(driver);
+        MainUserDashboardPage mainUserDashboardPage = new MainUserDashboardPage(driver);
 
-        container.media.click();
-        container.createNewClip.click();
+        mainUserDashboardPage.createClipButton.click();
 
         Actions actions = new Actions(driver);
         actions.moveToElement(createNewClipPage.categoriesSelect).click().perform();
@@ -94,13 +142,12 @@ public class NewClipTest {
 
     }
 
-    @Test
+    @org.junit.Test
     public void sortByOrientation(){
         CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
-        Container container = new Container(driver);
+        MainUserDashboardPage mainUserDashboardPage = new MainUserDashboardPage(driver);
 
-        container.media.click();
-        container.createNewClip.click();
+        mainUserDashboardPage.createClipButton.click();
 
         Actions actions = new Actions(driver);
         actions.moveToElement(createNewClipPage.orientationSelect).click()
@@ -109,13 +156,12 @@ public class NewClipTest {
         Assert.assertEquals((createNewClipPage.portraitTemplate).getCssValue("height"), "320px");
     }
 
-    @Test
+    @org.junit.Test
     public void templateSearch() throws InterruptedException {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
-        Container container = new Container(driver);
+        MainUserDashboardPage mainUserDashboardPage = new MainUserDashboardPage(driver);
 
-        container.media.click();
-        container.createNewClip.click();
+        mainUserDashboardPage.createClipButton.click();
 
         String searchInput = "FAMAS Reserveringen";
 

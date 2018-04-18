@@ -20,10 +20,10 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/form/div[1]/input")
+    @FindBy(name = "login")
     public WebElement loginField;
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/form/div[2]/input")
+    @FindBy(name = "password")
     public WebElement passwordField;
 
     @FindBy(xpath = "/html/body/div[2]/div/div/div/div[2]/form/div[4]/a")
