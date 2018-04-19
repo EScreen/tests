@@ -1,5 +1,7 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -8,114 +10,47 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.$;
+
 /**
  * Created by Anna on 06/04/2018.
  */
 public class Container {
 
-    WebDriver driver;
+    public SelenideElement currentView = $(By.xpath("//a[@ng-click=\"changeUserView()\"]"));
+    public SelenideElement mainUserMenu = $(By.xpath("//li[@id=\"profile-details\"]//a[@class=\"dropdown-toggle\"]"));
+    public SelenideElement mainUserMenuUsers = $(By.xpath("//a[@ui-sref=\"users.all\"]"));
+    public SelenideElement mainUserMenuProfile = $(By.xpath("//a[@ui-sref=\"profile\"]"));
+    public SelenideElement mainUserMenuTickers = $(By.xpath("//*[@id=\"tickets-tour\"]/a"));
+    public SelenideElement mainUserMenuMessages = $(By.xpath("//*[@id=\"messages-tour\"]/a"));
+    public SelenideElement mainUserMenuLog = $(By.xpath("//*[@id=\"archive-tour\"]/a"));
+    public SelenideElement mainUserMenuLogOut = $(By.xpath("//*[@id=\"logout-tour\"]/a"));
+    public SelenideElement dashboard = $(By.xpath("//*[@id=\"dashboard-sidebar-menuItem\"]/a"));
 
-    public Container(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+    public SelenideElement media = $(By.xpath("//*[@id=\"media-sidebar-menuItem\"]/a"));
+        public SelenideElement createNewClip = $(By.xpath("//*[@id=\"menu2\"]/li[1]/a"));
+        public SelenideElement clipLibrary = $(By.xpath("//*[@id=\"menu2\"]/li[2]/a"));
+        public SelenideElement myFiles = $(By.xpath("//*[@id=\"menu2\"]/li[3]/a"));
+        public SelenideElement happening = $(By.xpath("//*[@id=\"feeds-sidebar-menuItem\"]/a"));
 
+    public SelenideElement playlists = $(By.xpath("//*[@id=\"schedule-sidebar-menuItem\"]/a"));
+        public SelenideElement createNewPlayList = $(By.xpath("//*[@id=\"block-new_block\"]/a"));
+        public SelenideElement createNewPowerBlock = $(By.xpath("//*[@id=\"block-nw_pblock\"]/a"));
+        public SelenideElement managePlayLIsts = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
+        public SelenideElement managePowerBlocks = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
-    @FindBy(xpath = "//a[@ng-click=\"changeUserView()\"]")
-    public WebElement currentView;
+    public SelenideElement scheduleButton = $(By.xpath("//*[@id=\"block-result_per_device\"]/a"));
 
-    @FindBy(xpath = "//li[@id=\"profile-details\"]//a[@class=\"dropdown-toggle\"]")
-    public WebElement mainUserMenu;
+    public SelenideElement players = $(By.xpath("//*[@id=\"devices-sidebar-menuItem\"]/a"));
+        public SelenideElement playerOverview = $(By.xpath("//*[@id=\"block-new_block\"]/a"));
+        public SelenideElement playerGroups = $(By.xpath("//*[@id=\"block-nw_pblock\"]/a"));
+        public SelenideElement resultOverview = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
+        public SelenideElement export = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
-    @FindBy(xpath = "//a[@ui-sref=\"users.all\"]")
-    public WebElement mainUserMenuUsers;
-
-    @FindBy(xpath = "//a[@ui-sref=\"profile\"]")
-    public WebElement mainUserMenuProfile;
-
-    @FindBy(xpath = "//*[@id=\"tickets-tour\"]/a")
-    public WebElement mainUserMenuTickers;
-
-    @FindBy(xpath = "//*[@id=\"messages-tour\"]/a")
-    public WebElement mainUserMenuMessages;
-
-    @FindBy(xpath = "//*[@id=\"archive-tour\"]/a")
-    public WebElement mainUserMenuLog;
-
-    @FindBy(xpath = "//*[@id=\"logout-tour\"]/a")
-    public WebElement mainUserMenuLogOut;
-
-
-    @FindBy(xpath = "//*[@id=\"dashboard-sidebar-menuItem\"]/a")
-    public WebElement dashboard;
-
-    @FindBy(xpath = "//*[@id=\"media-sidebar-menuItem\"]/a")
-    public WebElement media;
-
-        @FindBy(xpath = "//*[@id=\"menu2\"]/li[1]/a")
-        public WebElement createNewClip;
-
-        @FindBy(xpath = "//*[@id=\"menu2\"]/li[2]/a")
-        public WebElement clipLibrary;
-
-        @FindBy(xpath = "//*[@id=\"menu2\"]/li[3]/a")
-        public WebElement myFiles;
-
-        @FindBy(xpath = "//*[@id=\"feeds-sidebar-menuItem\"]/a")
-        public WebElement happening;
+    public SelenideElement radio = $(By.xpath("//*[@id=\"radio-sidebar-menuItem\"]/a"));
+        public SelenideElement radioPlayers = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
+        public SelenideElement radioPlayersSchedule = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
 
-    @FindBy(xpath = "//*[@id=\"schedule-sidebar-menuItem\"]/a")
-    public WebElement playlists;
-
-        @FindBy(xpath = "//*[@id=\"block-new_block\"]/a")
-        public WebElement createNewPlayList;
-
-        @FindBy(xpath = "//*[@id=\"block-nw_pblock\"]/a")
-        public WebElement createNewPowerBlock;
-
-        @FindBy(xpath = "//*[@id=\"block-manage_blocks\"]/a")
-        public WebElement managePlayLIsts;
-
-        @FindBy(xpath = "//*[@id=\"manage_pb\"]/a")
-        public WebElement managePowerBlocks;
-
-
-    @FindBy(xpath = "//*[@id=\"block-result_per_device\"]/a")
-    public WebElement scheduleButton;
-
-
-    @FindBy(xpath = "//*[@id=\"devices-sidebar-menuItem\"]/a")
-    public WebElement players;
-
-        @FindBy(xpath = "//*[@id=\"block-new_block\"]/a")
-        public WebElement playerOverview;
-
-        @FindBy(xpath = "//*[@id=\"block-nw_pblock\"]/a")
-        public WebElement playerGroups;
-
-        @FindBy(xpath = "//*[@id=\"block-manage_blocks\"]/a")
-        public WebElement resultOverview;
-
-        @FindBy(xpath = "//*[@id=\"manage_pb\"]/a")
-        public WebElement export;
-
-    @FindBy(xpath = "//*[@id=\"radio-sidebar-menuItem\"]/a")
-    public WebElement radio;
-
-        @FindBy(xpath = "//*[@id=\"block-manage_blocks\"]/a")
-        public WebElement radioPlayers;
-
-        @FindBy(xpath = "//*[@id=\"manage_pb\"]/a")
-        public WebElement radioPlayersSchedule;
-
-
-
-    public void onProfile(){
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainUserMenu).click().perform();
-        actions.moveToElement(mainUserMenuProfile).click().perform();
-    }
 
 }

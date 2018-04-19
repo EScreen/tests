@@ -15,30 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class MainUserDashboardPage {
 
-    WebDriver driver;
+    public SelenideElement createClipButton = $(By.xpath("//*[@id=\"dushbutton--1\"]/a/div/i"));
+    public SelenideElement createPlaylistButton = $(By.xpath("//a[@title=\"Create new playlist\"]"));
+    public SelenideElement supportTicketsButton = $(By.xpath("//a[@title=\"Support tickets\"]"));
+    public SelenideElement managePlaylistsButton = $(By.xpath("//a[@title=\"Manage playlists\"]"));
+    public SelenideElement managePowerBlocksButton = $(By.xpath("//a[@title=\"Manage PowerBlocks\"]"));
+    public SelenideElement playersButton = $(By.xpath("//a[@title=\"Players\"]"));
 
-
-    public MainUserDashboardPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
-
-    @FindBy(xpath = "//*[@id=\"dushbutton--1\"]/a/div/i")
-    public WebElement createClipButton;
-
-
-    @FindBy(xpath = "//a[@title=\"Create new playlist\"]")
-    public WebElement createPlaylistButton;
-
-    @FindBy(xpath = "//a[@title=\"Support tickets\"]")
-    public WebElement supportTicketsButton;
-
-    @FindBy(xpath = "//a[@title=\"Manage playlists\"]")
-    public WebElement managePlaylistsButton;
-
-    @FindBy(xpath = "//a[@title=\"Manage PowerBlocks\"]")
-    public WebElement managePowerBlocksButton;
-
-    @FindBy(xpath = "//a[@title=\"Players\"]")
-    public WebElement playersButton;
 }

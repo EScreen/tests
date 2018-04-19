@@ -1,18 +1,21 @@
 package clipTest;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
+import com.sun.xml.internal.org.jvnet.mimepull.CleanUpExecutorFactory;
 import helpers.GenerateData;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
 
-import java.util.concurrent.TimeUnit;
+import javax.sound.sampled.Clip;
+
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by Anna on 16/04/2018.
@@ -22,90 +25,83 @@ public class ClipLibraryTest {
 
     @Before
     public void beforeTest(){
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-        driver.get("https://ppmanager.easyscreen.tv/login");
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login2("AnyaMainUser", "os123123");
+        WebDriverRunner.setWebDriver(new ChromeDriver());
+        open("https://ppmanager.easyscreen.tv/login");
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("AnyaMainUser", "os123123");
+        Configuration.timeout = 10000;
     }
 
     @After
     public void afterTest(){
-        driver.quit();
+        close();
     }
 
-    //Test of editing name of clip
+
+    //NewClipTest of editing name of clip
     @Test
-    public void mainUser_EditNameOfClip() {
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        Container container = new Container(driver);
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage(driver);
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
+    public void mainUser_EditNameOfClip() throws InterruptedException {
+        Container container = new Container();
+        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData generateData = new GenerateData();
 
-        container.media.click();
-        container.clipLibrary.click();
+        $(container.media).click();
+        $(container.clipLibrary).click();
 
-        clipLibraryPage.settingsClipButton.click();
-        clipLibraryPage.editClipButton.click();
+        $(clipLibraryPage.settingsClipButton).click();
+        $(clipLibraryPage.editClipButton).click();
 
-        createNewClipPage.templateTestNameField.clear();
-        createNewClipPage.templateTestNameField.sendKeys(generateData.generateString(4) + " Edited");
-
+        $(createNewClipPage.templateTestNameField).clear();
+        $(createNewClipPage.templateTestNameField).setValue(generateData.generateString(4) + " Edited");
 
         createNewClipPage.checkAvailableForUsers();
 
-        String createdName = createNewClipPage.templateTestNameField.getAttribute("value");
+        String createdName = $(createNewClipPage.templateTestNameField).attr("value");
 
+        $(createNewClipPage.templateSummaryTab).click();
+        $(createNewClipPage.saveClipButton).click();
 
-        createNewClipPage.templateSummaryTab.click();
-
-        WebDriverWait waitFor = new WebDriverWait (driver, 20);
-        waitFor.until(ExpectedConditions.elementToBeClickable(createNewClipPage.saveClipButton));
-        createNewClipPage.saveClipButton.click();
-
-        String editedName = driver.findElement(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr[1]/td[2]/span")).getText();
-
-        Assert.assertEquals(createdName,editedName);
-
-
+        $(By.xpath("//td//span[@class=\"ng-binding\"]")).shouldHave(Condition.text(createdName));
     }
 
 
-    //Test of appearance "Share clip" table after unchecking "Available for all users" checkbox.
+
+    //NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
     @Test
     public void mainUser_AppearanceOfShareClipTable() {
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        Container container = new Container(driver);
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage(driver);
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage(driver);
+        Container container = new Container();
+        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
 
-        container.media.click();
-        container.clipLibrary.click();
-
-        clipLibraryPage.settingsClipButton.click();
-        clipLibraryPage.editClipButton.click();
+        $(container.media).click();
+        $(container.clipLibrary).click();
+        $(clipLibraryPage.settingsClipButton).click();
+        $(clipLibraryPage.editClipButton).click();
 
         createNewClipPage.unCheckAvailableForUsers();
 
-        WebDriverWait waitFor = new WebDriverWait (driver, 20);
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
 
-        waitFor.until(ExpectedConditions.elementToBeClickable(createNewClipPage.nextButton));
-        createNewClipPage.nextButton.click();
+        $(By.xpath("//div[@class=\"box-header\"]/span")).shouldHave(Condition.text("Check the box of the user(s)"));
+    }
 
-        waitFor.until(ExpectedConditions.elementToBeClickable(createNewClipPage.nextButton));
-        createNewClipPage.nextButton.click();
+    @Test
+    public void clipSearch() throws InterruptedException {
+        Container container = new Container();
+        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
-        waitFor.until(ExpectedConditions.elementToBeClickable(createNewClipPage.nextButton));
-        createNewClipPage.saveClipButton.click();
+        $(container.media).click();
+        $(container.clipLibrary).click();
 
+        String searchedNameOfClip = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr[5]/td[2]/span")).text();
 
-        String expectedMessage = driver.findElement(By.xpath("//div[@class=\"box-header\"]/span")).getText();
-        String message = "Check the box of the user(s) which should have this template available";
+        $(clipLibraryPage.searchField).setValue(searchedNameOfClip);
+        Thread.sleep(3000);
 
-        Assert.assertEquals(expectedMessage,message);
-
+        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[2]/span")).shouldHave(Condition.text(searchedNameOfClip));
     }
 }

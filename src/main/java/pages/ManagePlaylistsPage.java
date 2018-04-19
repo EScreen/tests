@@ -1,27 +1,20 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static com.codeborne.selenide.Selenide.$;
 
 /**
  * Created by Anna on 17/04/2018.
  */
 public class ManagePlaylistsPage {
 
-    WebDriver driver;
-
-    public ManagePlaylistsPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
-
-    @FindBy(xpath = "//input[@placeholder=\"Search\"]")
-    public WebElement searchField;
-
-    @FindBy(xpath = "//*[@id=\"manage-blocks-table\"]/tbody/tr[1]/td[4]/a/strong")
-    public WebElement nameOfPlayList;
-
+    public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
+    public SelenideElement nameOfPlayList = $(By.xpath("//*[@id=\"manage-blocks-table\"]/tbody/tr[1]/td[4]/a/strong"));
 
 }

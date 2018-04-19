@@ -18,13 +18,13 @@ public class GenerateData {
         return email;
     }
 
-    public String generateString (int lenth){
-        String data = RandomStringUtils.randomAlphabetic(lenth) + "_AT";
+    public String generateString (int length){
+        String data = RandomStringUtils.randomAlphabetic(length) + "_AT";
         return data;
     }
 
-    public String generateNumbers (int lenth){
-        return RandomStringUtils.randomNumeric(lenth);
+    public String generateNumbers (int length){
+        return RandomStringUtils.randomNumeric(length);
     }
 
     public String generateUrl(int length) {

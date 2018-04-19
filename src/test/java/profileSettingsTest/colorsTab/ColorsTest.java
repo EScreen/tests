@@ -26,7 +26,7 @@ public class ColorsTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         driver.get("https://ppmanager.easyscreen.tv/login");
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.login("adminkiev", "twfbinstpi");
     }
 
@@ -39,15 +39,15 @@ public class ColorsTest {
     @Test
     public void addColorTest() throws InterruptedException {
 
-        MainUserDashboardPage mainUserBasePage = new MainUserDashboardPage(driver);
-        Container container = new Container(driver);
+        MainUserDashboardPage mainUserBasePage = new MainUserDashboardPage();
+        Container container = new Container();
 
         container.mainUserMenu.click();
 
         Actions actions = new Actions(driver);
         actions.moveToElement(container.mainUserMenuProfile).click().perform();
 
-        ProfileSettingsPage profileSettingsPage = new ProfileSettingsPage(driver);
+        ProfileSettingsPage profileSettingsPage = new ProfileSettingsPage();
 
         actions.moveToElement(profileSettingsPage.colorsTab).click().perform();
 
