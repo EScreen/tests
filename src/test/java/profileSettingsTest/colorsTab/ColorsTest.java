@@ -9,8 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import pages.Container;
 import pages.LoginPage;
-import pages.MainUserDashboardPage;
-import pages.ProfileSettingsPage;
+import pages.profilePages.ProfileSettingsPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +38,7 @@ public class ColorsTest {
     @Test
     public void addColorTest() throws InterruptedException {
 
-        MainUserDashboardPage mainUserBasePage = new MainUserDashboardPage();
+        //MainUserDashboardPage mainUserBasePage = new MainUserDashboardPage();
         Container container = new Container();
 
         container.mainUserMenu.click();

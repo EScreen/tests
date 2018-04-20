@@ -1,4 +1,4 @@
-package pages;
+package pages.playlistsPages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -15,6 +15,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class ManagePlaylistsPage {
 
     public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
-    public SelenideElement nameOfPlayList = $(By.xpath("//*[@id=\"manage-blocks-table\"]/tbody/tr[1]/td[4]/a/strong"));
+    public SelenideElement nameOfPlayList = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"));
 
 }

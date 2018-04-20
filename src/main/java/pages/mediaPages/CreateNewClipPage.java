@@ -1,4 +1,4 @@
-package pages;
+package pages.mediaPages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -26,13 +26,19 @@ public class CreateNewClipPage {
     public SelenideElement nameOfActualCategory = $(By.xpath("//div[@class=\"row-fluid box-tour\"]/div/h3"));
     public SelenideElement portraitTemplate = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div[1]/div/div[1]/div[1]/ul/li/div/img"));
     public SelenideElement nameOfClip = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a"));
+    public SelenideElement templateClipCategory = $(By.xpath("//select[@name=\"clipcategory\"]"));
+    public SelenideElement tepmlateNewPlaylistField = $(By.xpath("//*[@name=\"new_playlist\"]"));
+    public SelenideElement storeIntheMediaLibraryCheckbox = $(By.xpath("//*[@id=\"content_backgroundImage_thumb\"]/div[4]/input"));
+    public SelenideElement templateUploadedImgCategoriesSelect = $(By.xpath("//select[@name=\"backgroundImage_thumb_category\"]"));
+    public SelenideElement templateUploadedImgNameField = $(By.xpath("//input[@name=\"backgroundImage_thumb_libraryname\"]"));
+
 
 
 
 
     public void checkAvailableForUsers(){
         try{
-            $(By.xpath("//*[@class=\"icheckbox_flat-aero")).click();
+            $(By.xpath("//*[@class=\"icheckbox_flat-aero\"]")).click();
         }catch (Exception e){
         }
     }
@@ -43,5 +49,6 @@ public class CreateNewClipPage {
         }catch (Exception e){
         }
     }
+
 
 }
