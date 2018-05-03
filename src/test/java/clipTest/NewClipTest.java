@@ -27,7 +27,6 @@ public class NewClipTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
-        open("https://ppmanager.easyscreen.tv/login");
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
@@ -40,7 +39,6 @@ public class NewClipTest {
 
     @Test
     public void mainUser_CreateNewClip() {
-
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -91,9 +89,7 @@ public class NewClipTest {
         $(By.xpath("//*[@class=\"wizard-nav-link ng-binding\"]")).click();
 
         $(By.xpath("//img[@crossorigin=\"anonymous\"]")).shouldBe(Condition.visible);
-
     }
-
 
     @Test
     public void mainUser_CreateAndAddClipToExistedPlayList() throws InterruptedException {
@@ -154,13 +150,7 @@ public class NewClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 
-        $(container.playlists).click();
-        $(container.managePlayLIsts).click();
-
-        $(managePlaylistsPage.nameOfPlayList).click();
-        sleep(2000);
-        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]")).shouldHave(CollectionCondition.texts(clipName));
-        sleep(2000);
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody/tr/td[3]/span")).shouldHave(CollectionCondition.texts(clipName));
     }
 
     @Test
@@ -183,7 +173,7 @@ public class NewClipTest {
 
         uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/nature.jpg");
 
-        $(createNewClipPage.storeIntheMediaLibraryCheckbox).selectRadio();
+        $(createNewClipPage.storeIntheMediaLibraryCheckbox).click();
         $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1273");
         String selectedCategory = $(By.xpath("//option[@value=\"1273\"]")).text();
 
@@ -201,16 +191,6 @@ public class NewClipTest {
 
 
     }
-
-
-
-
-
-
-
-
-
-
 
     @Test
     public void sortByCategories() throws InterruptedException {
@@ -253,8 +233,4 @@ public class NewClipTest {
 
         $$(By.xpath("//div[@class=\"template-item ng-scope\"]")).shouldBe(CollectionCondition.size(4));
     }
-
-
-
-
 }

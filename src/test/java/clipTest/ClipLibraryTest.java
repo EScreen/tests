@@ -31,7 +31,6 @@ public class ClipLibraryTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
-        open("https://ppmanager.easyscreen.tv/login");
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
@@ -110,7 +109,8 @@ public class ClipLibraryTest {
         $(clipLibraryPage.deleteClipButton).click();
         $(clipLibraryPage.yesDeleteButton).click();
 
-        clipLibraryPage.submitDeletingClip();
+        clipLibraryPage.deleteClipIfItUsedInPlaylist();
+        sleep(2000);
 
         $(clipLibraryPage.successAlert).should(Condition.appears);
     }
@@ -181,7 +181,7 @@ public class ClipLibraryTest {
         $(container.clipLibrary).click();
         $(clipLibraryPage.managementCategoriesbutton).click();
 
-        String searchedCategory = $$(By.xpath("//span[@editable-text=\"item.name\"]")).get(4).text();
+        String searchedCategory = $$(By.xpath("//span[@editable-text=\"item.name\"]")).get(2).text();
 
         $(managementCategoriesPage.searchField).setValue(searchedCategory);
 

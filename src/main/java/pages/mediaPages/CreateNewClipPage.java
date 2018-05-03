@@ -1,6 +1,7 @@
 package pages.mediaPages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -39,14 +40,14 @@ public class CreateNewClipPage {
     public void checkAvailableForUsers(){
         try{
             $(By.xpath("//*[@class=\"icheckbox_flat-aero\"]")).click();
-        }catch (Exception e){
+        }catch (ElementNotFound e){
         }
     }
 
     public void unCheckAvailableForUsers(){
         try{
             $(By.xpath("//*[@class=\"icheckbox_flat-aero checked\"]")).click();
-        }catch (Exception e){
+        }catch (ElementNotFound e){
         }
     }
 

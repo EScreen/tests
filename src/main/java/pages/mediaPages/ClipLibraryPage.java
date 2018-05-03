@@ -1,6 +1,7 @@
 package pages.mediaPages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -23,11 +24,13 @@ public class ClipLibraryPage {
     public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[5]/a"));
     public SelenideElement yesDeleteButton = $(By.xpath("//button[@ng-click=\"ok()\"][2]"));
     public SelenideElement successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/strong"));
+    public SelenideElement deleteClipIfItInPlaylist = $(By.xpath("//button[@class=\"btn btn-green ng-binding\"]"));
 
-    public void submitDeletingClip(){
+
+    public void deleteClipIfItUsedInPlaylist(){
         try{
-            $(yesDeleteButton).click();
-        }catch (Exception e){
+            $(deleteClipIfItInPlaylist).click();
+        }catch (ElementNotFound e){
         }
     }
 
