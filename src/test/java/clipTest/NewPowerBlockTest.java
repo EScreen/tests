@@ -87,4 +87,9 @@ public class NewPowerBlockTest {
         $$(By.xpath("//div[@id=\"playlist-block\"]//span[@class=\"ng-binding\"]")).shouldHaveSize(3);
     }
 
+    @Test
+    public void activatePowerBl(){
+
+    }
+
 }

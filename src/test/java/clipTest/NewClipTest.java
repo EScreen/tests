@@ -76,7 +76,7 @@ public class NewClipTest {
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
-        $(By.xpath("//input[@type=\"file\"]")).click();
+        $(createNewClipPage.templateChooseFileButton).click();
 
         uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/iphone.jpg");
 
@@ -169,9 +169,11 @@ public class NewClipTest {
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
-        $(By.xpath("//input[@type=\"file\"]")).click();
+        $(createNewClipPage.templateChooseFileButton).click();
 
         uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/nature.jpg");
+
+        sleep(2000);
 
         $(createNewClipPage.storeIntheMediaLibraryCheckbox).click();
         $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1273");

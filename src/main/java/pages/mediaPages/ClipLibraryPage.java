@@ -24,6 +24,7 @@ public class ClipLibraryPage {
     public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[5]/a"));
     public SelenideElement yesDeleteButton = $(By.xpath("//button[@ng-click=\"ok()\"][2]"));
     public SelenideElement successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/strong"));
+    public SelenideElement successDeleteAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/text()"));
     public SelenideElement deleteClipIfItInPlaylist = $(By.xpath("//button[@class=\"btn btn-green ng-binding\"]"));
 
 

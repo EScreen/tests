@@ -18,10 +18,11 @@ public class CreateNewClipPage {
     public SelenideElement nextButton = $(By.cssSelector("#simplemodal-data > div.wizard-modal-footer > div > button.btn.wizard-next.btn-blue.ng-scope"));
     public SelenideElement templateTestNameField = $(By.id("fragmentname"));
     public SelenideElement templateSummaryTab = $(By.xpath("//a[@data-info=\"summary\"]"));
-    public SelenideElement templateAvailableforAllUsers = $(By.xpath("//ins[@class=\"iCheck-helper\"]"));
     public SelenideElement templateExistedPlaylistField = $(By.xpath("//li[@class=\"select2-search-field\"]/input"));
     public SelenideElement firstExistedPlaylist = $(By.xpath("//div[@ng-bind-html=\"playlist.name | highlight: $select.search\"]"));
     public SelenideElement templateTestDurationField = $(By.xpath("//input[@name=\"duration1\"]"));
+    public SelenideElement templateChooseFileButton = $(By.xpath("//label[@class=\"btn btn-default ng-scope\"]"));
+
     public SelenideElement saveClipButton = $(By.xpath("//*[@id=\"simplemodal-data\"]/div[4]/div/span[2]/button[3]"));
     public SelenideElement category = $(By.xpath("//div[@class=\"scroller-content\"]/span[2]"));
     public SelenideElement nameOfActualCategory = $(By.xpath("//div[@class=\"row-fluid box-tour\"]/div/h3"));
@@ -29,7 +30,7 @@ public class CreateNewClipPage {
     public SelenideElement nameOfClip = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a"));
     public SelenideElement templateClipCategory = $(By.xpath("//select[@name=\"clipcategory\"]"));
     public SelenideElement tepmlateNewPlaylistField = $(By.xpath("//*[@name=\"new_playlist\"]"));
-    public SelenideElement storeIntheMediaLibraryCheckbox = $(By.xpath("//*[@id=\"content_backgroundImage_thumb\"]/div[4]/input"));
+    public SelenideElement storeIntheMediaLibraryCheckbox = $(By.xpath("//input[@name=\"backgroundImage_thumb_islibrary\"]"));
     public SelenideElement templateUploadedImgCategoriesSelect = $(By.xpath("//select[@name=\"backgroundImage_thumb_category\"]"));
     public SelenideElement templateUploadedImgNameField = $(By.xpath("//input[@name=\"backgroundImage_thumb_libraryname\"]"));
 

@@ -84,7 +84,7 @@ public class ClipLibraryTest {
         $(clipLibraryPage.editClipButton).click();
         $(createNewClipPage.nextButton).click();
 
-        $(By.xpath("//input[@type=\"file\"]")).click();
+        $(createNewClipPage.templateChooseFileButton).click();
         sleep(2000);
 
         uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/iphone.jpg");
@@ -112,7 +112,7 @@ public class ClipLibraryTest {
         clipLibraryPage.deleteClipIfItUsedInPlaylist();
         sleep(2000);
 
-        $(clipLibraryPage.successAlert).should(Condition.appears);
+        $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong")).shouldHave(Condition.text("SUCCESS! "));
     }
 
     //NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
@@ -132,6 +132,7 @@ public class ClipLibraryTest {
 
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.nextButton).click();
+        sleep(2000);
         $(createNewClipPage.saveClipButton).click();
 
         $(By.xpath("//div[@class=\"box-header\"]/span")).shouldHave(Condition.text("Check the box of the user(s)"));
@@ -153,74 +154,23 @@ public class ClipLibraryTest {
         $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[2]/span")).shouldHave(Condition.text(searchedNameOfClip));
     }
 
+    //Filtering clips by category
     @Test
-    public void createCategory(){
+    public void clipFiltering (){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.clipLibrary).click();
-        $(clipLibraryPage.managementCategoriesbutton).click();
-        $(managementCategoriesPage.createButton).click();
+        $(clipLibraryPage.categoryDropDawn).selectOption(3);
 
-        $(managementCategoriesPage.nameCategoryField).setValue(genData.generateString(4));
-        $(managementCategoriesPage.saveNewCategoryButton).click();
+        String selectedCategory = $(By.xpath("//div[@class=\"box-header relative\"]//option[@selected=\"selected\"]")).text();
 
-        $(managementCategoriesPage.successAlert).shouldBe(Condition.appears);
+        $(By.xpath("//div[@class=\"box-content\"]//option[@selected=\"selected\"]")).shouldHave(Condition.exactText(selectedCategory));
+
     }
 
-    @Test
-    public void searchCategory(){
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
 
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.managementCategoriesbutton).click();
-
-        String searchedCategory = $$(By.xpath("//span[@editable-text=\"item.name\"]")).get(2).text();
-
-        $(managementCategoriesPage.searchField).setValue(searchedCategory);
-
-        $(managementCategoriesPage.nameOfCategory).shouldHave(Condition.text(searchedCategory));
-    }
-
-    @Test
-    public void deleteCategory(){
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
-
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.managementCategoriesbutton).click();
-
-        String deletedCategoryName = $(managementCategoriesPage.nameOfCategory).text();
-        $(managementCategoriesPage.deleteCategory).click();
-        $(managementCategoriesPage.yesDeleteCategoryButton).click();
-
-        $(managementCategoriesPage.nameOfCategory).shouldNotHave(Condition.text(deletedCategoryName));
-    }
-
-    @Test
-    public void editCategoryName(){
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
-        GenerateData genData = new GenerateData();
-
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.managementCategoriesbutton).click();
-
-        $(managementCategoriesPage.editCategoryButton).click();
-        $(managementCategoriesPage.editCategoryNameField).setValue(genData.generateString(3)).submit();
-
-        $(managementCategoriesPage.successAlert).should(Condition.appears);
-    }
 
 
 
