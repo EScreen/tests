@@ -24,8 +24,6 @@ import static com.codeborne.selenide.Selenide.close;
  */
 public class ClipCategoriesTest {
 
-    WebDriver driver;
-
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());

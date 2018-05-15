@@ -1,7 +1,8 @@
-package clipTest;
+package playlistTest;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import helpers.GenerateData;
 import org.junit.After;
@@ -11,18 +12,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
 import pages.LoginPage;
-import pages.playlistsPages.ManagePowerBlocksPage;
-import pages.playlistsPages.PlaylistPage;
 import pages.playlistsPages.PowerBlockPage;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.close;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by qwerty on 5/3/18.
  */
-public class NewPowerBlockTest {
+public class PowerBlockTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
@@ -40,7 +42,6 @@ public class NewPowerBlockTest {
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
-        ManagePowerBlocksPage managePowerBlocksPage = new ManagePowerBlocksPage();
 
 
         $(container.playlists).click();
@@ -56,7 +57,7 @@ public class NewPowerBlockTest {
         $(powerBlockPage.savePowerBlockButton).click();
         $(powerBlockPage.successAlert).shouldBe(Condition.visible);
 
-        $(managePowerBlocksPage.powerBlocksNames).click();
+        $(powerBlockPage.powerBlocksNames).click();
         $$(By.xpath("//div[@id=\"playlist-block\"]//span[@class=\"ng-binding\"]")).shouldHaveSize(3);
 
     }
@@ -66,7 +67,6 @@ public class NewPowerBlockTest {
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
-        ManagePowerBlocksPage managePowerBlocksPage = new ManagePowerBlocksPage();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
@@ -82,14 +82,50 @@ public class NewPowerBlockTest {
 
         $(powerBlockPage.savePowerBlockButton).click();
         $(powerBlockPage.successAlert).shouldBe(Condition.appear);
-        $(managePowerBlocksPage.powerBlocksNames).click();
+        $(powerBlockPage.powerBlocksNames).click();
 
         $$(By.xpath("//div[@id=\"playlist-block\"]//span[@class=\"ng-binding\"]")).shouldHaveSize(3);
     }
 
     @Test
     public void activatePowerBl(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
 
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+        $(powerBlockPage.notActivePowerBl).click();
+        powerBlockPage.selectPlayer();
+
+        $(powerBlockPage.playBackDuration).setValue("10");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
+        $("#start_on > input").sendKeys(date1);
+
+        $("#start_at > span").click();
+        $(By.xpath("//a[@data-action=\"decrementHours\"]")).click();
+        $(powerBlockPage.saveButton).click();
+
+
+        sleep(4000);
     }
+
+    @Test
+    public void searchPowerBl(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+        String powerBlockName = powerBlockPage.getPowerBlockName($(".box.pwb-list #powerblocks-table > tbody > tr:last-child > td:nth-child(2) > a > span"));
+
+        $(powerBlockPage.searchField).setValue(powerBlockName);
+
+        $(".box.pwb-list #powerblocks-table > tbody > tr:first-child > td:nth-child(2) > a > span")
+                .shouldHave(Condition.text(powerBlockName));
+    }
+
 
 }

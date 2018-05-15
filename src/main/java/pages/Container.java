@@ -18,6 +18,9 @@ import static com.codeborne.selenide.Selenide.$;
 public class Container {
 
     public SelenideElement currentView = $(By.xpath("//a[@ng-click=\"changeUserView()\"]"));
+        public SelenideElement loginSubUser1 = $(".dataTable.responsive>tbody>tr:nth-child(2)>td:last-child>div>a");
+        public SelenideElement loginSubUser2 = $(".dataTable.responsive>tbody>tr:nth-child(3)>td:last-child>div>a");
+        public SelenideElement loginToMainUser = $(".dataTable.responsive>tbody>tr:nth-child(1)>td:last-child>div>a");
     public SelenideElement mainUserMenu = $(By.xpath("//li[@id=\"profile-details\"]//a[@class=\"dropdown-toggle\"]"));
     public SelenideElement mainUserMenuUsers = $(By.xpath("//a[@ui-sref=\"users.all\"]"));
     public SelenideElement mainUserMenuProfile = $(By.xpath("//a[@ui-sref=\"profile\"]"));
@@ -51,6 +54,23 @@ public class Container {
         public SelenideElement radioPlayers = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
         public SelenideElement radioPlayersSchedule = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
+
+
+    public void goToSubUser1(){
+            $(currentView).click();
+            $(loginSubUser1).click();
+        }
+
+    public void goToSubUser2(){
+        $(currentView).click();
+        $(loginSubUser2).click();
+    }
+
+    public void goToMainUser(){
+        $(currentView).click();
+        $(loginToMainUser).click();
+
+    }
 
 
 }

@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class ManagePlaylistsPage {
 
     public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
-    public SelenideElement nameOfPlayList = $(By.xpath("//*[@id=\"manage-blocks-table\"]/tbody/tr/td[4]/a/strong"));
+    public SelenideElement nameOfPlayList = $("#manage-blocks-table>tbody>tr>td:nth-child(4)>a>strong");
     public SelenideElement statusPlaylistSelector = $(By.xpath("//select[@ng-change=\"changeActiveFilter()\"]"));
 
     public SelenideElement lastPlaylistName = $(By.cssSelector("tr.ng-scope:last-child > td:nth-child(4) > a > strong"));

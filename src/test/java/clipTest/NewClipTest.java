@@ -38,19 +38,18 @@ public class NewClipTest {
     }
 
     @Test
-    public void mainUser_CreateNewClip() {
+    public void mU_CreateNewClip() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
 
         $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("FAMAS Plattegrond");
-        $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a")).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateClipCategory).selectOption(3);
-        sleep(5000);
 
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateTestDurationField).setValue("3");
@@ -62,7 +61,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void createNewWidgetWithPhoto() throws AWTException {
+    public void createClipWithImg() throws AWTException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -70,8 +69,8 @@ public class NewClipTest {
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("FAMAS Plattegrond");
-        $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a")).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
@@ -92,7 +91,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void mainUser_CreateAndAddClipToExistedPlayList() throws InterruptedException {
+    public void mU_CreateAndAddClipToExistedPlayList() throws InterruptedException {
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -101,8 +100,8 @@ public class NewClipTest {
 
 
         $(dashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("FAMAS Plattegrond");
-        $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a")).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
@@ -127,18 +126,16 @@ public class NewClipTest {
     }
 
     @Test
-    public void mainUser_CreateAndAddClipToNewPlayList(){
+    public void mU_CreateAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
-
-
         $(dashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("FAMAS Plattegrond");
-        $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a")).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
@@ -163,8 +160,8 @@ public class NewClipTest {
         MyFilesPage myFilesPage = new MyFilesPage();
 
         $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("FAMAS Plattegrond");
-        $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a")).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
@@ -195,6 +192,91 @@ public class NewClipTest {
     }
 
     @Test
+    public void sU_CreateNewClip(){
+        Container container = new Container();
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        GenerateData genData = new GenerateData();
+
+        container.goToSubUser1();
+
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+        $(createNewClipPage.templateClipCategory).selectOption(3);
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("1");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr[1]/td[2]/span")).shouldBe(Condition.text(clipName));
+    }
+
+    @Test
+    public void sU_CreateAndAddClipToExistedPlayList(){
+        MainDashboardPage dashboardPage = new MainDashboardPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        Container container = new Container();
+        GenerateData genData = new GenerateData();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+
+        container.goToSubUser1();
+        $(dashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+        $(createNewClipPage.templateExistedPlaylistField).setValue("Test");
+        $(createNewClipPage.firstExistedPlaylist).click();
+
+        String playListName = $(By.xpath("//li[@class=\"ui-select-match-item select2-search-choice ng-scope\"]/span/span")).text();
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("3");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(container.playlists).click();
+        $(container.managePlayLIsts).click();
+
+        $(managePlaylistsPage.searchField).setValue(playListName);
+        sleep(2000);
+        $(managePlaylistsPage.nameOfPlayList).click();
+
+        $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody")).shouldHave(Condition.text(clipName));
+    }
+
+    @Test
+    public void sU_CreateAndAddClipToNewPlayList(){
+        MainDashboardPage dashboardPage = new MainDashboardPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        GenerateData genData = new GenerateData();
+        Container container = new Container();
+
+        container.goToSubUser1();
+        $(dashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+
+        $(createNewClipPage.tepmlateNewPlaylistField).setValue(genData.generateString(4));
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("4");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody/tr/td[3]/span")).shouldHave(CollectionCondition.texts(clipName));
+    }
+
+    @Test
     public void sortByCategories() throws InterruptedException {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
@@ -210,7 +292,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void sortByOrientation(){
+    public void sortTemplatesByOrientation(){
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
 

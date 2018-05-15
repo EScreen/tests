@@ -14,7 +14,6 @@ import static com.codeborne.selenide.Selenide.$$;
 public class PlaylistPage {
 
     public SelenideElement playlistNameField = $(By.xpath("//*[@ng-model=\"data.name\"]"));
-    public ElementsCollection plusLogo = $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"));
     public SelenideElement successAlert = $(By.xpath("//div[@flash-alert=\"success\"]"));
     public SelenideElement savePlButton = $(By.xpath("//button[@ng-click=\"savePlaylist()\"]"));
     public SelenideElement orientationSwitch = $(By.xpath("//li[@tooltip-html-unsafe=\"Landscape / Portrait\"]//div[@class=\"ibutton-handle\"]"));

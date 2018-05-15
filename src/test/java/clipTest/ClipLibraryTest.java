@@ -1,8 +1,6 @@
 package clipTest;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import helpers.GenerateData;
 import helpers.UploadingFiles;
 import org.junit.After;
@@ -19,6 +17,8 @@ import pages.mediaPages.ManagementCategoriesPage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -44,7 +44,7 @@ public class ClipLibraryTest {
 
     //Edit name of existed clip
     @Test
-    public void mainUser_EditNameOfClip() throws InterruptedException {
+    public void mU_EditCLipName() throws InterruptedException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -70,7 +70,7 @@ public class ClipLibraryTest {
     }
 
     @Test
-    public void uploadFileToClip() throws IOException, AWTException {
+    public void uploadImgToClip() throws IOException, AWTException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -89,13 +89,43 @@ public class ClipLibraryTest {
 
         uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/iphone.jpg");
 
-
-        sleep(6000);
-
         $(createNewClipPage.templateSummaryTab).click();
         $(createNewClipPage.saveClipButton).click();
 
-        sleep(6000);
+
+    }
+
+    @Test
+    public void uploadImgFromLibrToClip(){
+        Container container = new Container();
+        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        UploadingFiles uploadingFiles = new UploadingFiles();
+        GenerateData genData = new GenerateData();
+
+
+        $(container.media).click();
+        $(container.clipLibrary).click();
+
+        $(clipLibraryPage.settingsClipButton).click();
+        $(clipLibraryPage.editClipButton).click();
+        $(createNewClipPage.nextButton).click();
+
+        $(createNewClipPage.templateUseImgLibrTab).click();
+        $(createNewClipPage.templateLibrImgSectionSelector).selectOptionContainingText("Other");
+        sleep(1000);
+        int index = Integer.parseInt(genData.generateNumbers(1));
+        $$("tbody img").get(index).click();
+
+        $(createNewClipPage.templateAddImgFromLibrBtn).click();
+        $(createNewClipPage.templateSummaryTab).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(clipLibraryPage.settingsClipButton).click();
+        $(clipLibraryPage.editClipButton).click();
+        $(createNewClipPage.nextButton).click();
+
+        $(".canvas-container>img").shouldBe(Condition.visible.because("Image from library doesn't save"));
     }
 
     @Test
@@ -117,11 +147,10 @@ public class ClipLibraryTest {
 
     //NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
     @Test
-    public void mainUser_AppearanceOfShareClipTable() {
+    public void mU_AppearanceOfShareClipTable() {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-
 
         $(container.media).click();
         $(container.clipLibrary).click();
@@ -129,13 +158,17 @@ public class ClipLibraryTest {
         $(clipLibraryPage.editClipButton).click();
 
         createNewClipPage.unCheckAvailableForUsers();
-
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.nextButton).click();
-        sleep(2000);
+        $(createNewClipPage.templateSummaryTab).click();
         $(createNewClipPage.saveClipButton).click();
 
-        $(By.xpath("//div[@class=\"box-header\"]/span")).shouldHave(Condition.text("Check the box of the user(s)"));
+        $(By.xpath("//span[@translate=\"FRAGMENT_SHARE_PAGE_TITLE\"]")).shouldHave(Condition.text("Share clip").because("Share table don't display"));
+
+        $$(".dataTable.responsive>tbody>tr:nth-child(n+2)>.ng-binding").findBy(Condition.text("Anya SubUser1")
+                .because("Subuser1 don't appear in the share table"))
+                .shouldBe(Condition.visible);
+        $$(".dataTable.responsive>tbody>tr:nth-child(n+2)>.ng-binding").findBy(Condition.text("Anya SubUser2")
+                .because("Subuser2 don't appear in the share table"))
+                .shouldBe(Condition.visible);
     }
 
     @Test
@@ -169,9 +202,5 @@ public class ClipLibraryTest {
         $(By.xpath("//div[@class=\"box-content\"]//option[@selected=\"selected\"]")).shouldHave(Condition.exactText(selectedCategory));
 
     }
-
-
-
-
 
 }
