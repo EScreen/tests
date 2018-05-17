@@ -30,6 +30,10 @@ public class ClipLibraryPage {
     public SelenideElement successDeleteAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/text()"));
     public SelenideElement deleteClipIfItInPlaylist = $(By.xpath("//button[@class=\"btn btn-green ng-binding\"]"));
 
+    public SelenideElement approveFirstClipCheck = $(".checkbox-table");
+    public SelenideElement needAppr_firstClip = $("#dataTables > table > tbody.ng-scope.ng-pristine.ng-valid > tr:nth-child(1) > td:nth-child(3) > div>span");
+
+
 
     public void deleteClipIfItUsedInPlaylist(){
         try{

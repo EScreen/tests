@@ -18,8 +18,6 @@ public class CreateNewClipPage {
     public SelenideElement orientationSelect = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/span"));
     public SelenideElement portraitOrientation = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/div/div[2]/span[1]"));
 
-
-
     public SelenideElement newClipButton = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a"));
     public SelenideElement nextButton = $(By.cssSelector("#simplemodal-data > div.wizard-modal-footer > div > button.btn.wizard-next.btn-blue.ng-scope"));
     public SelenideElement templateTestNameField = $(By.id("fragmentname"));
@@ -43,6 +41,12 @@ public class CreateNewClipPage {
     public SelenideElement storeIntheMediaLibraryCheckbox = $(By.xpath("//input[@name=\"backgroundImage_thumb_islibrary\"]"));
     public SelenideElement templateUploadedImgCategoriesSelect = $(By.xpath("//select[@name=\"backgroundImage_thumb_category\"]"));
     public SelenideElement templateUploadedImgNameField = $(By.xpath("//input[@name=\"backgroundImage_thumb_libraryname\"]"));
+
+    //Share Clip page
+    public SelenideElement shareClipWithSubUser1 = $("#dataTables>table>tbody>tr:nth-child(2)>td>div");
+    public SelenideElement shareClipWithSubUser2 = $("#dataTables>table>tbody>tr:nth-child(3)>td>div");
+    public SelenideElement shareClipSaveButton = $(".form-actions>button");
+
 
 
 

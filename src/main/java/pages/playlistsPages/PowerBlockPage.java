@@ -4,8 +4,10 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import java.sql.Time;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Created by qwerty on 5/3/18.
@@ -21,7 +23,7 @@ public class PowerBlockPage {
     public SelenideElement searchField = $("#DataTables_Table_0_filter > label > input");
 
     public SelenideElement statusFirstPowerBl = $(By.cssSelector("table.dataTable.responsive.tour-spotlight > tbody > tr:nth-child(1) > td > center > a > span"));
-    public SelenideElement notActivePowerBl = $(By.xpath("//*[@id=\"powerblocks-table\"]/tbody/tr/td/center/a"));
+    public SelenideElement notActivePowerBl = $(By.xpath("//*[@id=\"powerblocks-table\"]//span[@tooltip-html-unsafe=\"Not playing\"]"));
     public SelenideElement selectPlayer = $(By.cssSelector("div.modal-body.ng-scope > form > div:nth-child(2) > ul > li > input"));
     public SelenideElement playBackDuration = $(By.xpath("//*[@name=\"duration\"]"));
     public SelenideElement startOnDate = $(By.cssSelector("#start_on > span"));

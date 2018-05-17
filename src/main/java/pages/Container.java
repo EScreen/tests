@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Anna on 06/04/2018.
@@ -57,17 +59,20 @@ public class Container {
 
 
     public void goToSubUser1(){
-            $(currentView).click();
-            $(loginSubUser1).click();
+        $(currentView).click();
+        sleep(1000);
+        $(loginSubUser1).click();
         }
 
     public void goToSubUser2(){
         $(currentView).click();
+        sleep(1000);
         $(loginSubUser2).click();
     }
 
     public void goToMainUser(){
         $(currentView).click();
+        sleep(1000);
         $(loginToMainUser).click();
 
     }

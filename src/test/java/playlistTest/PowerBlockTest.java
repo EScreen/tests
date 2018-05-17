@@ -1,14 +1,12 @@
 package playlistTest;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import helpers.GenerateData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
 import pages.LoginPage;
@@ -16,7 +14,7 @@ import pages.playlistsPages.PowerBlockPage;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -94,6 +92,12 @@ public class PowerBlockTest {
 
         $(container.playlists).click();
         $(container.managePowerBlocks).click();
+
+        sleep(2000);
+
+        int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr").size();
+        int numberActivePowerBlBefore = $$("#active_pb > tbody > tr").size();
+
         $(powerBlockPage.notActivePowerBl).click();
         powerBlockPage.selectPlayer();
 
@@ -108,8 +112,8 @@ public class PowerBlockTest {
         $(By.xpath("//a[@data-action=\"decrementHours\"]")).click();
         $(powerBlockPage.saveButton).click();
 
-
-        sleep(4000);
+        $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
+        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
     }
 
     @Test
