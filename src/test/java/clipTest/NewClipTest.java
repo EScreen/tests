@@ -5,6 +5,7 @@ import helpers.GenerateData;
 import helpers.UploadingFiles;
 import org.junit.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
 import pages.Container;
@@ -38,7 +39,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void mU_CreateNewClip() {
+    public void mU_createNewClip() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -61,7 +62,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void createClipWithImg() throws AWTException {
+    public void mU_createClipWithImg() throws AWTException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -91,7 +92,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void mU_CreateAndAddClipToExistedPlayList() throws InterruptedException {
+    public void mU_createAndAddClipToExistedPlayList() {
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -126,7 +127,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void mU_CreateAndAddClipToNewPlayList(){
+    public void mU_createAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -151,48 +152,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void createClipAndAddImgToLibr() throws AWTException {
-        MainDashboardPage mainDashboardPage = new MainDashboardPage();
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        Container container = new Container();
-        GenerateData genData = new GenerateData();
-        UploadingFiles uploadingFiles = new UploadingFiles();
-        MyFilesPage myFilesPage = new MyFilesPage();
-
-        $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
-        $(createNewClipPage.newClipButton).click();
-
-        String clipName = genData.generateString(6);
-        $(createNewClipPage.templateTestNameField).setValue(clipName);
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.templateChooseFileButton).click();
-
-        uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/nature.jpg");
-
-        sleep(2000);
-
-        $(createNewClipPage.storeIntheMediaLibraryCheckbox).click();
-        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1273");
-        String selectedCategory = $(By.xpath("//option[@value=\"1273\"]")).text();
-
-        String nameUploadedImg = genData.generateString(3);
-        $(createNewClipPage.templateUploadedImgNameField).setValue(nameUploadedImg);
-
-        $(createNewClipPage.templateTestDurationField).setValue("3");
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.saveClipButton).click();
-
-        $(container.myFiles).click();
-        $(myFilesPage.categorySelector).selectOptionContainingText(selectedCategory);
-
-        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody/tr[1]/td[2]")).shouldHave(Condition.text(nameUploadedImg));
-
-
-    }
-
-    @Test
-    public void sU_CreateNewClip(){
+    public void sU_createNewClip(){
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -206,7 +166,6 @@ public class NewClipTest {
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
-        $(createNewClipPage.templateClipCategory).selectOption(3);
 
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateTestDurationField).setValue("1");
@@ -217,7 +176,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void sU_CreateAndAddClipToExistedPlayList(){
+    public void sU_createAndAddClipToExistedPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -231,7 +190,7 @@ public class NewClipTest {
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
-        $(createNewClipPage.templateExistedPlaylistField).setValue("Test");
+        $(createNewClipPage.templateExistedPlaylistField).setValue("First");
         $(createNewClipPage.firstExistedPlaylist).click();
 
         String playListName = $(By.xpath("//li[@class=\"ui-select-match-item select2-search-choice ng-scope\"]/span/span")).text();
@@ -252,7 +211,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void sU_CreateAndAddClipToNewPlayList(){
+    public void sU_createAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -277,7 +236,7 @@ public class NewClipTest {
     }
 
     @Test
-    public void sortByCategories() throws InterruptedException {
+    public void sortByCategories() {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
 
@@ -317,4 +276,45 @@ public class NewClipTest {
 
         $$(By.xpath("//div[@class=\"template-item ng-scope\"]")).shouldBe(CollectionCondition.size(4));
     }
+
+    /*@Test
+    public void mU_createClipAndAddImgToLibr() throws AWTException {
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        Container container = new Container();
+        GenerateData genData = new GenerateData();
+        UploadingFiles uploadingFiles = new UploadingFiles();
+        MyFilesPage myFilesPage = new MyFilesPage();
+
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateChooseFileButton).click();
+
+        uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/nature.jpg");
+
+        sleep(2000);
+
+        $(createNewClipPage.storeIntheMediaLibraryCheckbox).click();
+        $("#content_backgroundImage_thumb input[type=\"checkbox\"]").click();
+
+        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1273");
+        String selectedCategory = $(By.xpath("//option[@value=\"1273\"]")).text();
+
+        String nameUploadedImg = genData.generateString(3);
+        $(createNewClipPage.templateUploadedImgNameField).setValue(nameUploadedImg);
+
+        $(createNewClipPage.templateTestDurationField).setValue("3");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(container.myFiles).click();
+        $(myFilesPage.categorySelector).selectOptionContainingText(selectedCategory);
+
+        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody/tr[1]/td[2]")).shouldHave(Condition.text(nameUploadedImg));
+    }*/
 }

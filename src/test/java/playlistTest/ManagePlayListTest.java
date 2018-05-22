@@ -41,13 +41,9 @@ public class ManagePlayListTest {
 
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
-        $(managePlaylistsPage.statusPlaylistSelector).selectOptionContainingText("Show all active playlists");
-
-        //String status = $(By.xpath("//span[@class=\"badge badge-green ng-scope\"]")).getAttribute("tooltip-html-unsafe")
-
-
-        $(By.xpath("//span[@class=\"badge badge-green ng-scope\"]")).shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
-
+        $(managePlaylistsPage.statusPlaylistSelector).selectOption(2);
+        $(By.xpath("//span[@class=\"badge badge-green ng-scope\"]"))
+                .shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
     }
 
     @Test

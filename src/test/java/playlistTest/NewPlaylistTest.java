@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.dashboardPages.MainDashboardPage;
@@ -32,7 +34,7 @@ public class NewPlaylistTest {
     }
 
     @Test
-    public void createNewPlaylist_landscape(){
+    public void mU_createNewPlaylist_landscape(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -58,7 +60,63 @@ public class NewPlaylistTest {
     }
 
     @Test
-    public void createNewPlaylist_portrait() {
+    public void mU_createNewPlaylist_withFormula(){
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        PlaylistPage playlistPage = new PlaylistPage();
+        GenerateData gendata = new GenerateData();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+
+        $(mainDashboardPage.createPlaylistButton).click();
+
+        String playlistName = gendata.generateString(3);
+        $(playlistPage.playlistNameField).sendKeys(playlistName);
+
+        $(playlistPage.clipLibrFormula).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(playlistPage.savePlButton).click();
+
+        $(playlistPage.successAlert).shouldBe(Condition.appear);
+
+        $(managePlaylistsPage.nameOfPlayList).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(3));
+    }
+
+    @Test
+    public void mU_createNewPlaylist_withOther(){
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        PlaylistPage playlistPage = new PlaylistPage();
+        GenerateData gendata = new GenerateData();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+
+        $(mainDashboardPage.createPlaylistButton).click();
+
+        String playlistName = gendata.generateString(3);
+        $(playlistPage.playlistNameField).sendKeys(playlistName);
+
+        $(playlistPage.clipLibrOther).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(playlistPage.savePlButton).click();
+
+        $(playlistPage.successAlert).shouldBe(Condition.appear);
+
+        $(managePlaylistsPage.nameOfPlayList).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(3));
+    }
+
+    @Test
+    public void mU_createNewPlaylist_portrait() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -87,11 +145,10 @@ public class NewPlaylistTest {
     }
 
     @Test
-    public void createNewPlaylist_WithMyFiles(){
+    public void mU_createNewPlaylist_WithMyFiles(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
-        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
@@ -100,7 +157,7 @@ public class NewPlaylistTest {
         $(playlistPage.playlistNameField).sendKeys(playlistName);
         $(playlistPage.clipLibrMyFiles).click();
 
-        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(1).click();
+        $(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).click();
 
         $(createNewClipPage.nextButton).click();
         $(By.xpath("//input[@name=\"duration\"]")).setValue("3");
@@ -112,7 +169,7 @@ public class NewPlaylistTest {
     }
 
     @Test
-    public void createNewPlaylist_WithNewsRoom(){
+    public void mU_createNewPlaylist_WithNewsRoom(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -137,8 +194,33 @@ public class NewPlaylistTest {
         $(playlistPage.successAlert).shouldBe(Condition.appear);
     }
 
+    @Test
+    public void mU_canDeleteAddedClipFromPL(){
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        PlaylistPage playlistPage = new PlaylistPage();
+        GenerateData gendata = new GenerateData();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
+        $(mainDashboardPage.createPlaylistButton).click();
 
+        String playlistName = gendata.generateString(3);
+        $(playlistPage.playlistNameField).sendKeys(playlistName);
 
-}
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(playlistPage.savePlButton).click();
+
+        $(playlistPage.successAlert).shouldBe(Condition.appear);
+
+        $(managePlaylistsPage.nameOfPlayList).click();
+        $(playlistPage.clipSettingsButton).click();
+        $(playlistPage.deleteClipButton).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(2));
+    }
+
+    }
 

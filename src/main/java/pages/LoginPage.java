@@ -23,7 +23,7 @@ public class LoginPage {
 
 
     public void login(String login, String password){
-        open("https://manager.easyscreen.tv/login");
+        open("https://ppmanager.easyscreen.tv/login");
         loginField.setValue(login);
         passwordField.setValue(password);
         loginButton.click();

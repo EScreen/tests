@@ -38,7 +38,7 @@ public class ApprovalClipTest {
     }
 
     @Test
-    public void sU_CreateClipForApprove(){
+    public void sU_createClipForApprove(){
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -66,7 +66,7 @@ public class ApprovalClipTest {
     }
 
     @Test
-    public void sU_CreateClipWithOutApprove(){
+    public void sU_createClipWithOutApprove(){
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -91,7 +91,7 @@ public class ApprovalClipTest {
     }
 
     @Test
-    public void sU_CanNotUseAwaitedApprovalClip(){
+    public void sU_canNotUseAwaitedApprovalClip(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
@@ -298,7 +298,7 @@ public class ApprovalClipTest {
 
 // MainUser approves clip after editing it
     @Test
-    public void mU_approveClipViaEditing(){
+    public void mU_canApproveClipViaEditing(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         GenerateData genData = new GenerateData();
@@ -349,9 +349,10 @@ public class ApprovalClipTest {
         $("div.wizard-modal-footer > div > span:nth-child(4) > button:nth-child(5)").shouldNotBe(Condition.visible);
 
     }
+
 //If subuser has clip approve off "Awaiting Approval" tab shouldn't display.
     @Test
-    public void awaitingApprovalTabSHouldNotDisplay(){
+    public void awaitingApprovalTabShouldNotDisplay(){
         Container container = new Container();
         container.goToSubUser1();
 
@@ -360,6 +361,7 @@ public class ApprovalClipTest {
 
         $(By.xpath("//*[@id=\"approve-tab-library\"]/a")).shouldNotBe(Condition.visible);
     }
+
 //If subuser has clip approve off, During creating new clip "Add to new playlist" and "Add to existing playlist" fields display
     @Test
     public void sU_canAddClipToPL(){
@@ -392,9 +394,13 @@ public class ApprovalClipTest {
         $(clipLibraryPage.settingsClipButton).click();
         $("tbody.ng-scope.ng-pristine.ng-valid>tr:nth-child(1)>td:nth-child(9)>div>ul>li.ng-scope>a:nth-child(1)").click();
 
+        sleep(2000);
+
         String newNameClip = genData.generateString(3);
         $(createNewClipPage.templateTestNameField).clear();
         $(createNewClipPage.templateTestNameField).setValue(newNameClip);
+        sleep(2000);
+
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
@@ -406,14 +412,14 @@ public class ApprovalClipTest {
         $(container.media).click();
         $(container.clipLibrary).click();
         $(clipLibraryPage.formulaTab).click();
+
         $(clipLibraryPage.searchField).setValue(newNameClip);
 
         $$("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(2) > span")
                 .findBy(Condition.text(newNameClip))
                 .shouldBe(Condition.visible);
-
-
     }
+
 
 
 
