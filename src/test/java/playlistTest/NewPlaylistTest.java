@@ -7,13 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import pages.Container;
 import pages.LoginPage;
 import pages.dashboardPages.MainDashboardPage;
 import pages.mediaPages.CreateNewClipPage;
 import pages.playlistsPages.ManagePlaylistsPage;
 import pages.playlistsPages.PlaylistPage;
+
+import java.awt.*;
+import java.awt.event.InputEvent;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -220,6 +226,27 @@ public class NewPlaylistTest {
 
         $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
                 .shouldHave(CollectionCondition.size(2));
+    }
+
+
+    @Test
+    public void mU_setUpClipVolume(){
+        PlaylistPage playlistPage = new PlaylistPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+        Container container = new Container();
+
+        $(container.playlists).click();
+        $(container.managePlayLIsts).click();
+        $(managePlaylistsPage.nameOfPlayList).click();
+        $(playlistPage.clipSettingsButton).click();
+        $(playlistPage.setVolumeButton).click();
+
+        sleep(1000);
+
+        playlistPage.setVolume(30);
+
+        sleep(2000);
+
     }
 
     }

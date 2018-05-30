@@ -15,6 +15,7 @@ public class HappeningPage {
     public SelenideElement lastHappening = $("#dataTables>table>tbody>tr:last-child>td>a");
     public SelenideElement editFirstHapp = $("#dataTables>table>tbody>tr:nth-child(1)>td:nth-child(3)>div>a:nth-child(1)>div");
     public SelenideElement deleteFirstHapp = $("#dataTables>table>tbody>tr:nth-child(1)>td:nth-child(3)>div>a:nth-child(2)>div");
+    public SelenideElement yesDeleteButton = $(".modal-footer>button:nth-child(2)");
 
 
 
@@ -25,10 +26,11 @@ public class HappeningPage {
     public SelenideElement messageField = $(".box-footer.flat.padded>form>div:nth-child(2)>textarea");
     public SelenideElement sendMessageButton = $(".btn.btn-blue.ng-binding");
     public SelenideElement editMessageButton = $(".fa.fa-pencil");
+    public SelenideElement deleteMessageButton = $(".fa.fa-trash");
     public SelenideElement editTitleField = $("div.info > span.name > span > input");
     public SelenideElement editTextField = $("div.info>.ng-scope>textarea");
-    public SelenideElement editAttachFile = $("//a[@ng-click=\"item.attachFile=!item.attachFile\"]");
-    public SelenideElement editDeleteFile = $("//a[@ng-show=\"showDeleteFeedMsgFile\"]");
+    public SelenideElement editAttachFile = $(By.xpath("//a[@ng-click=\"item.attachFile=!item.attachFile\"]"));
+    public SelenideElement editDeleteFile = $(By.xpath("//a[@ng-show=\"showDeleteFeedMsgFile\"]"));
     public SelenideElement saveEditing = $("div.info > div > button:nth-child(3)");
 
 
