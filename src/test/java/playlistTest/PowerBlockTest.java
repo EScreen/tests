@@ -10,6 +10,10 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
 import pages.LoginPage;
+import pages.dashboardPages.MainDashboardPage;
+import pages.mediaPages.CreateNewClipPage;
+import pages.playlistsPages.ManagePlaylistsPage;
+import pages.playlistsPages.PlaylistPage;
 import pages.playlistsPages.PowerBlockPage;
 
 import java.text.DateFormat;
@@ -55,7 +59,7 @@ public class PowerBlockTest {
         $(powerBlockPage.savePowerBlockButton).click();
         $(powerBlockPage.successAlert).shouldBe(Condition.visible);
 
-        $(powerBlockPage.powerBlocksNames).click();
+        $(powerBlockPage.powerBlockName).click();
         $$(By.xpath("//div[@id=\"playlist-block\"]//span[@class=\"ng-binding\"]")).shouldHaveSize(3);
 
     }
@@ -80,7 +84,7 @@ public class PowerBlockTest {
 
         $(powerBlockPage.savePowerBlockButton).click();
         $(powerBlockPage.successAlert).shouldBe(Condition.appear);
-        $(powerBlockPage.powerBlocksNames).click();
+        $(powerBlockPage.powerBlockName).click();
 
         $$(By.xpath("//div[@id=\"playlist-block\"]//span[@class=\"ng-binding\"]")).shouldHaveSize(3);
     }
@@ -131,5 +135,165 @@ public class PowerBlockTest {
                 .shouldHave(Condition.text(powerBlockName));
     }
 
+    @Test
+    public void mU_createNewPowerBl_withFormula(){
+        GenerateData gendata = new GenerateData();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        Container container = new Container();
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String name = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(name);
+
+        $(powerBlockPage.clipLibrFormula).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.appear);
+        $(powerBlockPage.powerBlockName).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(3));
+    }
+
+    @Test
+    public void mU_createNewPowerBl_withNewsRoom(){
+        GenerateData gendata = new GenerateData();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        Container container = new Container();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String name = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(name);
+
+        $(powerBlockPage.clipLibrNewsRoom).click();
+        $(powerBlockPage.newsRoomCategory).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(1).click();
+
+        $(createNewClipPage.nextButton).click();
+        $(By.xpath("//select[@ng-model=\"data.fieldsvalue[field.flashname]\"]")).selectOption(1);
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.appear);
+    }
+
+    @Test
+    public void mU_createNewPowerBl_withMyFiles(){
+        GenerateData gendata = new GenerateData();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        Container container = new Container();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String name = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(name);
+
+        $(powerBlockPage.clipLibrMyFiles).click();
+
+        $(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).click();
+
+        $(createNewClipPage.nextButton).click();
+        $(By.xpath("//input[@name=\"duration\"]")).setValue("3");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveClipButton).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.appear);
+    }
+
+    @Test
+    public void mU_createNewPowerBl_withOther(){
+        GenerateData gendata = new GenerateData();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        Container container = new Container();
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String name = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(name);
+
+        $(powerBlockPage.clipLibrOther).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.appear);
+        $(powerBlockPage.powerBlockName).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(3));
+    }
+
+    @Test
+    public void mU_canDeleteAddedClipFromPowerBl(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
+
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String playlistName = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(playlistName);
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.visible);
+
+        $(powerBlockPage.powerBlockName).click();
+        $(powerBlockPage.clipSettingsButton).click();
+        $(powerBlockPage.deleteClipButton).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(2));
+    }
+
+    @Test
+    public void mU_setUpClipVolume(){
+        PlaylistPage playlistPage = new PlaylistPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+        $(powerBlockPage.powerBlockName).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+
+        $(powerBlockPage.clipSettingsButton).click();
+        $(powerBlockPage.setVolumeButton).click();
+        playlistPage.setVolume(60);
+        $(powerBlockPage.saveVolumeButton).click();
+        $(powerBlockPage.saveEditingPowerBl).click();
+
+        sleep(2000);
+
+        $(powerBlockPage.powerBlockName).click();
+        $(powerBlockPage.clipSettingsButton).click();
+        $(powerBlockPage.setVolumeButton).click();
+
+        $("span[ng-bind='params.volume']").shouldHave(Condition.exactText("60"));
+    }
 
 }

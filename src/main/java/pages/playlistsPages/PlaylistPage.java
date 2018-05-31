@@ -20,10 +20,12 @@ public class PlaylistPage {
     public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
     public SelenideElement successAlert = $(By.xpath("//div[@flash-alert=\"success\"]"));
     public SelenideElement savePlButton = $(By.xpath("//button[@ng-click=\"savePlaylist()\"]"));
+    public SelenideElement saveEditingPlButton = $(By.xpath("//button[@ng-click=\"editPlaylist()\"]"));
     public SelenideElement orientationSwitch = $(By.xpath("//li[@tooltip-html-unsafe=\"Landscape / Portrait\"]//div[@class=\"ibutton-handle\"]"));
     public SelenideElement clipSettingsButton = $(".box-content .btn-group");
         public SelenideElement setScheduleButton = $("a[ng-click='toggleScheduleModal(fragment)']");
         public SelenideElement setVolumeButton = $("a[ng-click='soundLevelModal(fragment)']");
+        public SelenideElement saveVolumeButton = $("button[ng-click='ok()']");
         public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//*[@class=\"dropdown-menu\"]//a[@ng-click=\"removeFromDrop(fragment)\"]"));
 
     public SelenideElement clipLibrNewsRoom = $(By.id("newsroom-tab-library"));
@@ -31,13 +33,16 @@ public class PlaylistPage {
     public SelenideElement clipLibrFormula = $(By.id("formula-tab-library"));
     public SelenideElement clipLibrOther = $(By.id("other-tab-library"));
     public SelenideElement clipLibrMyFiles = $(By.id("media-tab-library"));
+    
+    public SelenideElement colorPoint = $("body>div[style~='left:']>div:nth-child(1)>div>div");
+    
 
 
     public void setVolume(int percentage){
         SelenideElement elem = $(".slider-handle.min-slider-handle.round");
         int x = 0;
+        
         switch (percentage){
-
             case 10:
                 x = 53;
                 break;
@@ -51,29 +56,34 @@ public class PlaylistPage {
                 break;
 
             case 40:
-                x=535;
+                x=212;
                 break;
 
             case 50:
-                x=588;
+                x=265;
                 break;
 
             case 60:
-                x=640;
+                x=318;
                 break;
 
             case 70:
-                x=693;
+                x=371;
                 break;
 
             case 80:
-                x=746;
+                x=424;
                 break;
 
-        }
+            case 90:
+                x=477;
+                break;
 
+            case 100:
+                x=530;
+                break;
+        }
         Selenide.actions().dragAndDropBy(elem, x,0).build().perform();
-        
     }
 
 }

@@ -15,12 +15,16 @@ import static com.codeborne.selenide.Selenide.$$;
 public class PowerBlockPage {
 
     public SelenideElement powerBlockNameField = $(By.xpath("//*[@ng-model=\"data.name\"]"));
-    public SelenideElement powerBlocksNames = $(By.xpath("//span[@class=\"ng-binding ng-scope\"]"));
+    public SelenideElement powerBlockName = $(By.xpath("//span[@class=\"ng-binding ng-scope\"]"));
     public SelenideElement savePowerBlockButton = $(By.xpath("//button[@ng-click=\"savePB()\"]"));
+    public SelenideElement saveEditingPowerBl = $("button[ng-click='editPB()']");
     public SelenideElement successAlert = $(By.xpath("//div[@flash-alert=\"success\"]"));
     public SelenideElement orientationSwitch = $(By.xpath("//li[@tooltip-html-unsafe=\"Landscape / Portrait\"]//div[@class=\"ibutton-handle\"]"));
-    public SelenideElement clipLibrOther = $(By.id("other-tab-library"));
     public SelenideElement searchField = $("#DataTables_Table_0_filter > label > input");
+    public SelenideElement clipSettingsButton = $(".box-content .btn-group");
+    public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//*[@class=\"dropdown-menu\"]//a[@ng-click=\"removeFromDrop(fragment)\"]"));
+    public SelenideElement setVolumeButton = $("a[ng-click='soundLevelModal(fragment)']");
+    public SelenideElement saveVolumeButton = $("button[ng-click='ok()']");
 
     public SelenideElement statusFirstPowerBl = $(By.cssSelector("table.dataTable.responsive.tour-spotlight > tbody > tr:nth-child(1) > td > center > a > span"));
     public SelenideElement notActivePowerBl = $(By.xpath("//*[@id=\"powerblocks-table\"]//span[@tooltip-html-unsafe=\"Not playing\"]"));
@@ -31,6 +35,12 @@ public class PowerBlockPage {
     public SelenideElement startAtTime = $(By.cssSelector("#start_at > span"));
     public SelenideElement selectPlayerGroup = $(By.cssSelector("div.modal-body.ng-scope > form > div:nth-child(7) > ul > li > input"));
     public SelenideElement saveButton = $(By.cssSelector("div.modal-footer.ng-scope > button.btn.btn-green.ng-binding"));
+
+    public SelenideElement clipLibrNewsRoom = $(By.id("newsroom-tab-library"));
+    public SelenideElement newsRoomCategory = $(By.xpath("//a[@ng-click=\"getNewsroomTpls(item.ID)\"]"));
+    public SelenideElement clipLibrFormula = $(By.id("formula-tab-library"));
+    public SelenideElement clipLibrOther = $(By.id("other-tab-library"));
+    public SelenideElement clipLibrMyFiles = $(By.id("media-tab-library"));
 
 
 

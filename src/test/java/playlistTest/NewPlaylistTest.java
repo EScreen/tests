@@ -3,6 +3,7 @@ package playlistTest;
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -228,7 +229,6 @@ public class NewPlaylistTest {
                 .shouldHave(CollectionCondition.size(2));
     }
 
-
     @Test
     public void mU_setUpClipVolume(){
         PlaylistPage playlistPage = new PlaylistPage();
@@ -238,15 +238,40 @@ public class NewPlaylistTest {
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
         $(managePlaylistsPage.nameOfPlayList).click();
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+
+        $(playlistPage.clipSettingsButton).click();
+        $(playlistPage.setVolumeButton).click();
+        playlistPage.setVolume(50);
+        $(playlistPage.saveVolumeButton).click();
+        $(playlistPage.saveEditingPlButton).click();
+
+        $(managePlaylistsPage.nameOfPlayList).click();
         $(playlistPage.clipSettingsButton).click();
         $(playlistPage.setVolumeButton).click();
 
-        sleep(1000);
+        $("span[ng-bind='params.volume']").shouldHave(Condition.exactText("50"));
+    }
 
-        playlistPage.setVolume(30);
+    @Test
+    public void mU_setClipColor(){
+        PlaylistPage playlistPage = new PlaylistPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+        Container container = new Container();
 
-        sleep(2000);
+        $(container.playlists).click();
+        $(container.managePlayLIsts).click();
+        $(managePlaylistsPage.nameOfPlayList).click();
 
+        String css1 = $(".colorpickerWrapper>div").getCssValue("background-color");
+        $(".colorpickerWrapper").click();
+
+        Selenide.actions().dragAndDropBy(playlistPage.colorPoint, 10, -50).build().perform();
+
+        String css2 = $(".colorpickerWrapper>div").getCssValue("background-color");
+
+        Assert.assertNotEquals(css1, css2);
     }
 
     }
