@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.sleep;
  */
 public class Container {
 
-    public SelenideElement currentView = $(By.xpath("//a[@ng-click=\"changeUserView()\"]"));
+    public SelenideElement currentView = $("a[ng-click=\"changeUserView()\"]");
         public SelenideElement loginSubUser1 = $(".dataTable.responsive>tbody>tr:nth-child(2)>td:last-child>div>a");
         public SelenideElement loginSubUser2 = $(".dataTable.responsive>tbody>tr:nth-child(3)>td:last-child>div>a");
         public SelenideElement loginToMainUser = $(".dataTable.responsive>tbody>tr:nth-child(1)>td:last-child>div>a");

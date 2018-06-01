@@ -2,7 +2,9 @@ package pages.mediaPages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
+import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -55,7 +57,7 @@ public class CreateNewClipPage {
     public void checkAvailableForUsers(){
         try{
             $(By.xpath("//*[@class=\"icheckbox_flat-aero\"]")).click();
-        }catch (ElementNotFound e){
+        }catch (ElementNotVisibleException e){
         }
     }
 

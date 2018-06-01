@@ -26,8 +26,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Anna on 16/04/2018.
  */
-public class ClipLibraryTest {
-    WebDriver driver;
+public class MainUser_ClipLibraryTest {
 
     @Before
     public void beforeTest(){
@@ -64,7 +63,8 @@ public class ClipLibraryTest {
 
         String createdName = $(createNewClipPage.templateTestNameField).attr("value");
 
-        $(createNewClipPage.templateSummaryTab).click();
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 
         $(By.xpath("//td//span[@class=\"ng-binding\"]")).shouldHave(Condition.text(createdName));
@@ -139,14 +139,14 @@ public class ClipLibraryTest {
         $(clipLibraryPage.settingsClipButton).click();
         $(clipLibraryPage.deleteClipButton).click();
         $(clipLibraryPage.yesDeleteButton).click();
-
+        sleep(1000);
         clipLibraryPage.deleteClipIfItUsedInPlaylist();
         sleep(2000);
 
         $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong")).shouldHave(Condition.text("SUCCESS! "));
     }
 
-    //NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
+    //MainUser_NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
     @Test
     public void mU_appearanceOfShareClipTable() {
         Container container = new Container();
@@ -172,92 +172,8 @@ public class ClipLibraryTest {
                 .shouldBe(Condition.visible);
     }
 
-    // Subuser should have template that mainuser created available in formula tab when mainuser selected 'available for all users'
     @Test
-    public void sU_canUseSharedClip() {
-        MainDashboardPage mainDashboardPage = new MainDashboardPage();
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-
-        $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
-        $(createNewClipPage.newClipButton).click();
-
-        String clipName = genData.generateString(6);
-        $(createNewClipPage.templateTestNameField).setValue(clipName);
-        $(createNewClipPage.templateClipCategory).selectOption(3);
-
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.templateTestDurationField).setValue("3");
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.saveClipButton).click();
-
-        container.goToSubUser1();
-
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.formulaTab).click();
-        $(clipLibraryPage.searchField).setValue(clipName);
-
-        $$("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(2) > span")
-                .findBy(Condition.text(clipName))
-                .shouldBe(Condition.visible);
-
-    }
-
-    @Test
-    public void sU_canNotUseNotSharedClip(){
-        MainDashboardPage mainDashboardPage = new MainDashboardPage();
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-
-        $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
-        $(createNewClipPage.newClipButton).click();
-
-        String clipName = genData.generateString(6);
-        $(createNewClipPage.templateTestNameField).setValue(clipName);
-        createNewClipPage.unCheckAvailableForUsers();
-        $(createNewClipPage.templateClipCategory).selectOption(3);
-
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.templateTestDurationField).setValue("3");
-        $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.saveClipButton).click();
-
-        $(createNewClipPage.shareClipSaveButton).click();
-
-        container.goToSubUser1();
-
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.formulaTab).click();
-        $(clipLibraryPage.searchField).setValue(clipName);
-
-        $$("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(2) > span")
-                .findBy(Condition.text(clipName))
-                .shouldNotBe(Condition.visible);
-    }
-
-    @Test
-    public void sU_canNotShareClip(){
-        Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-
-        container.goToSubUser1();
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.settingsClipButton).click();
-
-        $(clipLibraryPage.shareClipButton).shouldNotBe(Condition.visible);
-    }
-
-    @Test
-    public void clipSearch() throws InterruptedException {
+    public void mU_clipSearch() throws InterruptedException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
@@ -274,7 +190,7 @@ public class ClipLibraryTest {
 
     //Filtering clips by category
     @Test
-    public void clipFiltering (){
+    public void mU_clipFiltering (){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 

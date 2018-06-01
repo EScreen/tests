@@ -22,7 +22,7 @@ import static com.codeborne.selenide.Selenide.close;
 /**
  * Created by Anna on 08/05/2018.
  */
-public class ClipCategoriesTest {
+public class MainUser_ClipCategoriesTest {
 
     @Before
     public void beforeTest(){
@@ -38,7 +38,7 @@ public class ClipCategoriesTest {
     }
 
     @Test
-    public void createCategory(){
+    public void mU_createCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -56,7 +56,7 @@ public class ClipCategoriesTest {
     }
 
     @Test
-    public void searchCategory(){
+    public void mU_searchCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -73,7 +73,7 @@ public class ClipCategoriesTest {
     }
 
     @Test
-    public void deleteCategory(){
+    public void mU_deleteCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -90,7 +90,7 @@ public class ClipCategoriesTest {
     }
 
     @Test
-    public void editCategoryName(){
+    public void mU_editCategoryName(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();

@@ -5,6 +5,7 @@ import com.codeborne.selenide.ex.ElementNotFound;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Anna on 16/04/2018.
@@ -37,6 +38,7 @@ public class ClipLibraryPage {
 
     public void deleteClipIfItUsedInPlaylist(){
         try{
+            sleep(1000);
             $(deleteClipIfItInPlaylist).click();
         }catch (ElementNotFound e){
         }

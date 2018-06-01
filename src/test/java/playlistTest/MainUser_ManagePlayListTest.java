@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by Anna on 08/05/2018.
  */
-public class ManagePlayListTest {
+public class MainUser_ManagePlayListTest {
 
     @Before
     public void beforeTest(){
@@ -34,7 +34,7 @@ public class ManagePlayListTest {
     }
 
     @Test
-    public void playListsSorting()
+    public void mU_playListsSorting()
     {
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
@@ -47,7 +47,7 @@ public class ManagePlayListTest {
     }
 
     @Test
-    public void playListsSearching(){
+    public void mU_playListsSearching(){
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
