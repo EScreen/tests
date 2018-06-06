@@ -44,7 +44,7 @@ public class MainUser_ClipLibraryTest {
 
     //Edit name of existed clip
     @Test
-    public void mU_editCLipName() throws InterruptedException {
+    public void mU_editCLipName() {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -71,7 +71,8 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void mU_uploadImgToClip() throws IOException, AWTException {
+    public void mU_uploadImgToClip() throws AWTException {
+        WebDriverRunner.getWebDriver().manage().window().fullscreen();
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -101,7 +102,6 @@ public class MainUser_ClipLibraryTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
         GenerateData genData = new GenerateData();
 
 

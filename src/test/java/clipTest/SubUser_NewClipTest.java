@@ -57,4 +57,9 @@ public class SubUser_NewClipTest extends MainUser_NewClipTest {
         super.mU_sortTemplatesByOrientation();
     }
 
+    @Test
+    public void sU_createClipAndAddImgToLibr() throws AWTException {
+        super.mU_createClipAndAddImgToLibr();
+    }
+
 }

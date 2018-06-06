@@ -63,6 +63,8 @@ public class MainUser_NewClipTest {
 
     @Test
     public void mU_createClipWithImg() throws AWTException {
+
+
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -193,7 +195,7 @@ public class MainUser_NewClipTest {
         $$(By.xpath("//div[@class=\"template-item ng-scope\"]")).shouldBe(CollectionCondition.size(4));
     }
 
-    /*@Test
+    @Test
     public void mU_createClipAndAddImgToLibr() throws AWTException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -215,11 +217,10 @@ public class MainUser_NewClipTest {
 
         sleep(2000);
 
-        $(createNewClipPage.storeIntheMediaLibraryCheckbox).click();
-        $("#content_backgroundImage_thumb input[type=\"checkbox\"]").click();
+        Selenide.executeJavaScript("arguments[0].click();",createNewClipPage.storeIntheMediaLibraryCheckbox);
 
-        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1273");
-        String selectedCategory = $(By.xpath("//option[@value=\"1273\"]")).text();
+        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1285");
+        String selectedCategory = $(By.xpath("//option[@value=\"1285\"]")).text();
 
         String nameUploadedImg = genData.generateString(3);
         $(createNewClipPage.templateUploadedImgNameField).setValue(nameUploadedImg);
@@ -232,5 +233,5 @@ public class MainUser_NewClipTest {
         $(myFilesPage.categorySelector).selectOptionContainingText(selectedCategory);
 
         $(By.xpath("//*[@id=\"dataTables\"]/table/tbody/tr[1]/td[2]")).shouldHave(Condition.text(nameUploadedImg));
-    }*/
+    }
 }

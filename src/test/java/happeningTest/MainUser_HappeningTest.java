@@ -1,7 +1,6 @@
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+package happeningTest;
+
+import com.codeborne.selenide.*;
 import com.codeborne.selenide.webdriver.WebDriverFactory;
 import com.sun.deploy.ref.Helpers;
 import com.sun.jdi.connect.spi.TransportService;
@@ -12,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,11 +24,10 @@ import pages.mediaPages.HappeningPage;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.Keys.chord;
 
-public class HappeningTest {
+public class MainUser_HappeningTest {
 
     @Before
     public void beforeTest(){
@@ -199,12 +198,12 @@ public class HappeningTest {
         $(happeningPage.successAlert).should(Condition.appear);
     }
 
-    /*@Test
-    public void mU_addHapptoRSSTemp(){
+
+    @Test
+    public void sU_addHappToRSSTemp(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         Container container = new Container();
 
         container.goToSubUser2();
@@ -219,22 +218,19 @@ public class HappeningTest {
         $("div.wizard-card.steps.ng-scope>div>div:nth-child(2)>form>div>div>div>div>span>label>span>i.fa.fa-square").click();
         $(By.xpath("//select[@name=\"rssurl\"]")).selectOption(1);
 
-        //sleep(3000);
+        sleep(2000);
 
-        //$("#widgetData>div>div>div.title").shouldHave(Condition.exactText("Test Title")
-                //.because("Happening title should displays after adding"));
+        String link = $("iframe#widgetOverlay").attr("src");
+        open(link);
 
-        $(createNewClipPage.nextButton).click();
-        $(By.xpath("//*[@id=\"simplemodal-data\"]/div[4]/div/span[2]/button[4]")).click();
-        $(clipLibraryPage.searchField).setValue(clipName);
-        $("tr:first-child > td:nth-child(1) > div > div > a > img").click();
-
-        sleep(5000);
-
-        $("#widgetData .text-container>div:nth-child(1)").shouldHave(Condition.exactText("Test Title"));
+        $("div#widgetData .title").shouldHave(Condition.exactText("Test Title")
+                .because("Happening title should be visible"));
+        $("div#widgetData #description").shouldBe(Condition.exactText("Test Mesage")
+                .because("Happening description should be visible"));
 
 
-    }*/
+
+    }
 
 
 

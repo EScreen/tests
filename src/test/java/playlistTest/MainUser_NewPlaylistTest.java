@@ -27,7 +27,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by qwerty on 5/3/18.
  */
-public class NewPlaylistTest {
+public class MainUser_NewPlaylistTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());

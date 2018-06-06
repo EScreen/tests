@@ -1,9 +1,8 @@
 package clipTest;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import helpers.GenerateData;
+import helpers.UI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +15,9 @@ import pages.mediaPages.ClipLibraryPage;
 import pages.mediaPages.CreateNewClipPage;
 import pages.playlistsPages.ManagePlaylistsPage;
 import pages.playlistsPages.PlaylistPage;
+import pages.profilePages.UsersPage;
+
+import java.util.ServiceLoader;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -71,7 +73,6 @@ public class ApprovalClipTest {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         container.goToSubUser1();
 
@@ -107,7 +108,7 @@ public class ApprovalClipTest {
         $(managePlaylistsPage.nameOfPlayList).click();
         $$("#dataTables tbody.ng-scope.ng-pristine.ng-valid>tr>td:nth-child(3)>span")
                 .findBy(Condition.text(notApprovedClipName))
-                .shouldNot(Condition.visible);
+                .shouldNotBe(Condition.visible);
     }
 
     @Test
@@ -364,7 +365,7 @@ public class ApprovalClipTest {
 
 //If subuser has clip approve off, During creating new clip "Add to new playlist" and "Add to existing playlist" fields display
     @Test
-    public void sU_canAddClipToPL(){
+    public void sU_WithAppOff_canAddClipToPL(){
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -379,6 +380,25 @@ public class ApprovalClipTest {
         $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldBe(Condition.visible);
 
     }
+
+//If subuser has clip approve on, During creating new clip "Add to new playlist" and "Add to existing playlist" fields display
+    @Test
+    public void sU_WithAppOn_canAddClipToPL(){
+        Container container = new Container();
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+
+        container.goToSubUser2();
+
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        $(By.xpath("//*[@name=\"new_playlist\"]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldNotBe(Condition.visible);
+
+    }
+
 
     @Test
     public void mU_canShareApprovedClip(){
@@ -420,7 +440,76 @@ public class ApprovalClipTest {
                 .shouldBe(Condition.visible);
     }
 
+//- If Mainuser turns clip approval off for subuser, awaiting for approval clips become avaliable for subuser.
+// These clips disappears from "Awaiting approval" list. Subuser has possibility to use this clip.
+    @Test
+    public void sU_CanUseNotApprovedClipAfterClipAppTurnOff(){
+        Container container = new Container();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        GenerateData genData = new GenerateData();
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        UsersPage usersPage = new UsersPage();
+        PlaylistPage playlistPage = new PlaylistPage();
+        UI ui = new UI();
 
+
+        container.goToSubUser2();
+
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("1");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveAndAskApprovalBtn).click();
+
+        container.goToMainUser();
+
+        $(container.mainUserMenu).click();
+        $(container.mainUserMenuUsers).click();
+        $(usersPage.subUser2).click();
+
+        sleep(3000);
+
+        SelenideElement element = $("div.padded>div:nth-child(22)>div>div>input");
+        Selenide.executeJavaScript("arguments[0].click();", element);
+
+        sleep(3000);
+
+        $("button[type='submit']").click();
+
+        container.goToSubUser2();
+
+        $(mainDashboardPage.createPlaylistButton).click();
+        $(playlistPage.searchField).setValue(clipName);
+
+        $(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).click();
+
+        $$("#playlist-block .box-content>table>tbody>tr>td:nth-child(3)>span")
+                .findBy(Condition.text(clipName))
+                .shouldBe(Condition.visible);
+
+        container.goToMainUser();
+
+        $(container.mainUserMenu).click();
+        $(container.mainUserMenuUsers).click();
+        $(usersPage.subUser2).click();
+
+
+        SelenideElement element2 = $("div.padded>div:nth-child(22)>div>div>input");
+        Selenide.executeJavaScript("arguments[0].click();", element2);
+
+        sleep(5000);
+
+        $("button[type='submit']").click();
+        $("#appcontent > div.main-content > flashnotification > div:nth-child(2)").shouldBe(Condition.appear);
+
+
+    }
 
 
 }

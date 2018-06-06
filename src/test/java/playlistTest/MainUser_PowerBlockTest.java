@@ -26,7 +26,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by qwerty on 5/3/18.
  */
-public class PowerBlockTest {
+public class MainUser_PowerBlockTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
@@ -40,7 +40,7 @@ public class PowerBlockTest {
     }
 
     @Test
-    public void createNewPowerBlock_landscape(){
+    public void mU_createNewPowerBlock_landscape(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
@@ -65,7 +65,7 @@ public class PowerBlockTest {
     }
 
     @Test
-    public void createNewPowerBlock_portrait(){
+    public void mU_createNewPowerBlock_portrait(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
@@ -90,7 +90,7 @@ public class PowerBlockTest {
     }
 
     @Test
-    public void activatePowerBl(){
+    public void mU_activatePowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 
@@ -121,7 +121,7 @@ public class PowerBlockTest {
     }
 
     @Test
-    public void searchPowerBl(){
+    public void mU_searchPowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 
