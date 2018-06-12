@@ -21,6 +21,8 @@ public class ManagePlaylistsPage {
     public SelenideElement lastPlaylistName = $(By.cssSelector("tr.ng-scope:last-child > td:nth-child(4) > a > strong"));
     public SelenideElement firstPlaylistName = $(By.cssSelector("tr.ng-scope:first-child > td:nth-child(4) > a > strong"));
 
+    public SelenideElement formulaTab = $("#formula-tab-library");
+
 
 
 }

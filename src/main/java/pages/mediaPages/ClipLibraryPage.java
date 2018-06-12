@@ -25,7 +25,7 @@ public class ClipLibraryPage {
     public SelenideElement editClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[2]/a[1]"));
     public SelenideElement denyClipButton = $(By.xpath("//a[@ng-click=\"denyFragment(fragment.ID)\"]"));
     public SelenideElement shareClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[3]/a"));
-    public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[5]/a"));
+    public SelenideElement deleteClipButton = $("a[ng-click='deleteFragment(fragment.ID)']");
     public SelenideElement yesDeleteButton = $(By.xpath("//button[@ng-click=\"ok()\"][2]"));
     public SelenideElement successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/strong"));
     public SelenideElement successDeleteAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/text()"));

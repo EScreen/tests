@@ -32,10 +32,12 @@ public class MainUser_HappeningTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
-        Configuration.browserSize = "1880x768";
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
 
 
     }
@@ -45,7 +47,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_createHappening(){
+    public void createHappening(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
         GenerateData genData = new GenerateData();
@@ -70,7 +72,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_createHappeningWithFile(){
+    public void createHappeningWithFile(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
         GenerateData genData = new GenerateData();
@@ -100,7 +102,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_editHappName(){
+    public void editHappName(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
         GenerateData genData = new GenerateData();
@@ -118,7 +120,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mu_editMessage(){
+    public void editMessage(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
         GenerateData genData = new GenerateData();
@@ -144,7 +146,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_editAndAddImgToMessage(){
+    public void editAndAddImgToMessage(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
         GenerateData genData = new GenerateData();
@@ -172,7 +174,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_deleteMessage() {
+    public void deleteMessage() {
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
 
@@ -186,7 +188,7 @@ public class MainUser_HappeningTest {
     }
 
     @Test
-    public void mU_deleteHappening(){
+    public void deleteHappening(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
 

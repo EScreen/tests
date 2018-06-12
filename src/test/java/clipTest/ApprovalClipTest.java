@@ -29,9 +29,12 @@ public class ApprovalClipTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -94,20 +97,29 @@ public class ApprovalClipTest {
     @Test
     public void sU_canNotUseAwaitedApprovalClip(){
         Container container = new Container();
-        ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         container.goToSubUser2();
-        $(container.media).click();
-        $(container.clipLibrary).click();
-        $(clipLibraryPage.awaitingApprovalTab).click();
-        String notApprovedClipName = $("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(3) > div > span").text();
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("1");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveAndAskApprovalBtn).click();
 
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
         $(managePlaylistsPage.nameOfPlayList).click();
         $$("#dataTables tbody.ng-scope.ng-pristine.ng-valid>tr>td:nth-child(3)>span")
-                .findBy(Condition.text(notApprovedClipName))
+                .findBy(Condition.text(clipName))
                 .shouldNotBe(Condition.visible);
     }
 
@@ -275,6 +287,25 @@ public class ApprovalClipTest {
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         PlaylistPage playlistPage = new PlaylistPage();
+        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        GenerateData genData = new GenerateData();
+
+        container.goToSubUser2();
+
+        $(mainDashboardPage.createClipButton).click();
+        $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
+        $(createNewClipPage.newClipButton).click();
+
+        String clipName = genData.generateString(6);
+        $(createNewClipPage.templateTestNameField).setValue(clipName);
+
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.templateTestDurationField).setValue("1");
+        $(createNewClipPage.nextButton).click();
+        $(createNewClipPage.saveAndAskApprovalBtn).click();
+
+        container.goToMainUser();
 
         $(container.media).click();
         $(container.clipLibrary).click();

@@ -31,9 +31,12 @@ public class MainUser_ClipLibraryTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -44,7 +47,7 @@ public class MainUser_ClipLibraryTest {
 
     //Edit name of existed clip
     @Test
-    public void mU_editCLipName() {
+    public void editCLipName() {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -59,6 +62,8 @@ public class MainUser_ClipLibraryTest {
         $(createNewClipPage.templateTestNameField).clear();
         $(createNewClipPage.templateTestNameField).setValue(generateData.generateString(4) + " Edited");
 
+        sleep(1000);
+
         createNewClipPage.checkAvailableForUsers();
 
         String createdName = $(createNewClipPage.templateTestNameField).attr("value");
@@ -71,8 +76,7 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void mU_uploadImgToClip() throws AWTException {
-        WebDriverRunner.getWebDriver().manage().window().fullscreen();
+    public void uploadImgToClip() throws AWTException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -98,7 +102,7 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void mU_uploadImgFromLibrToClip(){
+    public void uploadImgFromLibrToClip(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -130,7 +134,7 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void mU_deleteClip(){
+    public void deleteClip(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
@@ -173,7 +177,7 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void mU_clipSearch() throws InterruptedException {
+    public void clipSearch() throws InterruptedException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
@@ -190,7 +194,7 @@ public class MainUser_ClipLibraryTest {
 
     //Filtering clips by category
     @Test
-    public void mU_clipFiltering (){
+    public void clipFiltering (){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 

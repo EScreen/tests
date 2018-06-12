@@ -25,6 +25,8 @@ public class SubUser_HappeningTest extends MainUser_HappeningTest{
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
 
 
     }
@@ -33,45 +35,45 @@ public class SubUser_HappeningTest extends MainUser_HappeningTest{
         close();
     }
 
+    @Override
     @Test
-    public void sU_createHappening(){
-        super.mU_createHappening();
+    public void createHappening() {
+        super.createHappening();
     }
 
+    @Override
     @Test
-    public void sU_createHappeningWithFile(){
-        super.mU_createHappeningWithFile();
+    public void createHappeningWithFile() {
+        super.createHappeningWithFile();
     }
 
+    @Override
     @Test
-    public void sU_editHappName(){
-        super.mU_editHappName();
+    public void editHappName() {
+        super.editHappName();
     }
 
+    @Override
     @Test
-    public void su_editMessage(){
-        super.mu_editMessage();
+    public void editMessage() {
+        super.editMessage();
     }
 
+    @Override
     @Test
-    public void sU_editAndAddImgToMessage(){
-        super.mU_editAndAddImgToMessage();
+    public void editAndAddImgToMessage() {
+        super.editAndAddImgToMessage();
     }
 
+    @Override
     @Test
-    public void sU_deleteMessage(){
-        super.mU_deleteMessage();
+    public void deleteMessage() {
+        super.deleteMessage();
     }
 
+    @Override
     @Test
-    public void sU_deleteHappening(){
-        super.mU_deleteHappening();
+    public void deleteHappening() {
+        super.deleteHappening();
     }
-
-
-
-
-
-
-
 }

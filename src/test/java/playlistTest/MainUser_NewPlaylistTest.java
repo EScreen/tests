@@ -28,12 +28,17 @@ import static com.codeborne.selenide.Selenide.*;
  * Created by qwerty on 5/3/18.
  */
 public class MainUser_NewPlaylistTest {
+
+
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
     @After
     public void afterTest(){
@@ -41,7 +46,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_landscape(){
+    public void createNewPlaylist_landscape(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -67,7 +72,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_withFormula(){
+    public void createNewPlaylist_withFormula(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -95,7 +100,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_withOther(){
+    public void createNewPlaylist_withOther(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -123,7 +128,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_portrait() {
+    public void createNewPlaylist_portrait() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -152,7 +157,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_WithMyFiles(){
+    public void createNewPlaylist_WithMyFiles(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -176,7 +181,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_createNewPlaylist_WithNewsRoom(){
+    public void createNewPlaylist_WithNewsRoom(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -202,7 +207,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_canDeleteAddedClipFromPL(){
+    public void canDeleteAddedClipFromPL(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         GenerateData gendata = new GenerateData();
@@ -230,7 +235,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_setUpClipVolume(){
+    public void setUpClipVolume(){
         PlaylistPage playlistPage = new PlaylistPage();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         Container container = new Container();
@@ -255,7 +260,7 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
-    public void mU_setClipColor(){
+    public void setClipColor(){
         PlaylistPage playlistPage = new PlaylistPage();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         Container container = new Container();

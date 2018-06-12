@@ -24,9 +24,12 @@ public class MainUser_ManagePlayListTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
     @After
     public void afterTest(){
@@ -34,7 +37,7 @@ public class MainUser_ManagePlayListTest {
     }
 
     @Test
-    public void mU_playListsSorting()
+    public void playListsSorting()
     {
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
@@ -47,7 +50,7 @@ public class MainUser_ManagePlayListTest {
     }
 
     @Test
-    public void mU_playListsSearching(){
+    public void playListsSearching(){
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
@@ -59,5 +62,4 @@ public class MainUser_ManagePlayListTest {
         sleep(2000);
         $(managePlaylistsPage.firstPlaylistName).shouldHave(Condition.text(playlistName));
     }
-
 }

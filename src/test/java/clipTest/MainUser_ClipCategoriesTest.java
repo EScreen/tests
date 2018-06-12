@@ -27,9 +27,12 @@ public class MainUser_ClipCategoriesTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -38,7 +41,7 @@ public class MainUser_ClipCategoriesTest {
     }
 
     @Test
-    public void mU_createCategory(){
+    public void createCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -56,7 +59,7 @@ public class MainUser_ClipCategoriesTest {
     }
 
     @Test
-    public void mU_searchCategory(){
+    public void searchCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -73,7 +76,7 @@ public class MainUser_ClipCategoriesTest {
     }
 
     @Test
-    public void mU_deleteCategory(){
+    public void deleteCategory(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
@@ -90,7 +93,7 @@ public class MainUser_ClipCategoriesTest {
     }
 
     @Test
-    public void mU_editCategoryName(){
+    public void editCategoryName(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();

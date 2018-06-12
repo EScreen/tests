@@ -7,6 +7,7 @@ import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pages.*;
 import pages.Container;
 import pages.mediaPages.ClipLibraryPage;
@@ -28,9 +29,12 @@ public class MainUser_NewClipTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -39,7 +43,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_createNewClip() {
+    public void createNewClip() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -62,9 +66,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_createClipWithImg() throws AWTException {
-
-
+    public void createClipWithImg() throws AWTException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -94,7 +96,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_createAndAddClipToExistedPlayList() {
+    public void createAndAddClipToExistedPlayList() {
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -108,7 +110,8 @@ public class MainUser_NewClipTest {
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
-        $(createNewClipPage.templateExistedPlaylistField).setValue("First");
+        $(createNewClipPage.templateExistedPlaylistField).click();
+        //$(createNewClipPage.templateExistedPlaylistField).setValue("First");
         $(createNewClipPage.firstExistedPlaylist).click();
 
         String playListName = $(By.xpath("//li[@class=\"ui-select-match-item select2-search-choice ng-scope\"]/span/span")).text();
@@ -120,6 +123,7 @@ public class MainUser_NewClipTest {
 
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
+        //$(managePlaylistsPage.formulaTab).click();
 
         $(managePlaylistsPage.searchField).setValue(playListName);
         sleep(2000);
@@ -129,11 +133,10 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_createAndAddClipToNewPlayList(){
+    public void createAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
-        Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(dashboardPage.createClipButton).click();
@@ -154,7 +157,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_sortByCategories() {
+    public void sortByCategories() {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
 
@@ -169,7 +172,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_sortTemplatesByOrientation(){
+    public void sortTemplatesByOrientation(){
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
 
@@ -181,22 +184,8 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void mU_templateSearch() throws InterruptedException {
-        CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+    public void createClipAndAddImgToLibr() throws AWTException {
 
-        $(mainDashboardPage.createClipButton).click();
-
-        String searchInput = "Praktijkcollege Het Plein";
-
-        $(createNewClipPage.searchField).setValue(searchInput);
-        Thread.sleep(3000);
-
-        $$(By.xpath("//div[@class=\"template-item ng-scope\"]")).shouldBe(CollectionCondition.size(4));
-    }
-
-    @Test
-    public void mU_createClipAndAddImgToLibr() throws AWTException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -219,8 +208,8 @@ public class MainUser_NewClipTest {
 
         Selenide.executeJavaScript("arguments[0].click();",createNewClipPage.storeIntheMediaLibraryCheckbox);
 
-        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOptionByValue("1285");
-        String selectedCategory = $(By.xpath("//option[@value=\"1285\"]")).text();
+        $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOption(2);
+        String selectedCategory = $("select[name='backgroundImage_thumb_category']>option:nth-child(3)").text();
 
         String nameUploadedImg = genData.generateString(3);
         $(createNewClipPage.templateUploadedImgNameField).setValue(nameUploadedImg);

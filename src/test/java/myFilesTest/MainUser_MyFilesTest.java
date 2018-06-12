@@ -28,9 +28,12 @@ public class MainUser_MyFilesTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
     @After
     public void afterTest(){
@@ -39,7 +42,7 @@ public class MainUser_MyFilesTest {
 
 
     @Test
-    public void mU_uploadImage() throws AWTException {
+    public void uploadImage() throws AWTException {
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
         UploadingFiles uploadingFiles = new UploadingFiles();

@@ -30,9 +30,12 @@ public class MainUser_PowerBlockTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaMainUser", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
     @After
     public void afterTest(){
@@ -40,7 +43,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBlock_landscape(){
+    public void createNewPowerBlock_landscape(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
@@ -65,7 +68,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBlock_portrait(){
+    public void createNewPowerBlock_portrait(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
@@ -90,7 +93,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_activatePowerBl(){
+    public void activatePowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 
@@ -121,7 +124,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_searchPowerBl(){
+    public void searchPowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 
@@ -136,7 +139,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBl_withFormula(){
+    public void createNewPowerBl_withFormula(){
         GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
@@ -162,7 +165,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBl_withNewsRoom(){
+    public void createNewPowerBl_withNewsRoom(){
         GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
@@ -189,7 +192,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBl_withMyFiles(){
+    public void createNewPowerBl_withMyFiles(){
         GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
@@ -215,7 +218,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_createNewPowerBl_withOther(){
+    public void createNewPowerBl_withOther(){
         GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
@@ -241,7 +244,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_canDeleteAddedClipFromPowerBl(){
+    public void canDeleteAddedClipFromPowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         GenerateData gendata = new GenerateData();
@@ -269,7 +272,7 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
-    public void mU_setUpClipVolume(){
+    public void setUpClipVolume(){
         PlaylistPage playlistPage = new PlaylistPage();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         Container container = new Container();

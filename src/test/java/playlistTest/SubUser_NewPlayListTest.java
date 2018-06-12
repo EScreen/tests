@@ -15,9 +15,12 @@ public class SubUser_NewPlayListTest extends MainUser_NewPlaylistTest {
     @Before
     public void beforeTest() {
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -25,48 +28,58 @@ public class SubUser_NewPlayListTest extends MainUser_NewPlaylistTest {
         close();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_landscape(){
-        super.mU_createNewPlaylist_landscape();
+    public void createNewPlaylist_landscape() {
+        super.createNewPlaylist_landscape();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_portrait(){
-        super.mU_createNewPlaylist_portrait();
+    public void createNewPlaylist_withFormula() {
+        super.createNewPlaylist_withFormula();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_withFormula(){
-        super.mU_createNewPlaylist_withFormula();
+    public void createNewPlaylist_withOther() {
+        super.createNewPlaylist_withOther();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_withOther(){
-        super.mU_createNewPlaylist_withOther();
+    public void createNewPlaylist_portrait() {
+        super.createNewPlaylist_portrait();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_WithMyFiles(){
-        super.mU_createNewPlaylist_WithMyFiles();
+    public void createNewPlaylist_WithMyFiles() {
+        super.createNewPlaylist_WithMyFiles();
     }
 
+    @Override
     @Test
-    public void sU_createNewPlaylist_WithNewsRoom(){
-        super.mU_createNewPlaylist_WithNewsRoom();
+    public void createNewPlaylist_WithNewsRoom() {
+        super.createNewPlaylist_WithNewsRoom();
     }
 
+    @Override
     @Test
-    public void sU_canDeleteAddedClipFromPL(){
-        super.mU_canDeleteAddedClipFromPL();
+    public void canDeleteAddedClipFromPL() {
+        super.canDeleteAddedClipFromPL();
     }
 
+    @Override
     @Test
-    public void sU_setUpClipVolume(){
-        super.mU_setUpClipVolume();
+    public void setUpClipVolume() {
+        super.setUpClipVolume();
     }
 
+    @Override
     @Test
-    public void sU_setClipColor(){
-        super.mU_setClipColor();
+    public void setClipColor() {
+        super.setClipColor();
     }
+
 }

@@ -16,62 +16,76 @@ public class SubUser_PowerBlockTest extends MainUser_PowerBlockTest {
     @Before
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
     @After
     public void afterTest(){
         close();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBlock_landscape(){
-        super.mU_createNewPowerBlock_landscape();
+    public void createNewPowerBlock_landscape() {
+        super.createNewPowerBlock_landscape();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBlock_portrait(){
-        super.mU_createNewPowerBlock_portrait();
+    public void createNewPowerBlock_portrait() {
+        super.createNewPowerBlock_portrait();
     }
 
+    @Override
     @Test
-    public void sU_activatePowerBl(){
-        super.mU_activatePowerBl();
+    public void activatePowerBl() {
+        super.activatePowerBl();
     }
 
+    @Override
     @Test
-    public void sU_searchPowerBl(){
-        super.mU_searchPowerBl();
+    public void searchPowerBl() {
+        super.searchPowerBl();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBl_withFormula(){
-        super.mU_createNewPowerBl_withFormula();
+    public void createNewPowerBl_withFormula() {
+        super.createNewPowerBl_withFormula();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBl_withNewsRoom(){
-        super.mU_createNewPowerBl_withNewsRoom();
+    public void createNewPowerBl_withNewsRoom() {
+        super.createNewPowerBl_withNewsRoom();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBl_withMyFiles(){
-        super.mU_createNewPowerBl_withMyFiles();
+    public void createNewPowerBl_withMyFiles() {
+        super.createNewPowerBl_withMyFiles();
     }
 
+    @Override
     @Test
-    public void sU_createNewPowerBl_withOther(){
-        super.mU_createNewPowerBl_withOther();
+    public void createNewPowerBl_withOther() {
+        super.createNewPowerBl_withOther();
     }
 
+    @Override
     @Test
-    public void sU_canDeleteAddedClipFromPowerBl(){
-        super.mU_canDeleteAddedClipFromPowerBl();
+    public void canDeleteAddedClipFromPowerBl() {
+        super.canDeleteAddedClipFromPowerBl();
     }
 
+    @Override
     @Test
-    public void sU_setUpClipVolume(){
-        super.mU_setUpClipVolume();
+    public void setUpClipVolume() {
+        super.setUpClipVolume();
     }
+
 }

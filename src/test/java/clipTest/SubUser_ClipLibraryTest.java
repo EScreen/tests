@@ -20,54 +20,60 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
 
     @Before
-    @Override
     public void beforeTest() {
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
-    @Override
     public void afterTest() {
         super.afterTest();
     }
 
+    @Override
     @Test
-    public void sU_uploadImgToClip() throws IOException, AWTException {
-        super.mU_uploadImgToClip();
+    public void uploadImgToClip() throws AWTException {
+        super.uploadImgToClip();
     }
 
+    @Override
     @Test
-    public void sU_uploadImgFromLibrToClip(){
-        super.mU_uploadImgFromLibrToClip();
+    public void uploadImgFromLibrToClip() {
+        super.uploadImgFromLibrToClip();
     }
 
+    @Override
     @Test
-    public void sU_deleteClip(){
-        super.mU_deleteClip();
+    public void deleteClip() {
+        super.deleteClip();
     }
 
+    @Override
     @Test
-    public void sU_clipSearch() throws InterruptedException {
-        super.mU_clipSearch();
+    public void clipSearch() throws InterruptedException {
+        super.clipSearch();
     }
 
-    //Filtering clips by category
+    @Override
     @Test
-    public void sU_clipFiltering(){
-        super.mU_clipFiltering();
+    public void clipFiltering() {
+        super.clipFiltering();
     }
-
 
     //Edit name of existed clip
+    @Override
     @Test
-    public void sU_editCLipName() {
+    public void editCLipName() {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -81,6 +87,7 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
 
         $(createNewClipPage.templateTestNameField).clear();
         $(createNewClipPage.templateTestNameField).setValue(generateData.generateString(4) + " Edited");
+        sleep(1000);
 
         String createdName = $(createNewClipPage.templateTestNameField).attr("value");
 

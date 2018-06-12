@@ -16,9 +16,12 @@ public class SubUser_NewClipTest extends MainUser_NewClipTest {
     @Override
     public void beforeTest() {
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -27,39 +30,45 @@ public class SubUser_NewClipTest extends MainUser_NewClipTest {
         super.afterTest();
     }
 
+    @Override
     @Test
-    public void sU_createNewClip(){
-        super.mU_createNewClip();
+    public void createNewClip() {
+        super.createNewClip();
     }
 
+    @Override
     @Test
-    public void sU_createAndAddClipToExistedPlayList(){
-        super.mU_createAndAddClipToExistedPlayList();
+    public void createClipWithImg() throws AWTException {
+        super.createClipWithImg();
     }
 
+    @Override
     @Test
-    public void sU_createAndAddClipToNewPlayList(){
-        super.mU_createAndAddClipToNewPlayList();
+    public void createAndAddClipToExistedPlayList() {
+        super.createAndAddClipToExistedPlayList();
     }
 
+    @Override
     @Test
-    public void sU_createClipWithImg() throws AWTException {
-        super.mU_createClipWithImg();
+    public void createAndAddClipToNewPlayList() {
+        super.createAndAddClipToNewPlayList();
     }
 
+    @Override
     @Test
-    public void sU_sortByCategories(){
-        super.mU_sortByCategories();
+    public void sortByCategories() {
+        super.sortByCategories();
     }
 
+    @Override
     @Test
-    public void sU_sortTemplatesByOrientation(){
-        super.mU_sortTemplatesByOrientation();
+    public void sortTemplatesByOrientation() {
+        super.sortTemplatesByOrientation();
     }
 
+    @Override
     @Test
-    public void sU_createClipAndAddImgToLibr() throws AWTException {
-        super.mU_createClipAndAddImgToLibr();
+    public void createClipAndAddImgToLibr() throws AWTException {
+        super.createClipAndAddImgToLibr();
     }
-
 }

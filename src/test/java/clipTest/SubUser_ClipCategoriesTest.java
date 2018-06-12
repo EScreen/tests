@@ -11,12 +11,14 @@ import pages.LoginPage;
 public class SubUser_ClipCategoriesTest extends MainUser_ClipCategoriesTest {
 
     @Before
-    @Override
     public void beforeTest(){
         WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
         LoginPage loginPage = new LoginPage();
         loginPage.login("AnyaSubUser1", "os123123");
         Configuration.timeout = 20000;
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
     @After
@@ -25,23 +27,27 @@ public class SubUser_ClipCategoriesTest extends MainUser_ClipCategoriesTest {
         super.afterTest();
     }
 
+    @Override
     @Test
-    public void sU_createCategory(){
-        super.mU_createCategory();
+    public void createCategory() {
+        super.createCategory();
     }
 
+    @Override
     @Test
-    public void sU_searchCategory(){
-        super.mU_searchCategory();
+    public void searchCategory() {
+        super.searchCategory();
     }
 
+    @Override
     @Test
-    public void sU_deleteCategory(){
-        super.mU_deleteCategory();
+    public void deleteCategory() {
+        super.deleteCategory();
     }
 
+    @Override
     @Test
-    public void sU_editCategoryName(){
-        super.mU_editCategoryName();
+    public void editCategoryName() {
+        super.editCategoryName();
     }
 }
