@@ -102,8 +102,10 @@ public class MainUser_PowerBlockTest {
 
         sleep(2000);
 
-        int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr").size();
-        int numberActivePowerBlBefore = $$("#active_pb > tbody > tr").size();
+        int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr[ng-repeat]").size();
+        System.out.println("numberScheduledPowerBlBefore: "+numberScheduledPowerBlBefore);
+        int numberActivePowerBlBefore = $$("#active_pb > tbody > tr[ng-repeat]").size();
+        System.out.println("numberActivePowerBlBefore: "+numberActivePowerBlBefore);
 
         $(powerBlockPage.notActivePowerBl).click();
         powerBlockPage.selectPlayer();

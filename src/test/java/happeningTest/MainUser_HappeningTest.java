@@ -9,10 +9,7 @@ import helpers.GenerateData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.Container;
@@ -201,8 +198,9 @@ public class MainUser_HappeningTest {
     }
 
 
-    @Test
-    public void sU_addHappToRSSTemp(){
+    /*@Test
+    public void sU_addHappToRSSTemp() throws Exception {
+        WebDriverRunner.getWebDriver().manage().window().fullscreen();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -211,16 +209,19 @@ public class MainUser_HappeningTest {
         container.goToSubUser2();
 
         $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("RSS Feed (3 items) - video to the left");
-        $(createNewClipPage.newClipButton).click();
+        $(createNewClipPage.searchField).setValue("rss feed + image");
+        $("div.bx-viewport > ul > li:nth-child(4) > div > img").click();
+        $("div.bx-viewport > ul > li:nth-child(4) > div > div.tpl-panel > div.rbutton > a").click();
+
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $("div.wizard-card.steps.ng-scope>div>div:nth-child(2)>form>div>div>div>div>span>label>span>i.fa.fa-square").click();
-        $(By.xpath("//select[@name=\"rssurl\"]")).selectOption(1);
 
+        $("select[name='rssurl']").selectOption(2);
         sleep(2000);
+
 
         String link = $("iframe#widgetOverlay").attr("src");
         open(link);
@@ -229,10 +230,7 @@ public class MainUser_HappeningTest {
                 .because("Happening title should be visible"));
         $("div#widgetData #description").shouldBe(Condition.exactText("Test Mesage")
                 .because("Happening description should be visible"));
-
-
-
-    }
+    }*/
 
 
 

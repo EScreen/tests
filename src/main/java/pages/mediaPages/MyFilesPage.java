@@ -26,7 +26,7 @@ public class MyFilesPage {
     public SelenideElement categorySelector = $("select[ng-model='data.category']");
     public SelenideElement sectionSelector = $("select[ng-model='data.section']");
     public SelenideElement addFileButton = $("a[pl-url='upload_url']");
-    public SelenideElement uploadedFileName = $("#pldrop-zone>tr>td:nth-child(2)");
+    public SelenideElement uploadedFileName = $("tbody>tr>td:nth-child(2)");
     public SelenideElement renameFileButton = $("#pldrop-zone>tr>td:nth-child(5) .fa.fa-pencil");
     public SelenideElement setUpFileButton = $("#pldrop-zone>tr>td:nth-child(5) .fa.fa-wrench");
     public SelenideElement newNameField = $("input[ng-model='params.filename']");

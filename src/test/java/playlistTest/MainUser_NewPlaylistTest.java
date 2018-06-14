@@ -248,7 +248,10 @@ public class MainUser_NewPlaylistTest {
 
         $(playlistPage.clipSettingsButton).click();
         $(playlistPage.setVolumeButton).click();
+
         playlistPage.setVolume(50);
+        $("span[ng-bind='params.volume']").shouldHave(Condition.exactText("50"));
+
         $(playlistPage.saveVolumeButton).click();
         $(playlistPage.saveEditingPlButton).click();
 

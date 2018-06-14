@@ -10,6 +10,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Anna on 20/04/2018.
@@ -83,6 +84,7 @@ public class PlaylistPage {
                 x=530;
                 break;
         }
+        sleep(2000);
         Selenide.actions().dragAndDropBy(elem, x,0).build().perform();
     }
 

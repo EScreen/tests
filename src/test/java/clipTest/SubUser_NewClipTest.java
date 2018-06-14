@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class SubUser_NewClipTest extends MainUser_NewClipTest {
 
@@ -38,7 +39,7 @@ public class SubUser_NewClipTest extends MainUser_NewClipTest {
 
     @Override
     @Test
-    public void createClipWithImg() throws AWTException {
+    public void createClipWithImg() throws AWTException, IOException {
         super.createClipWithImg();
     }
 
@@ -68,7 +69,7 @@ public class SubUser_NewClipTest extends MainUser_NewClipTest {
 
     @Override
     @Test
-    public void createClipAndAddImgToLibr() throws AWTException {
+    public void createClipAndAddImgToLibr() throws AWTException, IOException {
         super.createClipAndAddImgToLibr();
     }
 }

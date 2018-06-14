@@ -18,6 +18,7 @@ import pages.playlistsPages.ManagePlaylistsPage;
 import pages.playlistsPages.PlaylistPage;
 
 import java.awt.*;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -66,7 +67,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void createClipWithImg() throws AWTException {
+    public void createClipWithImg() throws AWTException, IOException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
@@ -82,7 +83,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();
 
-        uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/iphone.jpg");
+        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_iphone.scpt");
 
         $(createNewClipPage.templateTestDurationField).setValue("3");
         $(createNewClipPage.nextButton).click();
@@ -184,7 +185,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void createClipAndAddImgToLibr() throws AWTException {
+    public void createClipAndAddImgToLibr() throws AWTException, IOException {
 
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -202,7 +203,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();
 
-        uploadingFiles.uploadFile("/Users/olgakuznetsova/projects/EScreen/src/main/resources/nature.jpg");
+        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_nature.scpt");
 
         sleep(2000);
 

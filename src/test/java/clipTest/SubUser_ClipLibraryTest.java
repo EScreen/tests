@@ -42,7 +42,7 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
 
     @Override
     @Test
-    public void uploadImgToClip() throws AWTException {
+    public void uploadImgToClip() throws AWTException, IOException {
         super.uploadImgToClip();
     }
 

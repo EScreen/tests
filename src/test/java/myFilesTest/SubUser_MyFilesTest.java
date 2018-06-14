@@ -10,6 +10,7 @@ import pages.LoginPage;
 import playlistTest.MainUser_PowerBlockTest;
 
 import java.awt.*;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.close;
 
@@ -32,8 +33,10 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
 
     @Override
     @Test
-    public void uploadImage() throws AWTException {
-        super.uploadImage();
+    public void uploadImageToOwn() throws AWTException, IOException {
+        super.uploadImageToOwn();
     }
+
+
 }
 
