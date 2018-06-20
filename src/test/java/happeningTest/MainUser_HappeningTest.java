@@ -209,17 +209,16 @@ public class MainUser_HappeningTest {
         container.goToSubUser2();
 
         $(mainDashboardPage.createClipButton).click();
-        $(createNewClipPage.searchField).setValue("rss feed + image");
-        $("div.bx-viewport > ul > li:nth-child(4) > div > img").click();
-        $("div.bx-viewport > ul > li:nth-child(4) > div > div.tpl-panel > div.rbutton > a").click();
-
+        $(createNewClipPage.searchField).setValue("RSS Feed (3 items) - video to the left");
+        $(createNewClipPage.newClipButton).click();
 
         String clipName = genData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $("div.wizard-card.steps.ng-scope>div>div:nth-child(2)>form>div>div>div>div>span>label>span>i.fa.fa-square").click();
 
-        $("select[name='rssurl']").selectOption(2);
+        sleep(2000);
+        $(By.xpath("//select[@name='rssurl']/option[contains(. ,'Test Happening')]")).click();
         sleep(2000);
 
 

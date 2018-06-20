@@ -138,7 +138,6 @@ public class MainUser_NewClipTest {
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         GenerateData genData = new GenerateData();
-        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(dashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
@@ -154,7 +153,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 
-        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody/tr/td[3]/span")).shouldHave(CollectionCondition.texts(clipName));
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody/tr/td[3]/span")).shouldHave(CollectionCondition.texts(clipName+"kfjgbn"));
     }
 
     @Test
