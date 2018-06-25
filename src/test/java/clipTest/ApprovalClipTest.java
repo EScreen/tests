@@ -2,22 +2,18 @@ package clipTest;
 
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
-import helpers.UI;
+import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
-import pages.LoginPage;
 import pages.dashboardPages.MainDashboardPage;
 import pages.mediaPages.ClipLibraryPage;
 import pages.mediaPages.CreateNewClipPage;
 import pages.playlistsPages.ManagePlaylistsPage;
 import pages.playlistsPages.PlaylistPage;
 import pages.profilePages.UsersPage;
-
-import java.util.ServiceLoader;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -28,13 +24,7 @@ public class ApprovalClipTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
     }
 
     @After
@@ -469,8 +459,6 @@ public class ApprovalClipTest {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         UsersPage usersPage = new UsersPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        UI ui = new UI();
-
 
         container.goToSubUser2();
 

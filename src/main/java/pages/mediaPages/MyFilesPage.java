@@ -66,4 +66,5 @@ public class MyFilesPage {
     public SelenideElement submitButton = $("button[type=\"submit\"]");
     public SelenideElement paginationSelector = $("#DataTables_Table_0_paginate > div > select");
 
+
 }

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import helpers.GenerateData;
+import helpers.Precondition;
 import helpers.UploadingFiles;
 import org.junit.After;
 import org.junit.Before;
@@ -24,13 +25,7 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaSubUser1", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeSubUser1Tests();
     }
     @After
     public void afterTest(){
@@ -65,8 +60,6 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
     public void editNameAndCategory() throws IOException {
         pages.Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.myFiles).click();
@@ -74,13 +67,13 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
         $(myFilesPage.addFileButton).click();
 
         $(myFilesPage.categorySelector).selectOptionContainingText("Two");
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
         $(myFilesPage.saveButton).click();
 
         $(myFilesPage.settingsFileButton).click();
         $(myFilesPage.editFile).click();
 
-        String newName = genData.generateString(4);
+        String newName = GenerateData.generateString(4);
         $(myFilesPage.editNameField).setValue(newName);
         $(By.xpath("//ul[@class=\"padded separate-sections\"]/li[3]/select/option[contains(text(),'Three')]")).click();
         $(myFilesPage.saveButton).click();

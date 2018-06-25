@@ -6,6 +6,7 @@ import com.sun.deploy.ref.Helpers;
 import com.sun.jdi.connect.spi.TransportService;
 import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import helpers.GenerateData;
+import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,13 +29,7 @@ public class MainUser_HappeningTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
 
 
     }

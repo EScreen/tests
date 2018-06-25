@@ -2,6 +2,7 @@ package playlistTest;
 
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
+import helpers.Precondition;
 import org.jbehave.core.reporters.TemplateableViewGenerator;
 import org.junit.After;
 import org.junit.Before;
@@ -33,13 +34,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class MainUser_PowerBlockTest {
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
     }
     @After
     public void afterTest(){
@@ -50,13 +45,12 @@ public class MainUser_PowerBlockTest {
     public void createNewPowerBlock_landscape(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
-        GenerateData gendata = new GenerateData();
 
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String powerBlName = gendata.generateString(3);
+        String powerBlName = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
@@ -75,12 +69,11 @@ public class MainUser_PowerBlockTest {
     public void createNewPowerBlock_portrait(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
-        GenerateData gendata = new GenerateData();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String powerBlName = gendata.generateString(3);
+        String powerBlName = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
         $(powerBlockPage.orientationSwitch).click();
         $(powerBlockPage.clipLibrOther).click();
@@ -100,12 +93,11 @@ public class MainUser_PowerBlockTest {
     public void previewDisplaysEntirely(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
-        GenerateData gendata = new GenerateData();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String powerBlName = gendata.generateString(3);
+        String powerBlName = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
@@ -125,7 +117,6 @@ public class MainUser_PowerBlockTest {
     public void deletePowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
-        GenerateData gendata = new GenerateData();
 
         $(container.playlists).click();
         $(container.managePowerBlocks).click();
@@ -258,14 +249,13 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withFormula(){
-        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = gendata.generateString(3);
+        String name = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrFormula).click();
@@ -284,7 +274,6 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withNewsRoom(){
-        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -292,7 +281,7 @@ public class MainUser_PowerBlockTest {
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = gendata.generateString(3);
+        String name = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrNewsRoom).click();
@@ -311,7 +300,6 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withMyFiles(){
-        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -319,7 +307,7 @@ public class MainUser_PowerBlockTest {
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = gendata.generateString(3);
+        String name = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrMyFiles).click();
@@ -337,14 +325,13 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withOther(){
-        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = gendata.generateString(3);
+        String name = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrOther).click();
@@ -365,13 +352,12 @@ public class MainUser_PowerBlockTest {
     public void canDeleteAddedClipFromPowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
-        GenerateData gendata = new GenerateData();
 
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(playlistName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
@@ -392,7 +378,6 @@ public class MainUser_PowerBlockTest {
     @Test
     public void setUpClipVolume(){
         PlaylistPage playlistPage = new PlaylistPage();
-        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 

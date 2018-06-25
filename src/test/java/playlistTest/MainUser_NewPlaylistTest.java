@@ -3,6 +3,7 @@ package playlistTest;
 import com.codeborne.selenide.*;
 import com.sun.tools.javac.jvm.Gen;
 import helpers.GenerateData;
+import helpers.Precondition;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,13 +34,7 @@ public class MainUser_NewPlaylistTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
     }
     @After
     public void afterTest(){

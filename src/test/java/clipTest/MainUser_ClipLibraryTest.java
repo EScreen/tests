@@ -2,24 +2,18 @@ package clipTest;
 
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
+import helpers.Precondition;
 import helpers.UploadingFiles;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.*;
 import pages.Container;
-import pages.dashboardPages.MainDashboardPage;
 import pages.mediaPages.ClipLibraryPage;
 import pages.mediaPages.CreateNewClipPage;
-import pages.mediaPages.ManagementCategoriesPage;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
-import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -30,13 +24,7 @@ public class MainUser_ClipLibraryTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
     }
 
     @After
@@ -51,7 +39,6 @@ public class MainUser_ClipLibraryTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData generateData = new GenerateData();
 
         $(container.media).click();
         $(container.clipLibrary).click();
@@ -60,7 +47,7 @@ public class MainUser_ClipLibraryTest {
         $(clipLibraryPage.editClipButton).click();
 
         $(createNewClipPage.templateTestNameField).clear();
-        $(createNewClipPage.templateTestNameField).setValue(generateData.generateString(4) + " Edited");
+        $(createNewClipPage.templateTestNameField).setValue(GenerateData.generateString(4) + " Edited");
 
         sleep(1000);
 

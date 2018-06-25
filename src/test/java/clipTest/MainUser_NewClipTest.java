@@ -2,6 +2,7 @@ package clipTest;
 
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
+import helpers.Precondition;
 import helpers.UploadingFiles;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -29,13 +30,7 @@ public class MainUser_NewClipTest {
 
     @Before
     public void beforeTest(){
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-        WebDriverRunner.getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
-        Configuration.timeout = 20000;
-        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
-        WebDriverRunner.getWebDriver().switchTo().window(handle);
+        Precondition.beforeMainUserTests();
     }
 
     @After
