@@ -8,7 +8,7 @@ import org.apache.commons.lang3.RandomUtils;
  */
 public class GenerateData {
 
-    public String generateEmail(int length){
+    public static String generateEmail(int length){
         String allowedChars = "abcdefghijklmnopqrstuvwxyz” + “1234567890";
         String email = "";
         String temp = RandomStringUtils.random(length,allowedChars);
@@ -18,16 +18,16 @@ public class GenerateData {
         return email;
     }
 
-    public String generateString (int length){
+    public static String generateString (int length){
         String data = RandomStringUtils.randomAlphabetic(length) + "_AT";
         return data;
     }
 
-    public String generateNumbers (int length){
+    public static String generateNumbers (int length){
         return RandomStringUtils.randomNumeric(length);
     }
 
-    public String generateUrl(int length) {
+    public static String generateUrl(int length) {
         String allowedChars="abcdefghijklmnopqrstuvwxyz" +   //alphabets
                 "1234567890" +   //numbers
                 "_-.";   //special characters

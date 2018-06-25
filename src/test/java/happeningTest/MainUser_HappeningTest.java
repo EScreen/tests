@@ -47,20 +47,19 @@ public class MainUser_HappeningTest {
     public void createHappening(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.happening).click();
         $(happeningPage.createButton).click();
 
-        String happName = genData.generateString(3);
+        String happName = GenerateData.generateString(3);
         $(happeningPage.nameField).setValue(happName);
         $(happeningPage.saveHappButton).click();
         $(happeningPage.successAlert).should(Condition.appear);
 
-        String title = genData.generateString(4);
+        String title = GenerateData.generateString(4);
         $(happeningPage.titleField).setValue(title);
-        String message = genData.generateString(10);
+        String message = GenerateData.generateString(10);
         $(happeningPage.messageField).setValue(message);
         $(happeningPage.sendMessageButton).click();
 
@@ -72,13 +71,12 @@ public class MainUser_HappeningTest {
     public void createHappeningWithFile(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.happening).click();
         $(happeningPage.createButton).click();
 
-        String happName = genData.generateString(3);
+        String happName = GenerateData.generateString(3);
         $(happeningPage.nameField).setValue(happName);
         $(happeningPage.saveHappButton).click();
         $(happeningPage.successAlert).should(Condition.appear);
@@ -87,9 +85,9 @@ public class MainUser_HappeningTest {
         File file = new File("/Users/qa-tester/IdeaProjects/tests/src/main/resources/Smile1.png");
         $(By.xpath("//input[@type=\"file\"]")).uploadFile(file);
 
-        String title = genData.generateString(4);
+        String title = GenerateData.generateString(4);
         $(happeningPage.titleField).setValue(title);
-        String message = genData.generateString(10);
+        String message = GenerateData.generateString(10);
         $(happeningPage.messageField).setValue(message);
         $(happeningPage.sendMessageButton).click();
 
@@ -102,13 +100,12 @@ public class MainUser_HappeningTest {
     public void editHappName(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.happening).click();
         $(happeningPage.editFirstHapp).click();
 
-        String newName = genData.generateString(3);
+        String newName = GenerateData.generateString(3);
         $(happeningPage.nameField).setValue(newName);
         $(happeningPage.saveHappButton).click();
         $(happeningPage.searchField).setValue(newName);
@@ -120,7 +117,6 @@ public class MainUser_HappeningTest {
     public void editMessage(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.happening).click();
@@ -130,11 +126,11 @@ public class MainUser_HappeningTest {
         $(happeningPage.editMessageButton).click();
         $(happeningPage.editTitleField).clear();
 
-        String newTitle = genData.generateString(3);
+        String newTitle = GenerateData.generateString(3);
         $(happeningPage.editTitleField).setValue(newTitle);
 
         $(happeningPage.editTextField).clear();
-        String newText = genData.generateString(10);
+        String newText = GenerateData.generateString(10);
         $(happeningPage.editTextField).setValue(newText);
         $(happeningPage.saveEditing).click();
 
@@ -146,18 +142,17 @@ public class MainUser_HappeningTest {
     public void editAndAddImgToMessage(){
         HappeningPage happeningPage = new HappeningPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.happening).click();
         $(happeningPage.createButton).click();
 
-        $(happeningPage.nameField).setValue(genData.generateString(3));
+        $(happeningPage.nameField).setValue(GenerateData.generateString(3));
         $(happeningPage.saveHappButton).click();
         $(happeningPage.successAlert).should(Condition.appear);
 
-        $(happeningPage.titleField).setValue(genData.generateString(4));
-        $(happeningPage.messageField).setValue(genData.generateString(10));
+        $(happeningPage.titleField).setValue(GenerateData.generateString(4));
+        $(happeningPage.messageField).setValue(GenerateData.generateString(10));
         $(happeningPage.sendMessageButton).click();
 
         $(happeningPage.editMessageButton).click();

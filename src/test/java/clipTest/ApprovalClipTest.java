@@ -47,7 +47,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         container.goToSubUser2();
@@ -56,7 +55,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -75,7 +74,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
 
         container.goToSubUser1();
 
@@ -83,7 +81,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -98,7 +96,6 @@ public class ApprovalClipTest {
     public void sU_canNotUseAwaitedApprovalClip(){
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
-        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
@@ -107,7 +104,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -128,7 +125,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         container.goToSubUser2();
@@ -137,7 +133,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -158,7 +154,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
@@ -168,7 +163,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -199,7 +194,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         container.goToSubUser2();
@@ -208,7 +202,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -239,7 +233,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         container.goToSubUser2();
@@ -248,7 +241,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -289,7 +282,6 @@ public class ApprovalClipTest {
         PlaylistPage playlistPage = new PlaylistPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
-        GenerateData genData = new GenerateData();
 
         container.goToSubUser2();
 
@@ -297,7 +289,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -333,7 +325,6 @@ public class ApprovalClipTest {
     public void mU_canApproveClipViaEditing(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        GenerateData genData = new GenerateData();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         $(container.media).click();
@@ -343,7 +334,7 @@ public class ApprovalClipTest {
         $(clipLibraryPage.settingsClipButton).click();
         $("tbody.ng-scope.ng-pristine.ng-valid>tr:nth-child(1)>td:nth-child(9)>div>ul>li.ng-scope>a:nth-child(1)").click();
 
-        String newNameClip = genData.generateString(3);
+        String newNameClip = GenerateData.generateString(3);
         $(createNewClipPage.templateTestNameField).clear();
         $(createNewClipPage.templateTestNameField).setValue(newNameClip);
         $(createNewClipPage.nextButton).click();
@@ -363,7 +354,6 @@ public class ApprovalClipTest {
         Container container = new Container();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
 
         container.goToSubUser1();
 
@@ -371,7 +361,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();
@@ -435,7 +425,6 @@ public class ApprovalClipTest {
     public void mU_canShareApprovedClip(){
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        GenerateData genData = new GenerateData();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         $(container.media).click();
@@ -447,7 +436,7 @@ public class ApprovalClipTest {
 
         sleep(2000);
 
-        String newNameClip = genData.generateString(3);
+        String newNameClip = GenerateData.generateString(3);
         $(createNewClipPage.templateTestNameField).clear();
         $(createNewClipPage.templateTestNameField).setValue(newNameClip);
         sleep(2000);
@@ -477,7 +466,6 @@ public class ApprovalClipTest {
     public void sU_CanUseNotApprovedClipAfterClipAppTurnOff(){
         Container container = new Container();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         UsersPage usersPage = new UsersPage();
         PlaylistPage playlistPage = new PlaylistPage();
@@ -490,7 +478,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.nextButton).click();

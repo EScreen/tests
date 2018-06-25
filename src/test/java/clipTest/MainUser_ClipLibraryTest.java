@@ -80,7 +80,6 @@ public class MainUser_ClipLibraryTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
 
 
         $(container.media).click();
@@ -93,7 +92,7 @@ public class MainUser_ClipLibraryTest {
         $(createNewClipPage.templateChooseFileButton).click();
         sleep(2000);
 
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_iphone.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_iphone.scpt");
 
         $(createNewClipPage.templateSummaryTab).click();
         $(createNewClipPage.saveClipButton).click();
@@ -106,7 +105,6 @@ public class MainUser_ClipLibraryTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
 
 
         $(container.media).click();
@@ -119,7 +117,7 @@ public class MainUser_ClipLibraryTest {
         $(createNewClipPage.templateUseImgLibrTab).click();
         $(createNewClipPage.templateLibrImgSectionSelector).selectOptionContainingText("Other");
         sleep(1000);
-        int index = Integer.parseInt(genData.generateNumbers(1));
+        int index = Integer.parseInt(GenerateData.generateNumbers(1));
         $$("tbody img").get(index).click();
 
         $(createNewClipPage.templateAddImgFromLibrBtn).click();

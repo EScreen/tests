@@ -77,7 +77,6 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData generateData = new GenerateData();
 
         $(container.media).click();
         $(container.clipLibrary).click();
@@ -86,7 +85,7 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
         $(clipLibraryPage.editClipButton).click();
 
         $(createNewClipPage.templateTestNameField).clear();
-        $(createNewClipPage.templateTestNameField).setValue(generateData.generateString(4) + " Edited");
+        $(createNewClipPage.templateTestNameField).setValue(GenerateData.generateString(4) + " Edited");
         sleep(1000);
 
         String createdName = $(createNewClipPage.templateTestNameField).attr("value");
@@ -103,7 +102,6 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
     public void sU_canUseSharedClip() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         pages.Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         LoginPage loginPage = new LoginPage();
@@ -116,7 +114,7 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateClipCategory).selectOption(3);
 
@@ -142,7 +140,6 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
     public void sU_canNotUseNotSharedClip(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         LoginPage loginPage = new LoginPage();
@@ -155,7 +152,7 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         createNewClipPage.unCheckAvailableForUsers();
         $(createNewClipPage.templateClipCategory).selectOption(3);

@@ -47,7 +47,6 @@ public class MainUser_MyFilesTest {
     public void uploadImageToOwn() throws AWTException, IOException {
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
 
         $(container.media).click();
         $(container.myFiles).click();
@@ -56,7 +55,7 @@ public class MainUser_MyFilesTest {
 
         $(myFilesPage.categorySelector).selectOptionContainingText("Two");
 
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
 
         sleep(2000);
 
@@ -70,7 +69,6 @@ public class MainUser_MyFilesTest {
     public void uploadImageToFormula() throws AWTException, IOException{
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
 
         $(container.media).click();
         $(container.myFiles).click();
@@ -78,7 +76,7 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.sectionSelector).selectOptionContainingText("Formula");
 
         $(myFilesPage.addFileButton).click();
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile3.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile3.scpt");
 
         $(myFilesPage.saveButton).click();
         $(myFilesPage.formulaTab).click();
@@ -89,7 +87,6 @@ public class MainUser_MyFilesTest {
     public void uploadSeveralImages() throws IOException {
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
-        UploadingFiles uploadingFiles = new UploadingFiles();
 
         $(container.media).click();
         $(container.myFiles).click();
@@ -97,10 +94,10 @@ public class MainUser_MyFilesTest {
 
         $(myFilesPage.addFileButton).click();
 
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/Scrpt_upload_Smile2.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/Scrpt_upload_Smile2.scpt");
         sleep(10000);
         $(myFilesPage.addFileButton).click();
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile3.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile3.scpt");
 
 
         $(myFilesPage.saveButton).click();

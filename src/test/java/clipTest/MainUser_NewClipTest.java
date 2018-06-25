@@ -47,13 +47,12 @@ public class MainUser_NewClipTest {
     public void createNewClip() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
 
         $(mainDashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateClipCategory).selectOption(3);
 
@@ -70,20 +69,18 @@ public class MainUser_NewClipTest {
     public void createClipWithImg() throws AWTException, IOException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
-        UploadingFiles uploadingFiles = new UploadingFiles();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
 
         $(mainDashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();
 
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_iphone.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_iphone.scpt");
 
         $(createNewClipPage.templateTestDurationField).setValue("3");
         $(createNewClipPage.nextButton).click();
@@ -101,7 +98,6 @@ public class MainUser_NewClipTest {
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
 
@@ -109,10 +105,9 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateExistedPlaylistField).click();
-        //$(createNewClipPage.templateExistedPlaylistField).setValue("First");
         $(createNewClipPage.firstExistedPlaylist).click();
 
         String playListName = $(By.xpath("//li[@class=\"ui-select-match-item select2-search-choice ng-scope\"]/span/span")).text();
@@ -124,7 +119,6 @@ public class MainUser_NewClipTest {
 
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
-        //$(managePlaylistsPage.formulaTab).click();
 
         $(managePlaylistsPage.searchField).setValue(playListName);
         sleep(2000);
@@ -137,17 +131,16 @@ public class MainUser_NewClipTest {
     public void createAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        GenerateData genData = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(dashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
-        $(createNewClipPage.tepmlateNewPlaylistField).setValue(genData.generateString(3));
+        $(createNewClipPage.tepmlateNewPlaylistField).setValue(GenerateData.generateString(3));
 
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateTestDurationField).setValue("4");
@@ -186,24 +179,21 @@ public class MainUser_NewClipTest {
 
     @Test
     public void createClipAndAddImgToLibr() throws AWTException, IOException {
-
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
-        GenerateData genData = new GenerateData();
-        UploadingFiles uploadingFiles = new UploadingFiles();
         MyFilesPage myFilesPage = new MyFilesPage();
 
         $(mainDashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        String clipName = genData.generateString(6);
+        String clipName = GenerateData.generateString(6);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();
 
-        uploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_nature.scpt");
+        UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_nature.scpt");
 
         sleep(2000);
 
@@ -212,7 +202,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.templateUploadedImgCategoriesSelect).selectOption(2);
         String selectedCategory = $("select[name='backgroundImage_thumb_category']>option:nth-child(3)").text();
 
-        String nameUploadedImg = genData.generateString(3);
+        String nameUploadedImg = GenerateData.generateString(3);
         $(createNewClipPage.templateUploadedImgNameField).setValue(nameUploadedImg);
 
         $(createNewClipPage.templateTestDurationField).setValue("3");

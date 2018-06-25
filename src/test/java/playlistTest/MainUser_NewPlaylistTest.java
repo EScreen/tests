@@ -1,6 +1,7 @@
 package playlistTest;
 
 import com.codeborne.selenide.*;
+import com.sun.tools.javac.jvm.Gen;
 import helpers.GenerateData;
 import org.junit.After;
 import org.junit.Assert;
@@ -49,12 +50,11 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_landscape(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
@@ -75,12 +75,11 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_withFormula(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
 
         $(playlistPage.clipLibrFormula).click();
@@ -103,12 +102,11 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_withOther(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
 
         $(playlistPage.clipLibrOther).click();
@@ -131,13 +129,12 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_portrait() {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
         $(playlistPage.orientationSwitch).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
         $(playlistPage.clipLibrOther).click();
 
@@ -160,12 +157,11 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_WithMyFiles(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
         $(playlistPage.clipLibrMyFiles).click();
 
@@ -184,13 +180,11 @@ public class MainUser_NewPlaylistTest {
     public void createNewPlaylist_WithNewsRoom(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
-        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
         $(playlistPage.clipLibrNewsRoom).click();
         $(playlistPage.newsRoomCategory).click();
@@ -210,12 +204,11 @@ public class MainUser_NewPlaylistTest {
     public void canDeleteAddedClipFromPL(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
-        GenerateData gendata = new GenerateData();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
-        String playlistName = gendata.generateString(3);
+        String playlistName = GenerateData.generateString(3);
         $(playlistPage.playlistNameField).sendKeys(playlistName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();

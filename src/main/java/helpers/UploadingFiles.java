@@ -48,7 +48,7 @@ public class UploadingFiles {
         robot.delay(500);
     }*/
 
-    public void uploadFile(String scriptPath) throws IOException {
+    public static void uploadFile(String scriptPath) throws IOException {
         Runtime.getRuntime().exec("osascript "+scriptPath);
     }
 }

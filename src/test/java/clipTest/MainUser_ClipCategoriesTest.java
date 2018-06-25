@@ -45,14 +45,13 @@ public class MainUser_ClipCategoriesTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.clipLibrary).click();
         $(clipLibraryPage.managementCategoriesbutton).click();
         $(managementCategoriesPage.createButton).click();
 
-        $(managementCategoriesPage.nameCategoryField).setValue(genData.generateString(4));
+        $(managementCategoriesPage.nameCategoryField).setValue(GenerateData.generateString(4));
         $(managementCategoriesPage.saveNewCategoryButton).click();
 
         $(managementCategoriesPage.successAlert).shouldBe(Condition.appears);
@@ -97,14 +96,13 @@ public class MainUser_ClipCategoriesTest {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         ManagementCategoriesPage managementCategoriesPage = new ManagementCategoriesPage();
-        GenerateData genData = new GenerateData();
 
         $(container.media).click();
         $(container.clipLibrary).click();
         $(clipLibraryPage.managementCategoriesbutton).click();
 
         $(managementCategoriesPage.editCategoryButton).click();
-        $(managementCategoriesPage.editCategoryNameField).setValue(genData.generateString(3)).submit();
+        $(managementCategoriesPage.editCategoryNameField).setValue(GenerateData.generateString(3)).submit();
 
         $(managementCategoriesPage.successAlert).should(Condition.appears);
     }
