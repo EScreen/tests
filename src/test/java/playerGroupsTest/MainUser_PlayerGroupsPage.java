@@ -41,5 +41,9 @@ public class MainUser_PlayerGroupsPage {
         $(container.playerGroups).click();
         $(playerGroupsPage.createPlayerGroupButton).click();
 
+        String groupName = GenerateData.generateString(4);
+        $(playerGroupsPage.playerGroupNameField).setValue(groupName);
+
+
     }
 }
