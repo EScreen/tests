@@ -51,4 +51,6 @@ public class UploadingFiles {
     public static void uploadFile(String scriptPath) throws IOException {
         Runtime.getRuntime().exec("osascript "+scriptPath);
     }
+
+
 }
