@@ -2,6 +2,7 @@ package playlistTest;
 
 import com.codeborne.selenide.*;
 import helpers.GenerateData;
+import org.jbehave.core.reporters.TemplateableViewGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +18,12 @@ import pages.playlistsPages.PlaylistPage;
 import pages.playlistsPages.PowerBlockPage;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -46,13 +50,14 @@ public class MainUser_PowerBlockTest {
     public void createNewPowerBlock_landscape(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
 
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String playlistName = GenerateData.generateString(3);
-        $(powerBlockPage.powerBlockNameField).sendKeys(playlistName);
+        String powerBlName = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
@@ -70,12 +75,13 @@ public class MainUser_PowerBlockTest {
     public void createNewPowerBlock_portrait(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String playlistName = GenerateData.generateString(3);
-        $(powerBlockPage.powerBlockNameField).sendKeys(playlistName);
+        String powerBlName = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
         $(powerBlockPage.orientationSwitch).click();
         $(powerBlockPage.clipLibrOther).click();
 
@@ -91,6 +97,52 @@ public class MainUser_PowerBlockTest {
     }
 
     @Test
+    public void previewDisplaysEntirely(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
+
+        $(container.playlists).click();
+        $(container.createNewPowerBlock).click();
+
+        String powerBlName = gendata.generateString(3);
+        $(powerBlockPage.powerBlockNameField).sendKeys(powerBlName);
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(3).click();
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(4).click();
+
+        $(powerBlockPage.savePowerBlockButton).click();
+        $(powerBlockPage.successAlert).shouldBe(Condition.visible);
+        sleep(4000);
+        $(powerBlockPage.searchField).setValue(powerBlName);
+        $("#powerblocks-table>tbody>tr>td:nth-child(7)>div>a>i").click();
+        $$("#video-preview-playlist>li").shouldHave(CollectionCondition.size(3));
+
+    }
+
+    @Test
+    public void deletePowerBl(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
+
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+
+        String powerBlName = powerBlockPage.getPowerBlockName($("#powerblocks-table>tbody>tr>td:nth-child(2) span"));
+        $("#powerblocks-table>tbody>tr>td:nth-child(7)>div>a:nth-child(2)>i").click();
+        $("div.modal-footer > button:nth-child(2)").click();
+
+        $(powerBlockPage.successAlert).should(Condition.appear);
+
+        $(powerBlockPage.searchField).setValue(powerBlName);
+        sleep(1000);
+        $("#powerblocks-table>tbody>tr>td>center").shouldHave(Condition.exactText("This search returned no results"));
+
+    }
+
+    @Test
     public void activatePowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
@@ -101,26 +153,92 @@ public class MainUser_PowerBlockTest {
         sleep(2000);
 
         int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr[ng-repeat]").size();
-        System.out.println("numberScheduledPowerBlBefore: "+numberScheduledPowerBlBefore);
         int numberActivePowerBlBefore = $$("#active_pb > tbody > tr[ng-repeat]").size();
-        System.out.println("numberActivePowerBlBefore: "+numberActivePowerBlBefore);
 
         $(powerBlockPage.notActivePowerBl).click();
         powerBlockPage.selectPlayer();
 
         $(powerBlockPage.playBackDuration).setValue("10");
+        powerBlockPage.setDateAndTime();
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        String date1 = dateFormat.format(date);
-        $("#start_on > input").sendKeys(date1);
-
-        $("#start_at > span").click();
-        $(By.xpath("//a[@data-action=\"decrementHours\"]")).click();
         $(powerBlockPage.saveButton).click();
 
         $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
         $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
+
+        String clipName = $("#powerblocks-scheduled>tbody>tr>td>span").text();
+        $(powerBlockPage.searchField).setValue(clipName);
+        sleep(1000);
+
+        $("#powerblocks-table>tbody>tr>td>center>a>span").shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
+        $("#powerblocks-table>tbody>tr>td:nth-child(2)>a>span").shouldHave(Condition.exactText(clipName));
+
+    }
+
+    @Test
+    public void activatePowerBl_SeveralPlayers(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+
+        sleep(2000);
+
+        int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr[ng-repeat]").size();
+        int numberActivePowerBlBefore = $$("#active_pb > tbody > tr[ng-repeat]").size();
+
+        $(powerBlockPage.notActivePowerBl).click();
+        powerBlockPage.selectPlayer();
+        powerBlockPage.selectPlayer();
+
+        $(powerBlockPage.playBackDuration).setValue("10");
+
+        powerBlockPage.setDateAndTime();
+        $(powerBlockPage.saveButton).click();
+
+        $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
+        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
+
+        String clipName = $("#powerblocks-scheduled>tbody>tr>td>span").text();
+        $(powerBlockPage.searchField).setValue(clipName);
+        sleep(1000);
+
+        $("#powerblocks-table>tbody>tr>td>center>a>span").shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
+        $("#powerblocks-table>tbody>tr>td:nth-child(2)>a>span").shouldHave(Condition.exactText(clipName));
+    }
+
+    @Test
+    public void activatePowerBl_PlayerGroup(){
+        Container container = new Container();
+        PowerBlockPage powerBlockPage = new PowerBlockPage();
+
+        $(container.playlists).click();
+        $(container.managePowerBlocks).click();
+        sleep(2000);
+
+        int numberScheduledPowerBlBefore = $$("#powerblocks-scheduled > tbody > tr[ng-repeat]").size();
+        int numberActivePowerBlBefore = $$("#active_pb > tbody > tr[ng-repeat]").size();
+
+        $(powerBlockPage.notActivePowerBl).click();
+        $(powerBlockPage.selectPlayerGroup).click();
+        $(By.xpath("//div[@class=\"ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active\"]//*[@class=\"ng-binding ng-scope\"][contains(text(),'Group1')]")).click();
+        Selenide.executeJavaScript("arguments[0].click();", $(".controls.checkbox-table i.fa.fa-square"));
+
+        $(powerBlockPage.playBackDuration).setValue("10");
+        powerBlockPage.setDateAndTime();
+
+        $(powerBlockPage.saveButton).click();
+
+        $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
+        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
+
+        String clipName = $("#powerblocks-scheduled>tbody>tr>td>span").text();
+        $(powerBlockPage.searchField).setValue(clipName);
+        sleep(1000);
+
+        $("#powerblocks-table>tbody>tr>td>center>a>span").shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
+        $("#powerblocks-table>tbody>tr>td:nth-child(2)>a>span").shouldHave(Condition.exactText(clipName));
     }
 
     @Test
@@ -140,13 +258,14 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withFormula(){
+        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = GenerateData.generateString(3);
+        String name = gendata.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrFormula).click();
@@ -165,6 +284,7 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withNewsRoom(){
+        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -172,7 +292,7 @@ public class MainUser_PowerBlockTest {
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = GenerateData.generateString(3);
+        String name = gendata.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrNewsRoom).click();
@@ -191,6 +311,7 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withMyFiles(){
+        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -198,7 +319,7 @@ public class MainUser_PowerBlockTest {
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = GenerateData.generateString(3);
+        String name = gendata.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrMyFiles).click();
@@ -216,13 +337,14 @@ public class MainUser_PowerBlockTest {
 
     @Test
     public void createNewPowerBl_withOther(){
+        GenerateData gendata = new GenerateData();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
         Container container = new Container();
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String name = GenerateData.generateString(3);
+        String name = gendata.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(name);
 
         $(powerBlockPage.clipLibrOther).click();
@@ -243,12 +365,13 @@ public class MainUser_PowerBlockTest {
     public void canDeleteAddedClipFromPowerBl(){
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
+        GenerateData gendata = new GenerateData();
 
 
         $(container.playlists).click();
         $(container.createNewPowerBlock).click();
 
-        String playlistName = GenerateData.generateString(3);
+        String playlistName = gendata.generateString(3);
         $(powerBlockPage.powerBlockNameField).sendKeys(playlistName);
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
@@ -269,6 +392,7 @@ public class MainUser_PowerBlockTest {
     @Test
     public void setUpClipVolume(){
         PlaylistPage playlistPage = new PlaylistPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
         Container container = new Container();
         PowerBlockPage powerBlockPage = new PowerBlockPage();
 
@@ -292,5 +416,8 @@ public class MainUser_PowerBlockTest {
 
         $("span[ng-bind='params.volume']").shouldHave(Condition.exactText("60"));
     }
+
+
+
 
 }
