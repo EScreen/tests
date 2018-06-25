@@ -42,8 +42,26 @@ public class SubUser_PowerBlockTest extends MainUser_PowerBlockTest {
 
     @Override
     @Test
+    public void previewDisplaysEntirely() {
+        super.previewDisplaysEntirely();
+    }
+
+    @Override
+    @Test
+    public void deletePowerBl() {
+        super.deletePowerBl();
+    }
+
+    @Override
+    @Test
     public void activatePowerBl() {
         super.activatePowerBl();
+    }
+
+    @Override
+    @Test
+    public void activatePowerBl_SeveralPlayers() {
+        super.activatePowerBl_SeveralPlayers();
     }
 
     @Override

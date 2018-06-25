@@ -1,9 +1,14 @@
 package pages.playlistsPages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.jbehave.core.reporters.TemplateableViewGenerator;
 import org.openqa.selenium.By;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -59,10 +64,22 @@ public class PowerBlockPage {
         String elementFullName = element.text();
         String[] fullName = elementFullName.split(" ");
         String name = fullName[0];
-        String status = fullName[1];
+        //String status = fullName[1];
 
         return name;
     }
+
+    public void setDateAndTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
+        $("#start_on > input").sendKeys(date1);
+
+        $("#start_at > span").click();
+        $(By.xpath("//a[@data-action=\"decrementHours\"]")).click();
+    }
+
+
 
 
 
