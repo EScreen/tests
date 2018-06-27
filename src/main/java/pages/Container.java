@@ -48,7 +48,7 @@ public class Container {
 
     public SelenideElement players = $(By.xpath("//*[@id=\"devices-sidebar-menuItem\"]/a"));
         public SelenideElement playerOverview = $(By.xpath("//*[@id=\"block-new_block\"]/a"));
-        public SelenideElement playerGroups = $(By.xpath("//*[@id=\"block-nw_pblock\"]/a"));
+        public SelenideElement playerGroups = $(By.xpath("//*[@id=\"programming-tags\"]/a"));
         public SelenideElement resultOverview = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
         public SelenideElement export = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
