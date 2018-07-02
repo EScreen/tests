@@ -10,7 +10,10 @@ import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 
-public class SubUser_ManagePlayListTest extends MainUser_ManagePlayListTest{
+import static com.codeborne.selenide.Selenide.close;
+
+public class SubUser_ManagePlayListTest {
+    MainUser_ManagePlayListTest mainUserManagePlayListTest = new MainUser_ManagePlayListTest();
 
     @Before
     public void beforeTest(){
@@ -19,16 +22,16 @@ public class SubUser_ManagePlayListTest extends MainUser_ManagePlayListTest{
 
     @After
     public void afterTest() {
-        super.afterTest();
+        close();
     }
 
     @Test
     public void sU_playListsSorting(){
-        super.playListsSorting();
+        mainUserManagePlayListTest.playListsSorting();
     }
 
     @Test
     public void sU_playListsSearching(){
-        super.playListsSearching();
+        mainUserManagePlayListTest.playListsSearching();
     }
 }

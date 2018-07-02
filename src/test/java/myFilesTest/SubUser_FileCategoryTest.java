@@ -11,7 +11,10 @@ import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_FileCategoryTest extends MainUser_FileCategoryTest {
+public class SubUser_FileCategoryTest {
+
+    MainUser_FileCategoryTest mainUserFileCategoryTest = new MainUser_FileCategoryTest();
+
     @Before
     public void beforeTest(){
         Precondition.beforeSubUser1Tests();
@@ -21,27 +24,23 @@ public class SubUser_FileCategoryTest extends MainUser_FileCategoryTest {
         close();
     }
 
-    @Override
     @Test
     public void createNewCategory() {
-        super.createNewCategory();
+        mainUserFileCategoryTest.createNewCategory();
     }
 
-    @Override
     @Test
     public void editCategoryName() {
-        super.editCategoryName();
+        mainUserFileCategoryTest.editCategoryName();
     }
 
-    @Override
     @Test
     public void deleteCategory() {
-        super.deleteCategory();
+        mainUserFileCategoryTest.deleteCategory();
     }
 
-    @Override
     @Test
     public void addAndDeleteNewCategory() {
-        super.addAndDeleteNewCategory();
+        mainUserFileCategoryTest.addAndDeleteNewCategory();
     }
 }

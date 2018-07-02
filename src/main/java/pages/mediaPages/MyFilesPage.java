@@ -67,4 +67,8 @@ public class MyFilesPage {
     public SelenideElement paginationSelector = $("#DataTables_Table_0_paginate > div > select");
 
 
+    public void setPagination100(){
+        $("select[ng-change='ppagaRowsChange()']").selectOptionByValue("100");
+    }
+
 }

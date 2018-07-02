@@ -8,8 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
+import playerGroupsTest.MainUser_PlayerGroupsTest;
 
-public class SubUser_ClipCategoriesTest extends MainUser_ClipCategoriesTest {
+import static com.codeborne.selenide.Selenide.close;
+
+public class SubUser_ClipCategoriesTest {
+
+    MainUser_ClipCategoriesTest mainUserClipCategoriesTest = new MainUser_ClipCategoriesTest();
 
     @Before
     public void beforeTest(){
@@ -17,32 +22,28 @@ public class SubUser_ClipCategoriesTest extends MainUser_ClipCategoriesTest {
     }
 
     @After
-    @Override
     public void afterTest() {
-        super.afterTest();
+        close();
     }
 
-    @Override
     @Test
     public void createCategory() {
-        super.createCategory();
+        mainUserClipCategoriesTest.createCategory();
     }
 
-    @Override
     @Test
     public void searchCategory() {
-        super.searchCategory();
+        mainUserClipCategoriesTest.searchCategory();
     }
 
-    @Override
+
     @Test
     public void deleteCategory() {
-        super.deleteCategory();
+        mainUserClipCategoriesTest.deleteCategory();
     }
 
-    @Override
     @Test
     public void editCategoryName() {
-        super.editCategoryName();
+        mainUserClipCategoriesTest.editCategoryName();
     }
 }

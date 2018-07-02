@@ -4,11 +4,13 @@ import helpers.Precondition;
 import myFilesTest.MainUser_FileCategoryTest;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_PlayerGroupTest extends MainUser_PlayerGroupsTest {
+public class SubUser_PlayerGroupTest {
+    MainUser_PlayerGroupsTest mainUserPlayerGroupsTest = new MainUser_PlayerGroupsTest();
 
     @Before
     public void beforeTest(){
@@ -20,52 +22,51 @@ public class SubUser_PlayerGroupTest extends MainUser_PlayerGroupsTest {
         close();
     }
 
-    @Override
     @Test
     public void createPlGroup() {
-        super.createPlGroup();
+        mainUserPlayerGroupsTest.createPlGroup();
     }
 
-    @Override
     @Test
     public void editOptionName() {
-        super.editOptionName();
+        mainUserPlayerGroupsTest.editOptionName();
     }
 
-    @Override
     @Test
     public void editAndAddOption() {
-        super.editAndAddOption();
+        mainUserPlayerGroupsTest.editAndAddOption();
     }
 
-    @Override
     @Test
     public void editRemoveOption() {
-        super.editRemoveOption();
+        mainUserPlayerGroupsTest.editRemoveOption();
     }
 
-    @Override
     @Test
     public void searchPlayer() {
-        super.searchPlayer();
+        mainUserPlayerGroupsTest.searchPlayer();
     }
 
-    @Override
     @Test
     public void setOptionsMultiply() {
-        super.setOptionsMultiply();
+        mainUserPlayerGroupsTest.setOptionsMultiply();
     }
 
-    @Override
     @Test
     public void searchGroup() {
-        super.searchGroup();
+        mainUserPlayerGroupsTest.searchGroup();
     }
 
-    @Override
     @Test
     public void deleteGroup() {
-        super.deleteGroup();
+        mainUserPlayerGroupsTest.deleteGroup();
     }
+
+    @Test
+    public void checkOptionsQuantityForSetting() {
+        mainUserPlayerGroupsTest.checkOptionsQuantityForSetting();
+    }
+
+
 
 }

@@ -213,7 +213,7 @@ public class MainUser_PowerBlockTest {
 
         $(powerBlockPage.notActivePowerBl).click();
         $(powerBlockPage.selectPlayerGroup).click();
-        $(By.xpath("//div[@class=\"ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active\"]//*[@class=\"ng-binding ng-scope\"][contains(text(),'Group1')]")).click();
+        $(By.xpath("//div[@class=\"ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active\"]//*[@class=\"ng-binding ng-scope\"][contains(text(),'zzz')]")).click();
         Selenide.executeJavaScript("arguments[0].click();", $(".controls.checkbox-table i.fa.fa-square"));
 
         $(powerBlockPage.playBackDuration).setValue("10");

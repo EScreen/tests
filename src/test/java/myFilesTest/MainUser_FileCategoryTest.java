@@ -40,6 +40,7 @@ public class MainUser_FileCategoryTest {
         String categoryName = GenerateData.generateString(3);
         $(myFilesPage.categoryNameField).setValue(categoryName);
         $(myFilesPage.saveCategoryButton).click();
+        myFilesPage.setPagination100();
 
         String allCategories = $$(myFilesPage.categoryNames).toString();
 

@@ -22,7 +22,7 @@ public class ClipLibraryPage {
     public SelenideElement categoryDropDawn = $(By.xpath("//select[@ng-change=\"changeCategory()\"]"));
     public SelenideElement managementCategoriesbutton = $(By.xpath("//li[@ng-if=\"manage_cats\"]/a"));
     public SelenideElement settingsClipButton = $(By.xpath("//button[@class=\"btn btn-mini btn-default dropdown-toggle\"]"));
-    public SelenideElement editClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[2]/a[1]"));
+    public SelenideElement editClipButton = $(".icon-edit");
     public SelenideElement denyClipButton = $(By.xpath("//a[@ng-click=\"denyFragment(fragment.ID)\"]"));
     public SelenideElement shareClipButton = $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr/td[9]/div/ul/li[3]/a"));
     public SelenideElement deleteClipButton = $("a[ng-click='deleteFragment(fragment.ID)']");
@@ -40,8 +40,7 @@ public class ClipLibraryPage {
         try{
             sleep(1000);
             $(deleteClipIfItInPlaylist).click();
-        }catch (ElementNotFound e){
-        }
+        }catch (ElementNotFound e){ }
     }
 
 

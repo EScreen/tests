@@ -12,7 +12,8 @@ import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_PowerBlockTest extends MainUser_PowerBlockTest {
+public class SubUser_PowerBlockTest {
+    MainUser_PowerBlockTest mainUserPowerBlockTest = new MainUser_PowerBlockTest();
 
     @Before
     public void beforeTest(){
@@ -23,82 +24,69 @@ public class SubUser_PowerBlockTest extends MainUser_PowerBlockTest {
         close();
     }
 
-    @Override
     @Test
     public void createNewPowerBlock_landscape() {
-        super.createNewPowerBlock_landscape();
+        mainUserPowerBlockTest.createNewPowerBlock_landscape();
     }
 
-    @Override
     @Test
     public void createNewPowerBlock_portrait() {
-        super.createNewPowerBlock_portrait();
+        mainUserPowerBlockTest.createNewPowerBlock_portrait();
     }
 
-    @Override
     @Test
     public void previewDisplaysEntirely() {
-        super.previewDisplaysEntirely();
+        mainUserPowerBlockTest.previewDisplaysEntirely();
     }
 
-    @Override
     @Test
     public void deletePowerBl() {
-        super.deletePowerBl();
+        mainUserPowerBlockTest.deletePowerBl();
     }
 
-    @Override
     @Test
     public void activatePowerBl() {
-        super.activatePowerBl();
+        mainUserPowerBlockTest.activatePowerBl();
     }
 
-    @Override
     @Test
     public void activatePowerBl_SeveralPlayers() {
-        super.activatePowerBl_SeveralPlayers();
+        mainUserPowerBlockTest.activatePowerBl_SeveralPlayers();
     }
 
-    @Override
     @Test
     public void searchPowerBl() {
-        super.searchPowerBl();
+        mainUserPowerBlockTest.searchPowerBl();
     }
 
-    @Override
     @Test
     public void createNewPowerBl_withFormula() {
-        super.createNewPowerBl_withFormula();
+        mainUserPowerBlockTest.createNewPowerBl_withFormula();
     }
 
-    @Override
     @Test
     public void createNewPowerBl_withNewsRoom() {
-        super.createNewPowerBl_withNewsRoom();
+        mainUserPowerBlockTest.createNewPowerBl_withNewsRoom();
     }
 
-    @Override
     @Test
     public void createNewPowerBl_withMyFiles() {
-        super.createNewPowerBl_withMyFiles();
+        mainUserPowerBlockTest.createNewPowerBl_withMyFiles();
     }
 
-    @Override
     @Test
     public void createNewPowerBl_withOther() {
-        super.createNewPowerBl_withOther();
+        mainUserPowerBlockTest.createNewPowerBl_withOther();
     }
 
-    @Override
     @Test
     public void canDeleteAddedClipFromPowerBl() {
-        super.canDeleteAddedClipFromPowerBl();
+        mainUserPowerBlockTest.canDeleteAddedClipFromPowerBl();
     }
 
-    @Override
     @Test
     public void setUpClipVolume() {
-        super.setUpClipVolume();
+        mainUserPowerBlockTest.setUpClipVolume();
     }
 
 }

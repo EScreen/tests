@@ -63,7 +63,7 @@ public class MainUser_ClipLibraryTest {
     }
 
     @Test
-    public void uploadImgToClip() throws AWTException, IOException {
+    public void uploadImgToClip() throws IOException {
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
@@ -83,6 +83,13 @@ public class MainUser_ClipLibraryTest {
 
         $(createNewClipPage.templateSummaryTab).click();
         $(createNewClipPage.saveClipButton).click();
+
+        $(clipLibraryPage.settingsClipButton).click();
+        $(clipLibraryPage.editClipButton).click();
+        $(createNewClipPage.nextButton).click();
+
+        $("div.darkroom-image-container > div > img").shouldBe(Condition.visible);
+
 
 
     }

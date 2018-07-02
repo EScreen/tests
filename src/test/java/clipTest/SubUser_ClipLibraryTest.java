@@ -19,11 +19,11 @@ import pages.mediaPages.CreateNewClipPage;
 import java.awt.*;
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
-public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
+public class SubUser_ClipLibraryTest {
+
+    MainUser_ClipLibraryTest mainUserClipLibraryTest = new MainUser_ClipLibraryTest();
 
     @Before
     public void beforeTest() {
@@ -32,41 +32,35 @@ public class SubUser_ClipLibraryTest extends MainUser_ClipLibraryTest {
 
     @After
     public void afterTest() {
-        super.afterTest();
+        close();
     }
 
-    @Override
     @Test
     public void uploadImgToClip() throws AWTException, IOException {
-        super.uploadImgToClip();
+        mainUserClipLibraryTest.uploadImgToClip();
     }
 
-    @Override
     @Test
     public void uploadImgFromLibrToClip() {
-        super.uploadImgFromLibrToClip();
+        mainUserClipLibraryTest.uploadImgFromLibrToClip();
     }
 
-    @Override
     @Test
     public void deleteClip() {
-        super.deleteClip();
+        mainUserClipLibraryTest.deleteClip();
     }
 
-    @Override
     @Test
     public void clipSearch() throws InterruptedException {
-        super.clipSearch();
+        mainUserClipLibraryTest.clipSearch();
     }
 
-    @Override
     @Test
     public void clipFiltering() {
-        super.clipFiltering();
+        mainUserClipLibraryTest.clipFiltering();
     }
 
     //Edit name of existed clip
-    @Override
     @Test
     public void editCLipName() {
         Container container = new Container();

@@ -61,7 +61,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void createClipWithImg() throws AWTException, IOException {
+    public void createClipWithImg() throws IOException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
@@ -173,7 +173,7 @@ public class MainUser_NewClipTest {
     }
 
     @Test
-    public void createClipAndAddImgToLibr() throws AWTException, IOException {
+    public void createClipAndAddImgToLibr() throws IOException {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
@@ -189,8 +189,6 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.templateChooseFileButton).click();
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_nature.scpt");
-
-        sleep(2000);
 
         Selenide.executeJavaScript("arguments[0].click();",createNewClipPage.storeIntheMediaLibraryCheckbox);
 

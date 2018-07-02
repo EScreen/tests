@@ -11,7 +11,8 @@ import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_NewPlayListTest extends MainUser_NewPlaylistTest {
+public class SubUser_NewPlayListTest {
+    MainUser_NewPlaylistTest mainUserNewPlaylistTest = new MainUser_NewPlaylistTest();
 
     @Before
     public void beforeTest() {
@@ -23,58 +24,49 @@ public class SubUser_NewPlayListTest extends MainUser_NewPlaylistTest {
         close();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_landscape() {
-        super.createNewPlaylist_landscape();
+        mainUserNewPlaylistTest.createNewPlaylist_landscape();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_withFormula() {
-        super.createNewPlaylist_withFormula();
+        mainUserNewPlaylistTest.createNewPlaylist_withFormula();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_withOther() {
-        super.createNewPlaylist_withOther();
+        mainUserNewPlaylistTest.createNewPlaylist_withOther();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_portrait() {
-        super.createNewPlaylist_portrait();
+        mainUserNewPlaylistTest.createNewPlaylist_portrait();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_WithMyFiles() {
-        super.createNewPlaylist_WithMyFiles();
+        mainUserNewPlaylistTest.createNewPlaylist_WithMyFiles();
     }
 
-    @Override
     @Test
     public void createNewPlaylist_WithNewsRoom() {
-        super.createNewPlaylist_WithNewsRoom();
+        mainUserNewPlaylistTest.createNewPlaylist_WithNewsRoom();
     }
 
-    @Override
     @Test
     public void canDeleteAddedClipFromPL() {
-        super.canDeleteAddedClipFromPL();
+        mainUserNewPlaylistTest.canDeleteAddedClipFromPL();
     }
 
-    @Override
     @Test
     public void setUpClipVolume() {
-        super.setUpClipVolume();
+        mainUserNewPlaylistTest.setUpClipVolume();
     }
 
-    @Override
     @Test
     public void setClipColor() {
-        super.setClipColor();
+        mainUserNewPlaylistTest.setClipColor();
     }
 
 }

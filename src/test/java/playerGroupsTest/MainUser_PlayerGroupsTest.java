@@ -215,6 +215,9 @@ public class MainUser_PlayerGroupsTest {
         $$(playerGroupsPage.screenSettingOptions).shouldHave(CollectionCondition.size(2));
     }
 
+
+
+
     @Test
     public void setGeneralSettings(){
         Container container = new Container();
@@ -228,8 +231,8 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.screenSettingOption).click();
         $(playerGroupsPage.settingSelector).selectOptionContainingText("General Schedule");
 
-        $(playerGroupsPage.screenOnInput).sendKeys("1200");
-        $(playerGroupsPage.screenOffInput).sendKeys("1800");
+        $(playerGroupsPage.screenOnInput).setValue("1200");
+        $(playerGroupsPage.screenOffInput).setValue("1800");
         $(playerGroupsPage.saveButton).click();
         $(playerGroupsPage.succesSaveAlert).should(Condition.appear);
         sleep(3000);
@@ -326,12 +329,12 @@ public class MainUser_PlayerGroupsTest {
 
         $(".list-group>li:nth-child(2)>div").click();
         $("#settings > ul > li:nth-child(2) > div > div.panel-body > div:nth-child(4) > div > select").selectOptionContainingText("General Schedule");
-        $(".list-group>li:nth-child(2) #picktime-screenon>input").sendKeys("0700");
-        $(".list-group>li:nth-child(2) #picktime-screenonpair>input").sendKeys("1345");
+        $(".list-group>li:nth-child(2) #picktime-screenon>input").setValue("0700");
+        $(".list-group>li:nth-child(2) #picktime-screenonpair>input").setValue("1345");
 
         $(playerGroupsPage.saveButton).click();
         $(playerGroupsPage.succesSaveAlert).should(Condition.appear);
-        sleep(3000);
+        sleep(4000);
         $(playerGroupsPage.searchField).setValue(groupName);
         sleep(1000);
         $(playerGroupsPage.playerGroupName).click();
@@ -339,7 +342,8 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.setScreenTimeTab).click();
         $(playerGroupsPage.screenSettingOption).click();
 
-        $("#settings > ul > li:nth-child(1) > div > div.panel-body > div:nth-child(4) > div > select>option[selected]").shouldHave(Condition.exactText("Always on"));
+        $("#settings > ul > li:nth-child(1) > div > div.panel-body > div:nth-child(4) > div > select>option[selected]")
+                .shouldHave(Condition.exactText("Always on"));
         $(".list-group>li:nth-child(2)>div").click();
         $(".list-group>li:nth-child(2) #picktime-screenon").shouldHave(Condition.value("07:00:00"));
         $(".list-group>li:nth-child(2) #picktime-screenonpair").shouldHave(Condition.value("13:45:00"));

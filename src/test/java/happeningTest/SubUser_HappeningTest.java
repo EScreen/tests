@@ -17,7 +17,9 @@ import pages.mediaPages.CreateNewClipPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SubUser_HappeningTest extends MainUser_HappeningTest{
+public class SubUser_HappeningTest {
+
+    MainUser_HappeningTest mainUserHappeningTest = new MainUser_HappeningTest();
 
     @Before
     public void beforeTest(){
@@ -28,45 +30,39 @@ public class SubUser_HappeningTest extends MainUser_HappeningTest{
         close();
     }
 
-    @Override
+
     @Test
     public void createHappening() {
-        super.createHappening();
+        mainUserHappeningTest.createHappening();
     }
 
-    @Override
     @Test
     public void createHappeningWithFile() {
-        super.createHappeningWithFile();
+        mainUserHappeningTest.createHappeningWithFile();
     }
 
-    @Override
     @Test
     public void editHappName() {
-        super.editHappName();
+        mainUserHappeningTest.editHappName();
     }
 
-    @Override
     @Test
     public void editMessage() {
-        super.editMessage();
+        mainUserHappeningTest.editMessage();
     }
 
-    @Override
     @Test
     public void editAndAddImgToMessage() {
-        super.editAndAddImgToMessage();
+        mainUserHappeningTest.editAndAddImgToMessage();
     }
 
-    @Override
     @Test
     public void deleteMessage() {
-        super.deleteMessage();
+        mainUserHappeningTest.deleteMessage();
     }
 
-    @Override
     @Test
     public void deleteHappening() {
-        super.deleteHappening();
+        mainUserHappeningTest.deleteHappening();
     }
 }

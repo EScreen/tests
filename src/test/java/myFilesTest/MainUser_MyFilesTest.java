@@ -33,7 +33,7 @@ public class MainUser_MyFilesTest {
 
 
     @Test
-    public void uploadImageToOwn() throws AWTException, IOException {
+    public void uploadImageToOwn() throws IOException {
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
 
@@ -42,16 +42,14 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.uploadFilesButton).click();
         $(myFilesPage.addFileButton).click();
 
-        $(myFilesPage.categorySelector).selectOptionContainingText("Two");
+        $(myFilesPage.categorySelector).selectOptionContainingText("Three");
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
-
-        sleep(2000);
 
         $(myFilesPage.saveButton).click();
 
         $(myFilesPage.uploadedFileName).shouldHave(Condition.text("Smile4"));
-        $("tbody>tr>td:nth-child(5)").shouldHave(Condition.exactText("Two"));
+        $("tbody>tr>td:nth-child(5)").shouldHave(Condition.exactText("Three"));
     }
 
     @Test
@@ -84,15 +82,15 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.addFileButton).click();
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/Scrpt_upload_Smile2.scpt");
-        sleep(10000);
+        sleep(3000);
         $(myFilesPage.addFileButton).click();
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile3.scpt");
 
 
         $(myFilesPage.saveButton).click();
 
-        $("tbody>tr:nth-child(1)>td:nth-child(2)").shouldHave(Condition.text("Smile4"));
-        $("tbody>tr:nth-child(2)>td:nth-child(2)").shouldHave(Condition.text("Smile1"));
+        $("tbody>tr:nth-child(1)>td:nth-child(2)").shouldHave(Condition.text("Smile3"));
+        $("tbody>tr:nth-child(2)>td:nth-child(2)").shouldHave(Condition.text("Smile2"));
     }
 
     @Test
@@ -106,7 +104,7 @@ public class MainUser_MyFilesTest {
 
         $(myFilesPage.addFileButton).click();
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile5.scpt");
-        sleep(1000);
+
         $(myFilesPage.renameFileButton).click();
         String newName = GenerateData.generateString(3);
         $(myFilesPage.newNameField).setValue(newName);
@@ -192,7 +190,7 @@ public class MainUser_MyFilesTest {
 
         $(myFilesPage.pickAnotherFileButton).click();
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile5.scpt");
-        sleep(10000);
+        sleep(5000);
         $(myFilesPage.saveButton).click();
 
         Dimension sizeAfter = $("tbody>tr>td>center>a>img").getSize();
@@ -215,7 +213,6 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.addFileButton).click();
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_pdfFile_1Page.scpt");
-        sleep(4000);
         $(myFilesPage.saveButton).click();
 
         $("tbody>tr:first-child>td:nth-child(8)>span").waitUntil(Condition.text("Ready"),120000);
@@ -236,7 +233,6 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.addFileButton).click();
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_pdfFile_4Pages.scpt");
-        sleep(4000);
         $(myFilesPage.saveButton).click();
 
         $("tbody>tr:first-child>td:nth-child(8)>span").waitUntil(Condition.text("Ready"),180000);
@@ -339,7 +335,6 @@ public class MainUser_MyFilesTest {
         $(myFilesPage.addFileButton).click();
 
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile4.scpt");
-        sleep(2000);
         $(myFilesPage.saveButton).click();
         String savedFileName = $(myFilesPage.uploadedFileName).text();
 

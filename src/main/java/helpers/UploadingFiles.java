@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.sleep;
+
 /**
  * Created by Anna on 20/04/2018.
  */
@@ -50,6 +52,7 @@ public class UploadingFiles {
 
     public static void uploadFile(String scriptPath) throws IOException {
         Runtime.getRuntime().exec("osascript "+scriptPath);
+        sleep(6000);
     }
 
 

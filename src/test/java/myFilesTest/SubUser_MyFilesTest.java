@@ -21,7 +21,8 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
+public class SubUser_MyFilesTest {
+    MainUser_MyFilesTest mainUserMyFilesTest = new MainUser_MyFilesTest();
 
     @Before
     public void beforeTest(){
@@ -32,28 +33,24 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
         close();
     }
 
-    @Override
     @Test
     public void uploadImageToOwn() throws AWTException, IOException {
-        super.uploadImageToOwn();
+        mainUserMyFilesTest.uploadImageToOwn();
     }
 
-    @Override
     @Test
     public void uploadSeveralImages() throws IOException {
-        super.uploadSeveralImages();
+        mainUserMyFilesTest.uploadSeveralImages();
     }
 
-    @Override
     @Test
     public void renameUploadedImage() throws IOException {
-        super.renameUploadedImage();
+        mainUserMyFilesTest.renameUploadedImage();
     }
 
-    @Override
     @Test
     public void cropUploadedImage() throws IOException {
-        super.cropUploadedImage();
+        mainUserMyFilesTest.cropUploadedImage();
     }
 
     @Test
@@ -82,58 +79,49 @@ public class SubUser_MyFilesTest extends MainUser_MyFilesTest {
         $("tbody>tr>td:nth-child(5)").shouldHave(Condition.exactText("Three"));
     }
 
-    @Override
     @Test
     public void pickAnotherFile() throws IOException {
-        super.pickAnotherFile();
+        mainUserMyFilesTest.pickAnotherFile();
     }
 
-    @Override
     @Test
     public void uploadPDF() throws IOException {
-        super.uploadPDF();
+        mainUserMyFilesTest.uploadPDF();
     }
 
-    @Override
     @Test
     public void uploadPDF_4Pages() throws IOException {
-        super.uploadPDF_4Pages();
+        mainUserMyFilesTest.uploadPDF_4Pages();
     }
 
-    @Override
     @Test
     public void renameUploadPDF() throws IOException {
-        super.renameUploadPDF();
+        mainUserMyFilesTest.renameUploadPDF();
     }
 
-    @Override
     @Test
     public void uploadVideo() throws IOException {
-        super.uploadVideo();
+        mainUserMyFilesTest.uploadVideo();
     }
 
-    @Override
     @Test
     public void showLandscapeVideoAsPortrait() throws IOException {
-        super.showLandscapeVideoAsPortrait();
+        mainUserMyFilesTest.showLandscapeVideoAsPortrait();
     }
 
-    @Override
     @Test
     public void deleteFile() {
-        super.deleteFile();
+        mainUserMyFilesTest.deleteFile();
     }
 
-    @Override
     @Test
     public void categoryFiltering() {
-        super.categoryFiltering();
+        mainUserMyFilesTest.categoryFiltering();
     }
 
-    @Override
     @Test
     public void typeFileFiltering() {
-        super.typeFileFiltering();
+        mainUserMyFilesTest.typeFileFiltering();
     }
 }
 
