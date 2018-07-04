@@ -30,6 +30,11 @@ public class SubUser_NewPlayListTest {
     }
 
     @Test
+    public void setRandomOrder(){
+        mainUserNewPlaylistTest.setRandomOrder();
+    }
+
+    @Test
     public void createNewPlaylist_withFormula() {
         mainUserNewPlaylistTest.createNewPlaylist_withFormula();
     }

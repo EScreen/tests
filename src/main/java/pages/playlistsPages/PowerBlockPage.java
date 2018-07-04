@@ -30,6 +30,8 @@ public class PowerBlockPage {
     public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//*[@class=\"dropdown-menu\"]//a[@ng-click=\"removeFromDrop(fragment)\"]"));
     public SelenideElement setVolumeButton = $("a[ng-click='soundLevelModal(fragment)']");
     public SelenideElement saveVolumeButton = $("button[ng-click='ok()']");
+    public SelenideElement deletePowerBl = $("#powerblocks-table>tbody>tr>td:nth-child(7)>div>a:nth-child(2)>i");
+    public SelenideElement yesDelete = $("div.modal-footer > button:nth-child(2)");
 
     public SelenideElement statusFirstPowerBl = $(By.cssSelector("table.dataTable.responsive.tour-spotlight > tbody > tr:nth-child(1) > td > center > a > span"));
     public SelenideElement notActivePowerBl = $(By.xpath("//*[@id=\"powerblocks-table\"]//span[@tooltip-html-unsafe=\"Not playing\"]"));

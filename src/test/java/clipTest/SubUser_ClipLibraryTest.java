@@ -36,7 +36,7 @@ public class SubUser_ClipLibraryTest {
     }
 
     @Test
-    public void uploadImgToClip() throws AWTException, IOException {
+    public void uploadImgToClip() throws IOException {
         mainUserClipLibraryTest.uploadImgToClip();
     }
 
@@ -104,6 +104,7 @@ public class SubUser_ClipLibraryTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateClipCategory).selectOption(3);
 
@@ -142,6 +143,7 @@ public class SubUser_ClipLibraryTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         createNewClipPage.unCheckAvailableForUsers();
         $(createNewClipPage.templateClipCategory).selectOption(3);

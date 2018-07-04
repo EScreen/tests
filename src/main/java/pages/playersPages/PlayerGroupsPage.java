@@ -1,11 +1,13 @@
 package pages.playersPages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Anna on 06/04/2018.
@@ -51,6 +53,7 @@ public class PlayerGroupsPage {
 
 
     public void setCircles(){
+        sleep(5000);
         $(firstCircle).click();
         $(secondCircle).click();
         $(thirdCircle).click();

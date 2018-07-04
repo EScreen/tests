@@ -67,6 +67,27 @@ public class MainUser_NewPlaylistTest {
     }
 
     @Test
+    public void setRandomOrder(){
+        MainDashboardPage mainDashboardPage = new MainDashboardPage();
+        PlaylistPage playlistPage = new PlaylistPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
+
+        $(mainDashboardPage.createPlaylistButton).click();
+        String playlistName = GenerateData.generateString(3);
+        $(playlistPage.playlistNameField).sendKeys(playlistName);
+
+        $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(2).click();
+        $(".ibutton-handle").click();
+
+        $(playlistPage.savePlButton).click();
+        $(playlistPage.successAlert).shouldBe(Condition.appear);
+        $(managePlaylistsPage.nameOfPlayList).click();
+
+        $("div.box-header > ul > li:nth-child(1) > div > div.ibutton-label-on > span[style='margin-left: 0px;']").shouldBe(Condition.visible);
+
+    }
+
+    @Test
     public void createNewPlaylist_withFormula(){
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();

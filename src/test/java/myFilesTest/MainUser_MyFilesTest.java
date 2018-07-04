@@ -125,7 +125,7 @@ public class MainUser_MyFilesTest {
 
         $(myFilesPage.addFileButton).click();
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/scrpt_Upload_Smile5.scpt");
-        org.openqa.selenium.Dimension sizeBefore = $("#filelist-filename-uploadelement img").getSize();
+        Dimension sizeBefore = $("#filelist-filename-uploadelement img").getSize();
 
 
         $(myFilesPage.setUpFileButton).click();

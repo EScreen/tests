@@ -21,4 +21,8 @@ public class UI {
         Selenide.executeJavaScript("arguments[0].scrollIntoView();",element);
         //((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("\"arguments[0].scrollIntoView();",element);
     }
+
+    public static void clickOnHideElement(SelenideElement element){
+        Selenide.executeJavaScript("arguments[0].click();",element);
+    }
 }

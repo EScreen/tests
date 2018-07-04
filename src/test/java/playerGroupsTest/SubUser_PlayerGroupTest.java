@@ -62,10 +62,6 @@ public class SubUser_PlayerGroupTest {
         mainUserPlayerGroupsTest.deleteGroup();
     }
 
-    @Test
-    public void checkOptionsQuantityForSetting() {
-        mainUserPlayerGroupsTest.checkOptionsQuantityForSetting();
-    }
 
 
 

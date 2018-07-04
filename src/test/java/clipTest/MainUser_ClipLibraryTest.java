@@ -5,9 +5,11 @@ import helpers.GenerateData;
 import helpers.Precondition;
 import helpers.UploadingFiles;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import pages.Container;
 import pages.mediaPages.ClipLibraryPage;
 import pages.mediaPages.CreateNewClipPage;
@@ -199,5 +201,6 @@ public class MainUser_ClipLibraryTest {
         $(By.xpath("//div[@class=\"box-content\"]//option[@selected=\"selected\"]")).shouldHave(Condition.exactText(selectedCategory));
 
     }
+
 
 }

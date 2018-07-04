@@ -48,6 +48,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateClipCategory).selectOption(3);
 
@@ -71,6 +72,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();
@@ -101,6 +103,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.templateExistedPlaylistField).click();
         $(createNewClipPage.firstExistedPlaylist).click();
@@ -119,20 +122,20 @@ public class MainUser_NewClipTest {
         sleep(2000);
         $(managePlaylistsPage.nameOfPlayList).click();
 
-        $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table/tbody")).shouldHave(Condition.text(clipName));
+        $("#playlist-block>div:nth-child(2) tr>td:nth-child(3)").shouldHave(Condition.text(clipName));
     }
 
     @Test
     public void createAndAddClipToNewPlayList(){
         MainDashboardPage dashboardPage = new MainDashboardPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
-        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(dashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
 
         $(createNewClipPage.tepmlateNewPlaylistField).setValue(GenerateData.generateString(3));
@@ -184,6 +187,7 @@ public class MainUser_NewClipTest {
         $(createNewClipPage.newClipButton).click();
 
         String clipName = GenerateData.generateString(6);
+        sleep(1000);
         $(createNewClipPage.templateTestNameField).setValue(clipName);
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateChooseFileButton).click();

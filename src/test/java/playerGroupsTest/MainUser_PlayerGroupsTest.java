@@ -6,6 +6,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import helpers.GenerateData;
 import helpers.Precondition;
+import helpers.UI;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,6 +38,7 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.createPlayerGroupButton).click();
 
         String groupName = GenerateData.generateString(4);
+        sleep(1000);
         $(playerGroupsPage.playerGroupNameField).setValue(groupName);
 
         $(playerGroupsPage.optionField).setValue("Landscape");
@@ -211,7 +213,7 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.saveButton).click();
         $(playerGroupsPage.succesSaveAlert).should(Condition.appear);
 
-        $(playerGroupsPage.setScreenTimeTab).click();
+        $(playerGroupsPage.setScreenTimeTab).waitUntil(Condition.visible,20000).click();
         $$(playerGroupsPage.screenSettingOptions).shouldHave(CollectionCondition.size(2));
     }
 
@@ -315,6 +317,7 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.createPlayerGroupButton).click();
 
         String groupName = GenerateData.generateString(4);
+        sleep(1000);
         $(playerGroupsPage.playerGroupNameField).setValue(groupName);
 
         $(playerGroupsPage.optionField).setValue("Landscape");
@@ -323,7 +326,7 @@ public class MainUser_PlayerGroupsTest {
         $(playerGroupsPage.saveButton).click();
         $(playerGroupsPage.succesSaveAlert).should(Condition.appear);
 
-        $(playerGroupsPage.setScreenTimeTab).click();
+        $(playerGroupsPage.setScreenTimeTab).waitUntil(Condition.visible,20000).click();
         $(playerGroupsPage.screenSettingOption).click();
         $(playerGroupsPage.settingSelector).selectOptionContainingText("Always on");
 
@@ -334,7 +337,7 @@ public class MainUser_PlayerGroupsTest {
 
         $(playerGroupsPage.saveButton).click();
         $(playerGroupsPage.succesSaveAlert).should(Condition.appear);
-        sleep(4000);
+        sleep(5000);
         $(playerGroupsPage.searchField).setValue(groupName);
         sleep(1000);
         $(playerGroupsPage.playerGroupName).click();

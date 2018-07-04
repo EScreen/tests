@@ -5,6 +5,7 @@ import helpers.GenerateData;
 import helpers.Precondition;
 import org.jbehave.core.reporters.TemplateableViewGenerator;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -122,8 +123,9 @@ public class MainUser_PowerBlockTest {
         $(container.managePowerBlocks).click();
 
         String powerBlName = powerBlockPage.getPowerBlockName($("#powerblocks-table>tbody>tr>td:nth-child(2) span"));
-        $("#powerblocks-table>tbody>tr>td:nth-child(7)>div>a:nth-child(2)>i").click();
-        $("div.modal-footer > button:nth-child(2)").click();
+        $(powerBlockPage.deletePowerBl).click();
+        sleep(2000);
+        $(powerBlockPage.yesDelete).click();
 
         $(powerBlockPage.successAlert).should(Condition.appear);
 
@@ -183,13 +185,20 @@ public class MainUser_PowerBlockTest {
         powerBlockPage.selectPlayer();
         powerBlockPage.selectPlayer();
 
-        $(powerBlockPage.playBackDuration).setValue("10");
+        $(powerBlockPage.playBackDuration).setValue("2");
 
         powerBlockPage.setDateAndTime();
         $(powerBlockPage.saveButton).click();
 
-        $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
-        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
+        $$("#powerblocks-scheduled > tbody > tr").shouldHave(CollectionCondition.size(numberScheduledPowerBlBefore + 1));
+        $$("#active_pb > tbody > tr").shouldHave(CollectionCondition.size(numberActivePowerBlBefore + 2));
+
+        /*int numberScheduledPowerBlAfter = $$("#powerblocks-scheduled > tbody > tr").size();
+
+        Assert.assertTrue(numberScheduledPowerBlBefore + 1 == numberScheduledPowerBlAfter);
+
+        int numberActivePowerBlAfter = $$("#active_pb > tbody > tr").size();
+        Assert.assertTrue(numberActivePowerBlBefore + 2 == numberActivePowerBlAfter);*/
 
         String clipName = $("#powerblocks-scheduled>tbody>tr>td>span").text();
         $(powerBlockPage.searchField).setValue(clipName);
@@ -213,7 +222,8 @@ public class MainUser_PowerBlockTest {
 
         $(powerBlockPage.notActivePowerBl).click();
         $(powerBlockPage.selectPlayerGroup).click();
-        $(By.xpath("//div[@class=\"ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active\"]//*[@class=\"ng-binding ng-scope\"][contains(text(),'zzz')]")).click();
+        $(By.xpath("//div[@class=\"ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active\"]//*[@class=\"ng-binding ng-scope\"][contains(text(),'zzz')]"))
+                .waitUntil(Condition.appear,10000).click();
         Selenide.executeJavaScript("arguments[0].click();", $(".controls.checkbox-table i.fa.fa-square"));
 
         $(powerBlockPage.playBackDuration).setValue("10");
@@ -222,7 +232,7 @@ public class MainUser_PowerBlockTest {
         $(powerBlockPage.saveButton).click();
 
         $$("#powerblocks-scheduled > tbody > tr").shouldHaveSize(numberScheduledPowerBlBefore + 1);
-        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 1);
+        $$("#active_pb > tbody > tr").shouldHaveSize(numberActivePowerBlBefore + 2);
 
         String clipName = $("#powerblocks-scheduled>tbody>tr>td>span").text();
         $(powerBlockPage.searchField).setValue(clipName);
