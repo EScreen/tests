@@ -169,7 +169,7 @@ public class MainUser_PlayerOverviewTest {
         $(playerOverviewPage.tickertapeButton).click();
         $(playerOverviewPage.tickertapeSelector).selectOptionByValue("14");
 
-        $("#\\31 0686 > div:nth-child(1) > div > select").selectOptionByValue("4");
+        $("#\\31 0686 > div:nth-child(1) > div > select").selectOptionByValue("1");
         $(playerOverviewPage.saveTickertape).click();
         $(playerOverviewPage.successMessage).should(Condition.appear);
 

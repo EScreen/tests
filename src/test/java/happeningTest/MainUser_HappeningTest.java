@@ -182,6 +182,7 @@ public class MainUser_HappeningTest {
         $(container.media).click();
         $(container.happening).click();
         $(happeningPage.deleteFirstHapp).click();
+        sleep(1000);
         $(happeningPage.yesDeleteButton).click();
 
         $(happeningPage.successAlert).should(Condition.appear);

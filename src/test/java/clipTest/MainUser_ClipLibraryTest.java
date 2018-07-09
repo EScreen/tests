@@ -194,6 +194,8 @@ public class MainUser_ClipLibraryTest {
 
         $(container.media).click();
         $(container.clipLibrary).click();
+
+        $("#dataTables>table>tbody>tr:nth-child(3)>td:nth-child(3)>select").selectOption(1);
         $(clipLibraryPage.categoryDropDawn).selectOption(3);
 
         String selectedCategory = $(By.xpath("//div[@class=\"box-header relative\"]//option[@selected=\"selected\"]")).text();
