@@ -34,7 +34,7 @@ public class SubUser_MyFilesTest {
     }
 
     @Test
-    public void uploadImageToOwn() throws AWTException, IOException {
+    public void uploadImageToOwn() throws IOException {
         mainUserMyFilesTest.uploadImageToOwn();
     }
 

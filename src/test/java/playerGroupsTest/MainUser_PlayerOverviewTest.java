@@ -84,7 +84,8 @@ public class MainUser_PlayerOverviewTest {
 
         String css1 = $("#\\34 22 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
         $("#\\34 22 > div:nth-child(2) .colorpickerWrapper").click();
-        Selenide.actions().dragAndDropBy($(".colorpicker>.colorpicker_color>div>div"), 10, -50).build().perform();
+        Selenide.actions().dragAndDropBy($(".colorpicker>.colorpicker_color>div>div"), GenerateData.generateNumbers(1), -5).build().perform();
+        sleep(2000);
         String css2 = $("#\\34 22 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
         Assert.assertNotEquals(css1, css2);
 
@@ -149,6 +150,7 @@ public class MainUser_PlayerOverviewTest {
 
         $("a[href=\"#library_imageURL\"]").click();
         $("select[name=\"imageURL_section\"]").selectOptionContainingText("Other");
+        sleep(1000);
         $$("tbody img").get(3).click();
         $("button[ng-click='ok()']").click();
 

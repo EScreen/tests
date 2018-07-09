@@ -23,8 +23,9 @@ public class GenerateData {
         return data;
     }
 
-    public static String generateNumbers (int length){
-        return RandomStringUtils.randomNumeric(length);
+    public static int generateNumbers (int length){
+        int result =  Integer.parseInt(RandomStringUtils.randomNumeric(length));
+        return result;
     }
 
     public static String generateUrl(int length) {
@@ -36,5 +37,6 @@ public class GenerateData {
         url=temp.substring(0,3)+"."+temp.substring(4,temp.length()-4)+"."+temp.substring(temp.length()-3);
         return url;
     }
+
 
 }

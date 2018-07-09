@@ -206,9 +206,12 @@ public class MainUser_NewPlaylistTest {
         $(playlistPage.newsRoomCategory).click();
 
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(1).click();
+        sleep(3000);
 
         $(createNewClipPage.nextButton).click();
         $(By.xpath("//select[@ng-model=\"data.fieldsvalue[field.flashname]\"]")).selectOption(1);
+        $("div.wizard-card.steps.ng-scope > div > div:nth-child(3) > form > div > div > input").setValue("1");
+
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 

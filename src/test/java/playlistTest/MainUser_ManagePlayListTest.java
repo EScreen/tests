@@ -32,8 +32,7 @@ public class MainUser_ManagePlayListTest {
     }
 
     @Test
-    public void playListsSorting()
-    {
+    public void playListsSorting() {
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 

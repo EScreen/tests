@@ -421,8 +421,9 @@ public class ApprovalClipTest {
         $(container.clipLibrary).click();
         $(clipLibraryPage.needApprovalTab).click();
 
+        sleep(1000);
         $(clipLibraryPage.settingsClipButton).click();
-        $("tbody.ng-scope.ng-pristine.ng-valid>tr:nth-child(1)>td:nth-child(9)>div>ul>li.ng-scope>a:nth-child(1)").click();
+        $("li[ng-if='fragment.edit_available']>a").click();
 
         sleep(2000);
 

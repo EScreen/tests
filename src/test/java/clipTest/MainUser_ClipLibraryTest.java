@@ -113,7 +113,7 @@ public class MainUser_ClipLibraryTest {
         $(createNewClipPage.templateUseImgLibrTab).click();
         $(createNewClipPage.templateLibrImgSectionSelector).selectOptionContainingText("Other");
         sleep(1000);
-        int index = Integer.parseInt(GenerateData.generateNumbers(1));
+        int index = GenerateData.generateNumbers(1);
         $$("tbody img").get(index).click();
 
         $(createNewClipPage.templateAddImgFromLibrBtn).click();

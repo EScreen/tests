@@ -301,6 +301,7 @@ public class MainUser_PowerBlockTest {
 
         $(createNewClipPage.nextButton).click();
         $(By.xpath("//select[@ng-model=\"data.fieldsvalue[field.flashname]\"]")).selectOption(1);
+        $("div.wizard-card.steps.ng-scope > div > div:nth-child(3) > form > div > div > input").setValue("1");
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 
