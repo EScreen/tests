@@ -1,21 +1,17 @@
 package clipTest;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.LoginPage;
 
 import java.awt.*;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_NewClipTest {
-    MainUser_NewClipTest mainUserNewClipTest = new MainUser_NewClipTest();
+public class NewClipTest_SubUser {
+    NewClipTest_MainUser mainUserNewClipTest = new NewClipTest_MainUser();
 
     @Before
     public void beforeTest() {

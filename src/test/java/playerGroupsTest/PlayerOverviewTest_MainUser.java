@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MainUser_PlayerOverviewTest {
+public class PlayerOverviewTest_MainUser {
 
     @Before
     public void beforeTest(){

@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by Anna on 08/05/2018.
  */
-public class MainUser_ManagePlayListTest {
+public class ManagePlayListTest_MainUser {
 
     @Before
     public void beforeTest(){

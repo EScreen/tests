@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.close;
 /**
  * Created by Anna on 08/05/2018.
  */
-public class MainUser_ClipCategoriesTest {
+public class ClipCategoriesTest_MainUser {
 
     @Before
     public void beforeTest(){

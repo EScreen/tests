@@ -25,7 +25,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.chord;
 
-public class MainUser_HappeningTest {
+public class HappeningTest_MainUser {
 
     @Before
     public void beforeTest(){

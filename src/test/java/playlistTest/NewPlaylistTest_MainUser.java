@@ -29,7 +29,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by qwerty on 5/3/18.
  */
-public class MainUser_NewPlaylistTest {
+public class NewPlaylistTest_MainUser {
 
 
     @Before

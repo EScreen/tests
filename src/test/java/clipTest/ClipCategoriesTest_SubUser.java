@@ -1,20 +1,15 @@
 package clipTest;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.LoginPage;
-import playerGroupsTest.MainUser_PlayerGroupsTest;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_ClipCategoriesTest {
+public class ClipCategoriesTest_SubUser {
 
-    MainUser_ClipCategoriesTest mainUserClipCategoriesTest = new MainUser_ClipCategoriesTest();
+    ClipCategoriesTest_MainUser mainUserClipCategoriesTest = new ClipCategoriesTest_MainUser();
 
     @Before
     public void beforeTest(){

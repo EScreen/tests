@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MainUser_MyFilesTest {
+public class MyFilesTest_MainUser {
 
     @Before
     public void beforeTest(){

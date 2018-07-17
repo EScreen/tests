@@ -32,7 +32,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by qwerty on 5/3/18.
  */
-public class MainUser_PowerBlockTest {
+public class PowerBlockTest_MainUser {
     @Before
     public void beforeTest(){
         Precondition.beforeMainUserTests();

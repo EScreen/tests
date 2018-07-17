@@ -1,29 +1,25 @@
 package clipTest;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.GenerateData;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
 import pages.LoginPage;
 import pages.dashboardPages.MainDashboardPage;
 import pages.mediaPages.ClipLibraryPage;
 import pages.mediaPages.CreateNewClipPage;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SubUser_ClipLibraryTest {
+public class ClipLibraryTest_SubUser {
 
-    MainUser_ClipLibraryTest mainUserClipLibraryTest = new MainUser_ClipLibraryTest();
+    ClipLibraryTest_MainUser mainUserClipLibraryTest = new ClipLibraryTest_MainUser();
 
     @Before
     public void beforeTest() {

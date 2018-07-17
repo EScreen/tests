@@ -1,16 +1,14 @@
 package playerGroupsTest;
 
 import helpers.Precondition;
-import myFilesTest.MainUser_FileCategoryTest;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_PlayerGroupTest {
-    MainUser_PlayerGroupsTest mainUserPlayerGroupsTest = new MainUser_PlayerGroupsTest();
+public class PlayerGroupTest_SubUser {
+    PlayerGroupsTest_MainUser mainUserPlayerGroupsTest = new PlayerGroupsTest_MainUser();
 
     @Before
     public void beforeTest(){

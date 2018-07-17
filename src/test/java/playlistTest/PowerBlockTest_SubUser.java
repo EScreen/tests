@@ -1,25 +1,15 @@
 package playlistTest;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
-import happeningTest.MainUser_HappeningTest;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.Container;
-import pages.LoginPage;
-import pages.playlistsPages.PlaylistPage;
-import pages.playlistsPages.PowerBlockPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class SubUser_PowerBlockTest {
-    MainUser_PowerBlockTest mainUserPowerBlockTest = new MainUser_PowerBlockTest();
+public class PowerBlockTest_SubUser {
+    PowerBlockTest_MainUser mainUserPowerBlockTest = new PowerBlockTest_MainUser();
 
     @Before
     public void beforeTest(){

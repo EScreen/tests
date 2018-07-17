@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MainUser_FileCategoryTest {
+public class FileCategoryTest_MainUser {
     @Before
     public void beforeTest(){
         Precondition.beforeMainUserTests();

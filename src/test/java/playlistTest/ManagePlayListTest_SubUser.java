@@ -1,19 +1,14 @@
 package playlistTest;
 
-import clipTest.MainUser_ClipLibraryTest;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_ManagePlayListTest {
-    MainUser_ManagePlayListTest mainUserManagePlayListTest = new MainUser_ManagePlayListTest();
+public class ManagePlayListTest_SubUser {
+    ManagePlayListTest_MainUser mainUserManagePlayListTest = new ManagePlayListTest_MainUser();
 
     @Before
     public void beforeTest(){

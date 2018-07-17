@@ -26,7 +26,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Anna on 18/04/2018.
  */
-public class MainUser_NewClipTest {
+public class NewClipTest_MainUser {
 
     @Before
     public void beforeTest(){

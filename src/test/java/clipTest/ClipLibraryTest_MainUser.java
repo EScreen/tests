@@ -22,7 +22,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Anna on 16/04/2018.
  */
-public class MainUser_ClipLibraryTest {
+public class ClipLibraryTest_MainUser {
 
     @Before
     public void beforeTest(){
@@ -144,7 +144,7 @@ public class MainUser_ClipLibraryTest {
         $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong")).shouldHave(Condition.text("SUCCESS! "));
     }
 
-    //MainUser_NewClipTest of appearance "Share clip" table after unchecking "Available for all users" checkbox.
+    //NewClipTest_MainUser of appearance "Share clip" table after unchecking "Available for all users" checkbox.
     @Test
     public void mU_appearanceOfShareClipTable() {
         Container container = new Container();
@@ -196,9 +196,10 @@ public class MainUser_ClipLibraryTest {
         $(container.clipLibrary).click();
 
         $("#dataTables>table>tbody>tr:nth-child(3)>td:nth-child(3)>select").selectOption(1);
-        $(clipLibraryPage.categoryDropDawn).selectOption(3);
+        $(clipLibraryPage.categoryDropDawn).selectOption(2);
 
         String selectedCategory = $(By.xpath("//div[@class=\"box-header relative\"]//option[@selected=\"selected\"]")).text();
+        System.out.println(selectedCategory);
 
         $(By.xpath("//div[@class=\"box-content\"]//option[@selected=\"selected\"]")).shouldHave(Condition.exactText(selectedCategory));
 

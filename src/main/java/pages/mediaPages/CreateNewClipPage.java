@@ -39,7 +39,6 @@ public class CreateNewClipPage {
     public SelenideElement category = $(By.xpath("//div[@class=\"scroller-content\"]/span[2]"));
     public SelenideElement nameOfActualCategory = $(By.xpath("//div[@class=\"row-fluid box-tour\"]/div/h3"));
     public SelenideElement portraitTemplate = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div[1]/div/div[1]/div[1]/ul/li/div/img"));
-    public SelenideElement nameOfClip = $(By.xpath("//*[@id=\"template-list\"]/div/div[1]/div/div/div/div[1]/div[1]/ul/li/div/a"));
     public SelenideElement templateClipCategory = $(By.xpath("//select[@name=\"clipcategory\"]"));
     public SelenideElement tepmlateNewPlaylistField = $(By.xpath("//*[@name=\"new_playlist\"]"));
     public SelenideElement storeIntheMediaLibraryCheckbox = $("#content_backgroundImage_thumb input[type=\"checkbox\"]");

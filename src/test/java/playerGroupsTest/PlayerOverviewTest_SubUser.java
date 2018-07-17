@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class SubUser_PlayerOverviewTest {
+public class PlayerOverviewTest_SubUser {
     @Before
     public void beforeTest(){
         Precondition.beforeSubUser1Tests();
@@ -20,7 +20,7 @@ public class SubUser_PlayerOverviewTest {
         close();
     }
 
-    MainUser_PlayerOverviewTest mainUserPlayerOverviewTest = new MainUser_PlayerOverviewTest();
+    PlayerOverviewTest_MainUser mainUserPlayerOverviewTest = new PlayerOverviewTest_MainUser();
 
 
     @Test

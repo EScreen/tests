@@ -17,7 +17,7 @@ import pages.playersPages.PlayerGroupsPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MainUser_PlayerGroupsTest {
+public class PlayerGroupsTest_MainUser {
     @Before
     public void beforeTest(){
         Precondition.beforeMainUserTests();
@@ -185,6 +185,7 @@ public class MainUser_PlayerGroupsTest {
 
         String deletedGroup = playerGroupsPage.getGroupName(playerGroupsPage.playerGroupName);
         $(playerGroupsPage.deletePlayerGroupButton).click();
+        sleep(1000);
         $(playerGroupsPage.yesDeleteButton).click();
 
         $(playerGroupsPage.succesDeleteAlert).should(Condition.appear);

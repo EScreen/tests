@@ -1,8 +1,6 @@
 package myFilesTest;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.GenerateData;
 import helpers.Precondition;
 import helpers.UploadingFiles;
@@ -10,19 +8,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
-import pages.LoginPage;
 import pages.mediaPages.MyFilesPage;
-import playlistTest.MainUser_PowerBlockTest;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SubUser_MyFilesTest {
-    MainUser_MyFilesTest mainUserMyFilesTest = new MainUser_MyFilesTest();
+public class MyFilesTest_SubUser {
+    MyFilesTest_MainUser mainUserMyFilesTest = new MyFilesTest_MainUser();
 
     @Before
     public void beforeTest(){
