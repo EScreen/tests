@@ -41,7 +41,7 @@ public class Container {
     public SelenideElement playlists = $(By.xpath("//*[@id=\"schedule-sidebar-menuItem\"]/a"));
         public SelenideElement createNewPlayList = $(By.xpath("//*[@id=\"block-new_block\"]/a"));
         public SelenideElement createNewPowerBlock = $(By.xpath("//*[@id=\"block-nw_pblock\"]/a"));
-        public SelenideElement managePlayLIsts = $(By.xpath("//*[@id=\"block-manage_blocks\"]/a"));
+        public SelenideElement managePlayLIsts = $("ul[id='menu3']>li:nth-child(3)>a");
         public SelenideElement managePowerBlocks = $(By.xpath("//*[@id=\"manage_pb\"]/a"));
 
     public SelenideElement scheduleButton = $(By.xpath("//*[@id=\"block-result_per_device\"]/a"));

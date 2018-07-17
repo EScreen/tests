@@ -24,5 +24,6 @@ public class ManagePlaylistsPage {
     public SelenideElement formulaTab = $("#formula-tab-library");
 
 
-
+    //Single User
+    public SelenideElement nameOfPlayListSU = $("tbody>tr:first-child>td:nth-child(3) span");
 }

@@ -50,4 +50,16 @@ public class Precondition {
         WebDriverRunner.getWebDriver().switchTo().window(handle);
     }
 
+    public static void beforeSingleUserTests(){
+        WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginLive("AnyaSingle", "AnyaSingle1");
+        $(By.id("profile-details")).waitUntil(appear, 20000);
+
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
+    }
+
 }
