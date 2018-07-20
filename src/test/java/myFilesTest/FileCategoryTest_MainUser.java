@@ -1,6 +1,6 @@
 package myFilesTest;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Condition;
 import helpers.GenerateData;
 import helpers.Precondition;
 import org.junit.After;
@@ -8,16 +8,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
-import pages.LoginPage;
 import pages.mediaPages.MyFilesPage;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class FileCategoryTest_MainUser {
+
     @Before
     public void beforeTest(){
         Precondition.beforeMainUserTests();

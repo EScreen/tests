@@ -10,17 +10,17 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class ManagementCategoriesPage {
 
-    public SelenideElement createButton = $(By.xpath("//*[@class=\"box-toolbar\"]//a[@ng-click=\"showCreate = !showCreate\"]"));
-    public SelenideElement searchField = $(By.xpath("//input[@ng-model=\"search_str\"]"));
-    public SelenideElement nameCategoryField = $(By.xpath("//input[@ng-model=\"data.newcat_name\"]"));
-    public SelenideElement saveNewCategoryButton = $(By.xpath("//a[@ng-click=\"createCategory()\"]"));
-    public SelenideElement successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong"));
-    public SelenideElement nameOfCategory = $(By.xpath("//span[@e-form=\"catNameBtn\"]"));
-    public SelenideElement editCategoryNameField = $(By.xpath("//input[@ng-model=\"$data\"]"));
-    public SelenideElement CheckButton = $(By.xpath("//button[@type=\"submit\"]"));
-    public SelenideElement deleteCategory = $(By.xpath("//div[@tooltip-html-unsafe=\"Delete\"]"));
-    public SelenideElement editCategoryButton = $(By.xpath("//div[@tooltip-html-unsafe=\"Edit\"]"));
+    public SelenideElement
+            createButton = $(By.xpath("//*[@class=\"box-toolbar\"]//a[@ng-click=\"showCreate = !showCreate\"]")),
+            searchField = $(By.xpath("//input[@ng-model=\"search_str\"]")),
+            nameCategoryField = $(By.xpath("//input[@ng-model=\"data.newcat_name\"]")),
+            saveNewCategoryButton = $(By.xpath("//a[@ng-click=\"createCategory()\"]")),
+            successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong")),
+            nameOfCategory = $(By.xpath("//span[@e-form=\"catNameBtn\"]")),
+            editCategoryNameField = $(By.xpath("//input[@ng-model=\"$data\"]")),
+            deleteCategory = $(By.xpath("//div[@tooltip-html-unsafe=\"Delete\"]")),
+            editCategoryButton = $(By.xpath("//div[@tooltip-html-unsafe=\"Edit\"]")),
 
-    public SelenideElement yesDeleteCategoryButton = $(By.xpath("//a[@ng-click=\"deleteCategory()\"]"));
-    //public SelenideElement  = $(By.xpath(""));
+            yesDeleteCategoryButton = $(By.xpath("//a[@ng-click=\"deleteCategory()\"]"));
+
 }

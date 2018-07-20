@@ -12,10 +12,20 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class MainDashboardPage {
 
-    public SelenideElement createClipButton = $(By.xpath("//*[@id=\"dushbutton--1\"]/a/div/i"));
+    public SelenideElement createClipButton = $("#dushbutton--1>a>div>i"),
+                            createPlaylistButton = $("#dushbutton-0>a>div>span"),
+                            supportTicketsButton = $("#dushbutton-1>a>div>span"),
+                            managePlaylists = $("#dushbutton-2>a>div>span"),
+                            managePowerBlocksButton = $("#dushbutton-4>a>div>span"),
+                            playersButton = $("#dushbutton-5>a>div>span");
+
+
+
+
+    /*public SelenideElement createClipButton = $(By.xpath("//*[@id=\"dushbutton--1\"]/a/div/i"));
     public SelenideElement createPlaylistButton = $(By.xpath("//*[@id=\"dushbutton-0\"]/a/div/span"));
     public SelenideElement supportTicketsButton = $(By.xpath("//*[@id=\"dushbutton-1\"]/a/div/span"));
     public SelenideElement managePlaylists = $(By.xpath("//*[@id=\"dushbutton-2\"]/a/div/span"));
     public SelenideElement managePowerBlocksButton = $(By.xpath("//*[@id=\"dushbutton-4\"]/a/div/span"));
-    public SelenideElement playersButton = $(By.xpath("//*[@id=\"dushbutton-5\"]/a/div/span"));
+    public SelenideElement playersButton = $(By.xpath("//*[@id=\"dushbutton-5\"]/a/div/span"));*/
 }

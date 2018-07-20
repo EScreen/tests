@@ -1,46 +1,40 @@
 package playlistTest;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.Precondition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.Container;
-import pages.LoginPage;
 import pages.playlistsPages.ManagePlaylistsPage;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
-/**
- * Created by Anna on 08/05/2018.
- */
-public class ManagePlayListTest_MainUser {
+public class ManagePlayListTest_SingleUser {
+    ManagePlayListTest_MainUser managePlayListTest_mainUser = new ManagePlayListTest_MainUser();
 
     @Before
     public void beforeTest(){
-        Precondition.beforeMainUserTests();
+        Precondition.beforeSingleUserTests();
     }
+
     @After
     public void afterTest(){
         close();
     }
 
     @Test
-    public void playListsSorting() {
+    public void playListsSorting(){
         Container container = new Container();
         ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
-        $(managePlaylistsPage.statusPlaylistSelector).selectOptionByValue("2");
-        $(By.xpath("//span[@class=\"badge badge-green ng-scope\"]"))
-                .shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
+        sleep(1000);
+        $(By.xpath("//select[@ng-change=\"changeActiveFilter()\"]/option[2]")).click();
+        $$("table>tbody>tr>td:nth-child(6)>span").shouldHave(CollectionCondition.texts("On air"));
     }
 
     @Test
@@ -51,9 +45,9 @@ public class ManagePlayListTest_MainUser {
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
 
-        String playlistName = $(managePlaylistsPage.lastPlaylistName).text();
+        String playlistName = $("tr.ng-scope:last-child > td:nth-child(3) > a> span").text();
         $(managePlaylistsPage.searchField).setValue(playlistName);
         sleep(2000);
-        $(managePlaylistsPage.firstPlaylistName).shouldHave(Condition.text(playlistName));
+        $("tr.ng-scope:first-child > td:nth-child(3) > a> span").shouldHave(Condition.text(playlistName));
     }
 }

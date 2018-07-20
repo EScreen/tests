@@ -222,13 +222,6 @@ public class HappeningTest_MainUser {
                 .because("Happening description should be visible"));
     }*/
 
-
-
-
-
-
-
-
 }
 
 
