@@ -17,25 +17,26 @@ import static com.codeborne.selenide.Selenide.sleep;
  */
 public class PlaylistPage {
 
-    public SelenideElement playlistNameField = $(By.xpath("//*[@ng-model=\"data.name\"]"));
-    public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
-    public SelenideElement successAlert = $(By.xpath("//div[@flash-alert=\"success\"]"));
-    public SelenideElement savePlButton = $(By.xpath("//button[@ng-click=\"savePlaylist()\"]"));
-    public SelenideElement saveEditingPlButton = $(By.xpath("//button[@ng-click=\"editPlaylist()\"]"));
-    public SelenideElement orientationSwitch = $(By.xpath("//li[@tooltip-html-unsafe=\"Landscape / Portrait\"]//div[@class=\"ibutton-handle\"]"));
-    public SelenideElement clipSettingsButton = $(".box-content .btn-group");
-        public SelenideElement setScheduleButton = $("a[ng-click='toggleScheduleModal(fragment)']");
-        public SelenideElement setVolumeButton = $("a[ng-click='soundLevelModal(fragment)']");
-        public SelenideElement saveVolumeButton = $("button[ng-click='ok()']");
-        public SelenideElement deleteClipButton = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//*[@class=\"dropdown-menu\"]//a[@ng-click=\"removeFromDrop(fragment)\"]"));
+    public SelenideElement
+            playlistNameField = $(By.xpath("//*[@ng-model=\"data.name\"]")),
+    searchField = $(By.xpath("//input[@placeholder=\"Search\"]")),
+    successAlert = $(By.xpath("//div[@flash-alert=\"success\"]")),
+    savePlButton = $(By.xpath("//button[@ng-click=\"savePlaylist()\"]")),
+    saveEditingPlButton = $(By.xpath("//button[@ng-click=\"editPlaylist()\"]")),
+    orientationSwitch = $(By.xpath("//li[@tooltip-html-unsafe=\"Landscape / Portrait\"]//div[@class=\"ibutton-handle\"]")),
+    clipSettingsButton = $(".box-content .btn-group"),
+        setScheduleButton = $("a[ng-click='toggleScheduleModal(fragment)']"),
+        setVolumeButton = $("a[ng-click='soundLevelModal(fragment)']"),
+        saveVolumeButton = $("button[ng-click='ok()']"),
+        deleteClipButton = $(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//*[@class=\"dropdown-menu\"]//a[@ng-click=\"removeFromDrop(fragment)\"]")),
 
-    public SelenideElement clipLibrNewsRoom = $(By.id("newsroom-tab-library"));
-        public SelenideElement newsRoomCategory = $(By.xpath("//a[@ng-click=\"getNewsroomTpls(item.ID)\"]"));
-    public SelenideElement clipLibrFormula = $(By.id("formula-tab-library"));
-    public SelenideElement clipLibrOther = $(By.id("other-tab-library"));
-    public SelenideElement clipLibrMyFiles = $(By.id("media-tab-library"));
+    clipLibrNewsRoom = $(By.id("newsroom-tab-library")),
+        newsRoomCategory = $(By.xpath("//a[@ng-click=\"getNewsroomTpls(item.ID)\"]")),
+    clipLibrFormula = $(By.id("formula-tab-library")),
+    clipLibrOther = $(By.id("other-tab-library")),
+    clipLibrMyFiles = $(By.id("media-tab-library")),
     
-    public SelenideElement colorPoint = $("body>div[style~='left:']>div:nth-child(1)>div>div");
+    colorPoint = $("body>div[style~='left:']>div:nth-child(1)>div>div");
     
 
 

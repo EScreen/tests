@@ -14,16 +14,17 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class ManagePlaylistsPage {
 
-    public SelenideElement searchField = $(By.xpath("//input[@placeholder=\"Search\"]"));
-    public SelenideElement nameOfPlayList = $("#manage-blocks-table>tbody>tr>td:nth-child(4)>a>strong");
-    public SelenideElement statusPlaylistSelector = $(By.xpath("//select[@ng-change=\"changeActiveFilter()\"]"));
+    public SelenideElement
+            searchField = $(By.xpath("//input[@placeholder=\"Search\"]")),
+    nameOfPlayList = $("#manage-blocks-table>tbody>tr>td:nth-child(4)>a>strong"),
+    statusPlaylistSelector = $(By.xpath("//select[@ng-change=\"changeActiveFilter()\"]")),
 
-    public SelenideElement lastPlaylistName = $(By.cssSelector("tr.ng-scope:last-child > td:nth-child(4) > a > strong"));
-    public SelenideElement firstPlaylistName = $(By.cssSelector("tr.ng-scope:first-child > td:nth-child(4) > a > strong"));
+    lastPlaylistName = $(By.cssSelector("tr.ng-scope:last-child > td:nth-child(4) > a > strong")),
+    firstPlaylistName = $(By.cssSelector("tr.ng-scope:first-child > td:nth-child(4) > a > strong")),
 
-    public SelenideElement formulaTab = $("#formula-tab-library");
+    formulaTab = $("#formula-tab-library"),
 
 
     //Single User
-    public SelenideElement nameOfPlayListSU = $("tbody>tr:first-child>td:nth-child(3) span");
+    nameOfPlayListSU = $("tbody>tr:first-child>td:nth-child(3) span");
 }

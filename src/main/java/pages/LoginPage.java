@@ -17,9 +17,10 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class LoginPage {
 
-    public SelenideElement loginField = $(By.name("login"));
-    public SelenideElement passwordField = $(By.name("password"));
-    public SelenideElement loginButton = $(By.xpath("/html/body/div[2]/div/div/div/div[2]/form/div[4]/a"));
+    public SelenideElement
+            loginField = $(By.name("login")),
+    passwordField = $(By.name("password")),
+    loginButton = $(By.xpath("/html/body/div[2]/div/div/div/div[2]/form/div[4]/a"));
 
 
     public void login(String login, String password){
