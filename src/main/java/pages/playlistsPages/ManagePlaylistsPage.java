@@ -21,6 +21,7 @@ public class ManagePlaylistsPage {
 
     lastPlaylistName = $(By.cssSelector("tr.ng-scope:last-child > td:nth-child(4) > a > strong")),
     firstPlaylistName = $(By.cssSelector("tr.ng-scope:first-child > td:nth-child(4) > a > strong")),
+    dateModified = $("table>thead>tr>th:nth-child(5)>div"),
 
     formulaTab = $("#formula-tab-library"),
 

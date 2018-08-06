@@ -134,6 +134,9 @@ public class ClipLibraryTest_MainUser {
 
         $(container.media).click();
         $(container.clipLibrary).click();
+
+        String clipName = $(clipLibraryPage.clipName).text();
+
         $(clipLibraryPage.settingsClipButton).click();
         $(clipLibraryPage.deleteClipButton).click();
         $(clipLibraryPage.yesDeleteButton).click();
@@ -141,7 +144,7 @@ public class ClipLibraryTest_MainUser {
         clipLibraryPage.deleteClipIfItUsedInPlaylist();
         sleep(2000);
 
-        $(By.xpath("//*[@id=\"appcontent\"]/div[4]/flashnotification/div[2]/span/strong")).shouldHave(Condition.text("SUCCESS! "));
+        $(clipLibraryPage.clipName).shouldNotHave(Condition.exactText(clipName));
     }
 
     //NewClipTest_MainUser of appearance "Share clip" table after unchecking "Available for all users" checkbox.

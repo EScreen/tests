@@ -15,6 +15,7 @@ import pages.playlistsPages.ManagePlaylistsPage;
 import pages.playlistsPages.PlaylistPage;
 import pages.profilePages.UsersPage;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
@@ -51,12 +52,12 @@ public class ApprovalClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.templateTestDurationField).setValue("1");
         $(createNewClipPage.nextButton).click();
+        sleep(4000);
         $(createNewClipPage.saveAndAskApprovalBtn).click();
-        $(clipLibraryPage.awaitingApprovalTab).click();
-        sleep(2000);
 
-        $$(By.xpath("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(3) > div > span"))
-                .findBy(Condition.text(clipName));
+        $(clipLibraryPage.awaitingApprovalTab).waitUntil(visible,10000).click();
+
+        $$(By.xpath("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(3) > div > span")).findBy(text(clipName));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.nextButton).click();
         $(createNewClipPage.saveClipButton).click();
 
-        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr[1]/td[2]/span")).shouldBe(Condition.text(clipName));
+        $(By.xpath("//*[@id=\"dataTables\"]/table/tbody[1]/tr[1]/td[2]/span")).shouldBe(text(clipName));
     }
 
     @Test
@@ -106,8 +107,8 @@ public class ApprovalClipTest {
         $(container.managePlayLIsts).click();
         $(managePlaylistsPage.nameOfPlayList).click();
         $$("#dataTables tbody.ng-scope.ng-pristine.ng-valid>tr>td:nth-child(3)>span")
-                .findBy(Condition.text(clipName))
-                .shouldNotBe(Condition.visible);
+                .findBy(text(clipName))
+                .shouldNotBe(visible);
     }
 
     @Test
@@ -136,7 +137,7 @@ public class ApprovalClipTest {
         $(managePlaylistsPage.nameOfPlayList).click();
 
         $(".fa.fa-plus-circle.icon-2x").click();
-        $(".modal-body>label").shouldHave(Condition.exactText("You cannot add this clip to your playlist, because it hasn't been approved yet"));
+        $(".modal-body>label").shouldHave(exactText("You cannot add this clip to your playlist, because it hasn't been approved yet"));
     }
 
     @Test
@@ -175,8 +176,8 @@ public class ApprovalClipTest {
         $(managePlaylistsPage.nameOfPlayList).click();
         sleep(3000);
         $$("#dataTables tbody.ng-scope.ng-pristine.ng-valid>tr>td:nth-child(3)>span")
-                .findBy(Condition.text(clipName))
-                .shouldNot(Condition.visible);
+                .findBy(text(clipName))
+                .shouldNot(visible);
     }
 
     @Test
@@ -215,7 +216,7 @@ public class ApprovalClipTest {
         $(clipLibraryPage.awaitingApprovalTab).click();
         $(clipLibraryPage.settingsClipButton).click();
         $("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(10) > div > ul > li:nth-child(2) > a").click();
-        $("tbody.ng-scope.ng-pristine.ng-valid > tr:nth-child(1) > td:nth-child(9)>span").shouldHave(Condition.exactText("pending"));
+        $("tbody.ng-scope.ng-pristine.ng-valid > tr:nth-child(1) > td:nth-child(9)>span").shouldHave(exactText("pending"));
     }
 
     @Test
@@ -258,7 +259,7 @@ public class ApprovalClipTest {
         $(clipLibraryPage.editClipButton).click();
 
         $("div.modal-body > label")
-                .shouldHave(Condition.exactText(("A change must be approved again and the clip will be removed from your playlist. Continue?")));
+                .shouldHave(exactText(("A change must be approved again and the clip will be removed from your playlist. Continue?")));
 
 
 
@@ -306,8 +307,8 @@ public class ApprovalClipTest {
         $(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).click();
 
         $$("#playlist-block .box-content>table>tbody>tr>td:nth-child(3)>span")
-                .findBy(Condition.text(notApprovedClipName))
-                .shouldBe(Condition.visible);
+                .findBy(text(notApprovedClipName))
+                .shouldBe(visible);
     }
 
 // MainUser approves clip after editing it
@@ -334,8 +335,8 @@ public class ApprovalClipTest {
         $(createNewClipPage.shareClipSaveButton).click();
 
         $$("tbody.ng-scope.ng-pristine.ng-valid>tr>td:nth-child(3)>div>span")
-                .findBy(Condition.text(newNameClip)).
-                shouldNotBe(Condition.visible);
+                .findBy(text(newNameClip)).
+                shouldNotBe(visible);
     }
 
 //If subuser has clip approve off "Save and ask approval" button shouldn't display.
@@ -358,7 +359,7 @@ public class ApprovalClipTest {
         $(createNewClipPage.templateTestDurationField).setValue("1");
         $(createNewClipPage.nextButton).click();
 
-        $("div.wizard-modal-footer > div > span:nth-child(4) > button:nth-child(5)").shouldNotBe(Condition.visible);
+        $("div.wizard-modal-footer > div > span:nth-child(4) > button:nth-child(5)").shouldNotBe(visible);
 
     }
 
@@ -371,7 +372,7 @@ public class ApprovalClipTest {
         $(container.media).click();
         $(container.clipLibrary).click();
 
-        $(By.xpath("//*[@id=\"approve-tab-library\"]/a")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[@id=\"approve-tab-library\"]/a")).shouldNotBe(visible);
     }
 
 //If subuser has clip approve off, During creating new clip "Add to new playlist" and "Add to existing playlist" fields display
@@ -387,8 +388,8 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        $(By.xpath("//*[@name=\"new_playlist\"]")).shouldBe(Condition.visible);
-        $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldBe(Condition.visible);
+        $(By.xpath("//*[@name=\"new_playlist\"]")).shouldBe(visible);
+        $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldBe(visible);
 
     }
 
@@ -405,8 +406,8 @@ public class ApprovalClipTest {
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
         $(createNewClipPage.newClipButton).click();
 
-        $(By.xpath("//*[@name=\"new_playlist\"]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[@name=\"new_playlist\"]")).shouldNotBe(visible);
+        $(By.xpath("//li[@class=\"select2-search-field\"]/input")).shouldNotBe(visible);
 
     }
 
@@ -447,8 +448,8 @@ public class ApprovalClipTest {
         $(clipLibraryPage.searchField).setValue(newNameClip);
 
         $$("tbody.ng-scope.ng-pristine.ng-valid > tr > td:nth-child(2) > span")
-                .findBy(Condition.text(newNameClip))
-                .shouldBe(Condition.visible);
+                .findBy(text(newNameClip))
+                .shouldBe(visible);
     }
 
 //- If Mainuser turns clip approval off for subuser, awaiting for approval clips become avaliable for subuser.
@@ -498,8 +499,8 @@ public class ApprovalClipTest {
         $(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).click();
 
         $$("#playlist-block .box-content>table>tbody>tr>td:nth-child(3)>span")
-                .findBy(Condition.text(clipName))
-                .shouldBe(Condition.visible);
+                .findBy(text(clipName))
+                .shouldBe(visible);
 
         container.goToMainUser();
 
@@ -514,7 +515,7 @@ public class ApprovalClipTest {
         sleep(5000);
 
         $("button[type='submit']").click();
-        $("#appcontent > div.main-content > flashnotification > div:nth-child(2)").shouldBe(Condition.appear);
+        $("#appcontent > div.main-content > flashnotification > div:nth-child(2)").shouldBe(appear);
 
 
     }

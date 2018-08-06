@@ -19,6 +19,7 @@ public class CreateNewClipPage {
 
     public SelenideElement
             searchField = $(By.xpath("//*[@id=\"template-name-search\"]/input")),
+            createCustomTemplate = $("a[href='/fragments/custom']"),
             categoriesSelect = $(By.xpath("//*[@id=\"template-categories-select\"]/form/div/div/span")),
             orientationSelect = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/span")),
             portraitOrientation = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/div/div[2]/span[1]")),
@@ -36,6 +37,7 @@ public class CreateNewClipPage {
             templateAddImgFromLibrBtn = $(By.xpath("//button[@ng-click=\"ok()\"]")),
 
             saveClipButton = $(By.xpath("//*[@id=\"simplemodal-data\"]/div[4]/div/span[2]/button[3]")),
+            addToPlList = $(By.xpath("//*[@id=\"simplemodal-data\"]/div[4]/div/span[2]/button[2]")),
             saveAndAskApprovalBtn = $("div.wizard-modal-footer > div > span:nth-child(4) > button:nth-child(5)"),
             category = $(By.xpath("//div[@class=\"scroller-content\"]/span[2]")),
             nameOfActualCategory = $(By.xpath("//div[@class=\"row-fluid box-tour\"]/div/h3")),

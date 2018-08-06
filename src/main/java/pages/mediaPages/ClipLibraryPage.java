@@ -22,6 +22,7 @@ public class ClipLibraryPage {
             searchField = $(By.xpath("//input[@placeholder=\"Search\"]")),
             categoryDropDawn = $(By.xpath("//select[@ng-change=\"changeCategory()\"]")),
             managementCategoriesbutton = $(By.xpath("//li[@ng-if=\"manage_cats\"]/a")),
+            clipName = $("table>tbody>tr:first-child>td:nth-child(2)>span"),
             settingsClipButton = $(By.xpath("//button[@class=\"btn btn-mini btn-default dropdown-toggle\"]")),
             editClipButton = $(".icon-edit"),
             denyClipButton = $(By.xpath("//a[@ng-click=\"denyFragment(fragment.ID)\"]")),
@@ -29,7 +30,6 @@ public class ClipLibraryPage {
             deleteClipButton = $("a[ng-click='deleteFragment(fragment.ID)']"),
             yesDeleteButton = $(By.xpath("//button[@ng-click=\"ok()\"][2]")),
             successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/strong")),
-            successDeleteAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/text()")),
             deleteClipIfItInPlaylist = $(By.xpath("//button[@class=\"btn btn-green ng-binding\"]")),
 
             approveFirstClipCheck = $(".checkbox-table"),

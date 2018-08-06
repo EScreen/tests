@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Anna on 05/04/2018.
@@ -24,5 +25,11 @@ public class UI {
 
     public static void clickOnHideElement(SelenideElement element){
         Selenide.executeJavaScript("arguments[0].click();",element);
+    }
+
+    public static void clickTwice(SelenideElement element){
+        $(element).click();
+        sleep(2000);
+        $(element).click();
     }
 }

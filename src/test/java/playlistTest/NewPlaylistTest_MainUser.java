@@ -38,6 +38,7 @@ public class NewPlaylistTest_MainUser {
     }
     @After
     public void afterTest(){
+
         close();
     }
 
@@ -197,6 +198,7 @@ public class NewPlaylistTest_MainUser {
         MainDashboardPage mainDashboardPage = new MainDashboardPage();
         PlaylistPage playlistPage = new PlaylistPage();
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
+        ManagePlaylistsPage managePlaylistsPage = new ManagePlaylistsPage();
 
         $(mainDashboardPage.createPlaylistButton).click();
 
@@ -208,15 +210,19 @@ public class NewPlaylistTest_MainUser {
         $$(By.xpath("//i[@class=\"fa fa-plus-circle icon-2x\"]")).get(1).click();
         sleep(3000);
 
+        $(By.id("fragmentname")).setValue(GenerateData.generateString(3));
         $(createNewClipPage.nextButton).click();
         $(By.xpath("//select[@ng-model=\"data.fieldsvalue[field.flashname]\"]")).selectOption(1);
         $("div.wizard-card.steps.ng-scope > div > div:nth-child(3) > form > div > div > input").setValue("1");
 
         $(createNewClipPage.nextButton).click();
-        $(createNewClipPage.saveClipButton).click();
+        $(createNewClipPage.addToPlList).click();
 
         $(playlistPage.savePlButton).click();
-        $(playlistPage.successAlert).shouldBe(Condition.appear);
+        $(managePlaylistsPage.nameOfPlayList).click();
+
+        $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
+                .shouldHave(CollectionCondition.size(1));
     }
 
     @Test
