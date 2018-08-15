@@ -485,7 +485,7 @@ public class ApprovalClipTest {
         sleep(3000);
 
         SelenideElement element = $("div.padded>div:nth-child(22)>div>div>input");
-        executeJavaScript("arguments[0].click();", element);
+        Selenide.executeJavaScript("arguments[0].click();", element);
 
         sleep(3000);
 
@@ -510,7 +510,7 @@ public class ApprovalClipTest {
 
 
         SelenideElement element2 = $("div.padded>div:nth-child(22)>div>div>input");
-        executeJavaScript("arguments[0].click();", element2);
+        Selenide.executeJavaScript("arguments[0].click();", element2);
 
         sleep(5000);
 

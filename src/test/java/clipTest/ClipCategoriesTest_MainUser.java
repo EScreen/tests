@@ -41,10 +41,13 @@ public class ClipCategoriesTest_MainUser {
         $(clipLibraryPage.managementCategoriesbutton).click();
         $(managementCategoriesPage.createButton).click();
 
-        $(managementCategoriesPage.nameCategoryField).setValue(GenerateData.generateString(4));
+        String categoryName = GenerateData.generateString(4);
+        $(managementCategoriesPage.nameCategoryField).setValue(categoryName);
         $(managementCategoriesPage.saveNewCategoryButton).click();
 
         $(managementCategoriesPage.successAlert).shouldBe(Condition.appears);
+        $$(managementCategoriesPage.categoriesNames).findBy(Condition.exactText(categoryName));
+
     }
 
     @Test

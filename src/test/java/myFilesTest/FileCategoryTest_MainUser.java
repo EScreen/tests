@@ -1,6 +1,8 @@
 package myFilesTest;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import helpers.GenerateData;
 import helpers.Precondition;
 import org.junit.After;
@@ -10,6 +12,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import pages.Container;
 import pages.mediaPages.MyFilesPage;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -39,9 +43,8 @@ public class FileCategoryTest_MainUser {
         $(myFilesPage.saveCategoryButton).click();
         myFilesPage.setPagination100();
 
-        String allCategories = $$(myFilesPage.categoryNames).toString();
+        $$("tbody>tr>td>span").findBy(Condition.exactText(categoryName)).shouldBe(Condition.visible);
 
-        Assert.assertTrue(allCategories.contains(categoryName));
     }
 
     @Test

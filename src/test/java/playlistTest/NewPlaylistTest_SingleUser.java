@@ -49,13 +49,11 @@ public class NewPlaylistTest_SingleUser {
         $(playlistPage.savePlButton).click();
         $(playlistPage.successAlert).shouldBe(Condition.appear);
 
-        $(managePlaylistsPage.dateModified).click();
-        sleep(1000);
-        $(managePlaylistsPage.dateModified).click();
-
         sleep(3000);
+        $(managePlaylistsPage.searchField).setValue(playlistName);
+        sleep(1000);
+
         $(managePlaylistsPage.nameOfPlayListSU).click();
-        sleep(6000);
 
         $$(By.xpath("//*[@id=\"playlist-block\"]/div[2]/table//span[@class=\"ng-binding\"]"))
                 .shouldHave(CollectionCondition.size(3));

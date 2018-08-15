@@ -77,6 +77,7 @@ public class ClipLibraryTest_MainUser {
         $(clipLibraryPage.settingsClipButton).click();
         $(clipLibraryPage.editClipButton).click();
         $(createNewClipPage.nextButton).click();
+        sleep(2000);
 
         $(createNewClipPage.templateChooseFileButton).click();
         sleep(2000);

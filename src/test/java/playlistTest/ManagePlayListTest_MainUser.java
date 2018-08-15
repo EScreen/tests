@@ -39,7 +39,7 @@ public class ManagePlayListTest_MainUser {
         $(container.playlists).click();
         $(container.managePlayLIsts).click();
         $(managePlaylistsPage.statusPlaylistSelector).selectOptionByValue("2");
-        $(By.xpath("//span[@class=\"badge badge-green ng-scope\"]"))
+        $("span.badge.badge-green.ng-scope")
                 .shouldHave(Condition.attribute("tooltip-html-unsafe", "On air"));
     }
 

@@ -354,11 +354,12 @@ public class MyFilesTest_MainUser {
 
         $(container.media).click();
         $(container.myFiles).click();
-        $(myFilesPage.categoryFilter).selectOptionContainingText("Three");
+        $(myFilesPage.categoryFilter).selectOptionContainingText("Two");
 
+        sleep(1000);
         ElementsCollection elements = $$("table>tbody>tr>td:nth-child(5)");
         for(SelenideElement element: elements){
-            element.shouldHave(Condition.exactText("Three"));
+            element.shouldHave(Condition.exactText("Two"));
         }
     }
 
@@ -371,7 +372,7 @@ public class MyFilesTest_MainUser {
         $(container.myFiles).click();
         $(myFilesPage.typeFileFilter).selectOptionContainingText("Show only images");
 
-        ElementsCollection elements = $$("table>tbody>tr>td:nth-child(4)");
+        ElementsCollection elements = $$("table>tbody>tr>td:nth-child(4)>span");
         for(SelenideElement element: elements){
             element.shouldHave(Condition.exactText("Image"));
             }

@@ -1,9 +1,11 @@
 package pages.mediaPages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Created by Anna on 19/04/2018.
@@ -22,5 +24,7 @@ public class ManagementCategoriesPage {
             editCategoryButton = $(By.xpath("//div[@tooltip-html-unsafe=\"Edit\"]")),
 
             yesDeleteCategoryButton = $(By.xpath("//a[@ng-click=\"deleteCategory()\"]"));
+
+    public ElementsCollection categoriesNames = $$("#dataTables>table>tbody>tr>td>span");
 
 }
