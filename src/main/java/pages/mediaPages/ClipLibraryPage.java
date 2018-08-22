@@ -31,6 +31,7 @@ public class ClipLibraryPage {
             yesDeleteButton = $(By.xpath("//button[@ng-click=\"ok()\"][2]")),
             successAlert = $(By.xpath("//*[@id=\"appcontent\"]/div[4]/section[2]/div/flashnotification/div[2]/span/strong")),
             deleteClipIfItInPlaylist = $(By.xpath("//button[@class=\"btn btn-green ng-binding\"]")),
+            previewClip = $("#dataTables>table>tbody>tr>td>div"),
 
             approveFirstClipCheck = $(".checkbox-table"),
             needAppr_firstClip = $("#dataTables > table > tbody.ng-scope.ng-pristine.ng-valid > tr:nth-child(1) > td:nth-child(3) > div>span");

@@ -19,7 +19,7 @@ public class CreateNewClipPage {
 
     public SelenideElement
             searchField = $(By.xpath("//*[@id=\"template-name-search\"]/input")),
-            createCustomTemplate = $("a[href='/fragments/custom']"),
+            createCustomTemplate = $("div.flextool-control.ng-scope > a"),
             categoriesSelect = $(By.xpath("//*[@id=\"template-categories-select\"]/form/div/div/span")),
             orientationSelect = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/span")),
             portraitOrientation = $(By.xpath("//*[@id=\"template-orientation-select\"]/form/div/div/div/div[2]/span[1]")),
