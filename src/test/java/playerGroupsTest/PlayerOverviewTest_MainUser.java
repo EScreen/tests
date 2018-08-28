@@ -80,18 +80,16 @@ public class PlayerOverviewTest_MainUser {
         $(playerOverviewPage.tickertapeButton).click();
         $(playerOverviewPage.tickertapeSelector).selectOptionByValue("1");
 
-        $("#\\34 22>div:nth-child(1)>div input").setValue("http://sitename.squarespace.com/pageslug?format=rss");
+        $("#\\31 0943 > div:nth-child(1) > div > div > input").setValue("http://sitename.squarespace.com/pageslug?format=rss");
 
-        String css1 = $("#\\34 22 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
-        $("#\\34 22 > div:nth-child(2) .colorpickerWrapper").click();
-        Selenide.actions().dragAndDropBy($(".colorpicker>.colorpicker_color>div>div"), GenerateData.generateNumbers(1), -5).build().perform();
+        String css1 = $("#\\31 0943 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
+        $("#\\31 0943 > div:nth-child(2) .colorpickerWrapper").click();
+        Selenide.actions().dragAndDropBy($(".colorpicker > div.colorpicker_color > div > div"), GenerateData.generateNumbers(1), -5).build().perform();
         sleep(2000);
-        String css2 = $("#\\34 22 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
+        String css2 = $("#\\31 0943 > div:nth-child(2) .colorpickerWrapper>div").getCssValue("background-color");
         Assert.assertNotEquals(css1, css2);
 
-        $("#\\34 22>div:nth-child(4)>div input").setValue("2");
-        $("#\\34 22>div:nth-child(5)>div input").setValue("3");
-        $("#\\34 22>div:nth-child(6)>div input").setValue("4");
+        $("#\\31 0943>div:nth-child(4)>div input").setValue("2");
 
         $(playerOverviewPage.saveTickertape).click();
         $(playerOverviewPage.successMessage).should(Condition.appear);
@@ -105,7 +103,7 @@ public class PlayerOverviewTest_MainUser {
         $(container.players).click();
         $(container.playerOverview).click();
         $(playerOverviewPage.tickertapeButton).click();
-        $(playerOverviewPage.tickertapeSelector).selectOptionByValue("2");
+        $(playerOverviewPage.tickertapeSelector).selectOptionContainingText("RSS tickertape - portrait");
 
         $("#\\31 0013>div:nth-child(1)>div input").setValue("http://sitename.squarespace.com/pageslug?format=rss");
 
@@ -125,7 +123,7 @@ public class PlayerOverviewTest_MainUser {
         $(container.players).click();
         $(container.playerOverview).click();
         $(playerOverviewPage.tickertapeButton).click();
-        $(playerOverviewPage.tickertapeSelector).selectOptionByValue("6");
+        $(playerOverviewPage.tickertapeSelector).selectOptionContainingText("Classic tickertape + image");
 
         $(".upload_col label").click();
         UploadingFiles.uploadFile("/Users/qa-tester/IdeaProjects/tests/src/main/resources/Scrpt_upload_Smile2.scpt");
@@ -146,10 +144,10 @@ public class PlayerOverviewTest_MainUser {
         $(container.players).click();
         $(container.playerOverview).click();
         $(playerOverviewPage.tickertapeButton).click();
-        $(playerOverviewPage.tickertapeSelector).selectOptionByValue("12");
+        $(playerOverviewPage.tickertapeSelector).selectOptionContainingText("Harley Davidson Screen region with video to the left");
 
-        $("a[href=\"#library_imageURL\"]").click();
-        $("select[name=\"imageURL_section\"]").selectOptionContainingText("Other");
+        $("a[href=\"#library_logo\"]").click();
+        $("select[name=\"logo_section\"]").selectOptionContainingText("Other");
         sleep(1000);
         $$("tbody img").get(3).click();
         $("button[ng-click='ok()']").click();
@@ -169,9 +167,9 @@ public class PlayerOverviewTest_MainUser {
         $(container.players).click();
         $(container.playerOverview).click();
         $(playerOverviewPage.tickertapeButton).click();
-        $(playerOverviewPage.tickertapeSelector).selectOptionByValue("14");
+        $(playerOverviewPage.tickertapeSelector).selectOptionContainingText("Wachtruimte TV Quickedit custom color - video to the right");
 
-        $("#\\31 0686 > div:nth-child(1) > div > select").selectOptionByValue("1");
+        $("#\\31 1205 > div:nth-child(9) > div > select").selectOptionByValue("1");
         $(playerOverviewPage.saveTickertape).click();
         $(playerOverviewPage.successMessage).should(Condition.appear);
 
