@@ -19,13 +19,11 @@ public class GenerateData {
     }
 
     public static String generateString (int length){
-        String data = RandomStringUtils.randomAlphabetic(length) + "_AT";
-        return data;
+        return RandomStringUtils.randomAlphabetic(length) + "_AT";
     }
 
     public static int generateNumbers (int length){
-        int result =  Integer.parseInt(RandomStringUtils.randomNumeric(length));
-        return result;
+        return Integer.parseInt(RandomStringUtils.randomNumeric(length));
     }
 
     public static String generateUrl(int length) {

@@ -18,7 +18,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class TemplateStuffTest_MainUser {
+public class TmplStuffTests_MainUser {
 
     @Before
     public void beforeTest(){
@@ -69,13 +69,13 @@ public class TemplateStuffTest_MainUser {
         $(flexibleToolPage.textInput).setValue("ABC");
 
         $("div.textBlock.el-tooltip.item").click();
-        $(flexibleToolPage.deleteButton).click();
+        $(flexibleToolPage.deleteTextButton).click();
 
         $("div.textBlock.el-tooltip.item").shouldNotBe(Condition.visible);
     }
 
     @Test
-    public void uploadImage(){
+    public void uploadImageFromPC(){
         FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
 
         open(flexibleToolPage.flToolSrc);
@@ -183,7 +183,7 @@ public class TemplateStuffTest_MainUser {
         Assert.assertNotEquals(heightBefore, heightAfter);
     }
 
-    @Test
+   /* @Test
     public void cropImg(){
         FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
 
@@ -196,17 +196,147 @@ public class TemplateStuffTest_MainUser {
         $(flexibleToolPage.setImage).click();
         $("div.library>div:nth-child(10)").click();
 
-        int heightBefore = $("div.vdr.draggable.resizable > img").getSize().height;
+        int widthBefore = $("div.vdr.draggable.resizable > img").getSize().width;
+        System.out.println(widthBefore);
 
         $(".canvas.landscape img").click();
         $(flexibleToolPage.cropButton).click();
-        Selenide.actions().dragAndDropBy($("span.cropper-point.point-nw"), 0, -50).build().perform();
+
+        Selenide.actions().dragAndDropBy($("span.cropper-point.point-nw"), 180, 50).build().perform();
+        sleep(2000);
+
         $(flexibleToolPage.acceptCropping).click();
         $(flexibleToolPage.saveCropping).click();
 
-        int heightAfter = $("div.vdr.draggable.resizable > img").getSize().height;
+        int widthAfter = $("div.vdr.draggable.resizable > img").getSize().width;
         sleep(2000);
+        System.out.println(widthAfter);
 
-        Assert.assertNotEquals(heightBefore, heightAfter);
+        Assert.assertNotEquals(widthBefore, widthAfter);
+    }*/
+
+   @Test
+    public void deleteImg(){
+       FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+       open(flexibleToolPage.flToolSrc);
+
+       $(flexibleToolPage.confirmButton).click();
+       $(flexibleToolPage.infoWindowClose).click();
+
+       $(flexibleToolPage.imageButton).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.setImage).click();
+       $(flexibleToolPage.uploadButton).click();
+       File file = new File("/Users/qa-tester/IdeaProjects/tests/src/main/resources/car.jpg");
+       $("#items").uploadFile(file);
+
+       $(".canvas.landscape img").click();
+       $(flexibleToolPage.deleteImgButton).click();
+
+       $(".canvas.landscape img").shouldNotBe(Condition.visible);
+   }
+
+   @Test
+    public void addFigures(){
+       FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+       open(flexibleToolPage.flToolSrc);
+
+       $(flexibleToolPage.confirmButton).click();
+       $(flexibleToolPage.infoWindowClose).click();
+       $(flexibleToolPage.shapesButton).click();
+
+       $(flexibleToolPage.rectangle).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.square).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.ellipse).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.circle).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.line).dragAndDropTo($(flexibleToolPage.wrapper));
+
+       $$(flexibleToolPage.canvasItems).shouldHave(CollectionCondition.size(6));
+
+   }
+
+   @Test
+    public void deleteFigure(){
+       FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+       open(flexibleToolPage.flToolSrc);
+
+       $(flexibleToolPage.confirmButton).click();
+       $(flexibleToolPage.infoWindowClose).click();
+       $(flexibleToolPage.shapesButton).click();
+
+       $(flexibleToolPage.rectangle).dragAndDropTo($(flexibleToolPage.wrapper));
+
+       $(flexibleToolPage.shapeOnCanvas).click();
+       $(flexibleToolPage.deleteShapeButton).click();
+
+       $$(flexibleToolPage.canvasItems).shouldHave(CollectionCondition.size(1));
+   }
+
+   @Test
+    public void duplicateFigure(){
+       FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+       open(flexibleToolPage.flToolSrc);
+
+       $(flexibleToolPage.confirmButton).click();
+       $(flexibleToolPage.infoWindowClose).click();
+       $(flexibleToolPage.shapesButton).click();
+
+       $(flexibleToolPage.rectangle).dragAndDropTo($(flexibleToolPage.wrapper));
+
+       $(flexibleToolPage.shapeOnCanvas).click();
+       $(flexibleToolPage.duplicateButton).click();
+
+       $$(flexibleToolPage.canvasItems).shouldHave(CollectionCondition.size(3));
+   }
+
+   @Test
+    public void changeShapeColor(){
+       FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+       open(flexibleToolPage.flToolSrc);
+
+       $(flexibleToolPage.confirmButton).click();
+       $(flexibleToolPage.infoWindowClose).click();
+       $(flexibleToolPage.shapesButton).click();
+
+       $(flexibleToolPage.rectangle).dragAndDropTo($(flexibleToolPage.wrapper));
+       $(flexibleToolPage.shapeOnCanvas).click();
+       $(flexibleToolPage.colorButton).click();
+
+       Selenide.executeJavaScript("arguments[0].click();", $(flexibleToolPage.colorPicker));
+
+       $("div.el-input.el-input--mini>input").setValue("rgba(26, 203, 82, 1)");
+       $("div.el-color-dropdown__btns>button:nth-child(3)").click();
+
+       $("div.rectangle.el-tooltip.item").
+               shouldHave(Condition.cssValue("background",
+                       "rgb(26, 203, 82) none repeat scroll 0% 0% / auto padding-box border-box"));
+   }
+
+    @Test
+    public void rotateShape(){
+        FlexibleToolPage flexibleToolPage = new FlexibleToolPage();
+
+        open(flexibleToolPage.flToolSrc);
+
+        $(flexibleToolPage.confirmButton).click();
+        $(flexibleToolPage.infoWindowClose).click();
+        $(flexibleToolPage.shapesButton).click();
+
+        $(flexibleToolPage.rectangle).dragAndDropTo($(flexibleToolPage.wrapper));
+
+        int heightBefore = $(flexibleToolPage.shapeOnCanvas).getSize().height;
+        int widthBefore = $(flexibleToolPage.shapeOnCanvas).getSize().width;
+
+        $("div.canvas.landscape>div").click();
+        $(flexibleToolPage.rotateButton).click();
+
+        int heightAfter = $(flexibleToolPage.shapeOnCanvas).getSize().height;
+        int widthAfter = $(flexibleToolPage.shapeOnCanvas).getSize().width;
+
+        Assert.assertTrue(heightBefore == widthAfter && widthBefore == heightAfter);
     }
 }
