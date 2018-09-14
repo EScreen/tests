@@ -19,7 +19,6 @@ import javax.naming.ldap.PagedResultsControl;
 import static com.codeborne.selenide.Selenide.*;
 
 public class NewPlaylistTest_SingleUser {
-    NewPlaylistTest_MainUser newPlaylistTest_mainUser = new NewPlaylistTest_MainUser();
 
     @Before
     public void beforeTests(){

@@ -66,7 +66,7 @@ public class MyFilesTest_SubUser {
 
         String newName = GenerateData.generateString(4);
         $(myFilesPage.editNameField).setValue(newName);
-        $(By.xpath("//ul[@class=\"padded separate-sections\"]/li[3]/select/option[contains(text(),'Three')]")).click();
+        $(By.xpath("//ul[@class=\"padded separate-sections\"]/li/select/option[contains(text(),'Three')]")).click();
         $(myFilesPage.saveButton).click();
 
         $(myFilesPage.uploadedFileName).shouldHave(Condition.exactText(newName));

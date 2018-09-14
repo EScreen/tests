@@ -158,7 +158,7 @@ public class MyFilesTest_MainUser {
 
         String newName = GenerateData.generateString(4);
         $(myFilesPage.editNameField).setValue(newName);
-        $(By.xpath("//*[@class=\"control-group\"]/div/select/option[contains(text(),'Formula')]")).click();
+        $(By.xpath("//li[@class=\"control-group ng-scope\"]/div/select/option[contains(text(),'Formula')]")).click();
         $(By.xpath("//ul[@class=\"padded separate-sections\"]/li[3]/select/option[contains(text(),'Three')]")).click();
 
         $(myFilesPage.saveButton).click();

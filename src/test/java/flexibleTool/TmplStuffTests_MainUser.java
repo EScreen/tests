@@ -50,7 +50,7 @@ public class TmplStuffTests_MainUser {
         open(flexibleToolPage.clipLibrSrc);
 
         flexibleToolPage.openPreview();
-        $("body p").shouldHave(Condition.text("ABC"));
+        $("body .cursor").shouldHave(Condition.text("ABC"));
     }
 
     @Test
@@ -115,6 +115,7 @@ public class TmplStuffTests_MainUser {
         $(flexibleToolPage.imageButton).dragAndDropTo($(flexibleToolPage.wrapper));
         $(flexibleToolPage.setImage).click();
         $("div.library>div:nth-child(10)").click();
+        sleep(2000);
 
         $(flexibleToolPage.saveButton).click();
         $(flexibleToolPage.successAlert).shouldBe(Condition.appear);

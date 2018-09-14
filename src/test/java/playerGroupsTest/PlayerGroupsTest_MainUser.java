@@ -244,8 +244,8 @@ public class PlayerGroupsTest_MainUser {
         $(playerGroupsPage.setScreenTimeTab).click();
         $(playerGroupsPage.screenSettingOption).click();
 
-        $(By.id("picktime-screenon")).shouldHave(Condition.value("12:00:00"));
-        $(By.id("picktime-screenonpair")).shouldHave(Condition.value("18:00:00"));
+        $(By.id("picktime-screenon")).shouldHave(Condition.value("12:00"));
+        $(By.id("picktime-screenonpair")).shouldHave(Condition.value("18:00"));
     }
 
     @Test
@@ -349,8 +349,8 @@ public class PlayerGroupsTest_MainUser {
         $("#settings > ul > li:nth-child(1) > div > div.panel-body > div:nth-child(4) > div > select>option[selected]")
                 .shouldHave(Condition.exactText("Always on"));
         $(".list-group>li:nth-child(2)>div").click();
-        $(".list-group>li:nth-child(2) #picktime-screenon").shouldHave(Condition.value("07:00:00"));
-        $(".list-group>li:nth-child(2) #picktime-screenonpair").shouldHave(Condition.value("13:45:00"));
+        $(".list-group>li:nth-child(2) #picktime-screenon").shouldHave(Condition.value("07:00"));
+        $(".list-group>li:nth-child(2) #picktime-screenonpair").shouldHave(Condition.value("13:45"));
 
     }
 

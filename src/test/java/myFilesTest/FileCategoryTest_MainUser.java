@@ -89,7 +89,6 @@ public class FileCategoryTest_MainUser {
     public void addAndDeleteNewCategory(){
         Container container = new Container();
         MyFilesPage myFilesPage = new MyFilesPage();
-
         String testName = "Test";
 
         $(container.media).click();
@@ -103,7 +102,7 @@ public class FileCategoryTest_MainUser {
 
         $(myFilesPage.settingsFileButton).click();
         $(myFilesPage.editFile).click();
-        String xpath = "//ul[@class=\"padded separate-sections\"]/li[3]/select/option[contains(text(),"+"'"+testName+"'"+")]";
+        String xpath = "//ul[@class=\"padded separate-sections\"]/li/select/option[contains(text(),"+"'"+testName+"'"+")]";
 
         $(By.xpath(xpath)).click();
         $(myFilesPage.saveButton).click();
@@ -117,13 +116,6 @@ public class FileCategoryTest_MainUser {
 
         $(container.myFiles).click();
         $("tbody>tr>td:nth-child(5)").shouldBe(Condition.empty);
-
-
-
-
-
-
-
 
     }
 }

@@ -19,7 +19,7 @@ public class FlexibleToolPage {
     shapeOnCanvas = $("div.canvas.landscape>div"),
     textButton = $(".firstColumn>div:first-child>div>div>i"),
         textArea = $("div.textBlock.el-tooltip.item"),
-        textInput = $("div.textBlock.el-tooltip.item>p"),
+        textInput = $("div.textBlock.el-tooltip.item>div"),
         deleteTextButton = $("div.top_bar > div > div > div:nth-child(12) > i"),
     imageButton = $(".firstColumn>div:nth-child(2)>div>div>i"),
         setImage = $("div.setImage>i"),
