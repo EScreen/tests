@@ -17,20 +17,20 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class LoginPage {
 
-    public SelenideElement
+    public static SelenideElement
             loginField = $(By.name("login")),
     passwordField = $(By.name("password")),
     loginButton = $(By.xpath("/html/body/div[2]/div/div/div/div[2]/form/div[4]/a"));
 
 
-    public void login(String login, String password){
+    public static void login(String login, String password){
         open("https://ppmanager.easyscreen.tv/login");
         loginField.setValue(login);
         passwordField.setValue(password);
         loginButton.click();
     }
 
-    public void loginLive(String login, String password){
+    public static void loginLive(String login, String password){
         open("https://manager.easyscreen.tv/login");
         loginField.setValue(login);
         passwordField.setValue(password);

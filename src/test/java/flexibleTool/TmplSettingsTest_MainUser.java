@@ -27,7 +27,7 @@ public class TmplSettingsTest_MainUser {
 
     @Before
     public void beforeTests(){
-        Precondition.beforeMainUserTests();
+        Precondition.beforeMainUserTests_Flexible();
     }
 
     @After
@@ -140,9 +140,6 @@ public class TmplSettingsTest_MainUser {
 
         $("div.orientation>div.image:nth-child(1)").click();
         $(flexibleToolPage.confirmButton).click();
-
-
-
     }
 
 }

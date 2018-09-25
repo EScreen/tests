@@ -89,11 +89,10 @@ public class ClipLibraryTest_SubUser {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         pages.Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        LoginPage loginPage = new LoginPage();
 
         $(container.mainUserMenu).click();
         $(container.mainUserMenuLogOut).click();
-        loginPage.login("AnyaMainUser", "os123123");
+        LoginPage.login("AnyaMainUser", "os123123");
 
         $(mainDashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);
@@ -128,11 +127,10 @@ public class ClipLibraryTest_SubUser {
         CreateNewClipPage createNewClipPage = new CreateNewClipPage();
         Container container = new Container();
         ClipLibraryPage clipLibraryPage = new ClipLibraryPage();
-        LoginPage loginPage = new LoginPage();
 
         $(container.mainUserMenu).click();
         $(container.mainUserMenuLogOut).click();
-        loginPage.login("AnyaMainUser", "os123123");
+        LoginPage.login("AnyaMainUser", "os123123");
 
         $(mainDashboardPage.createClipButton).click();
         $(createNewClipPage.searchField).setValue(createNewClipPage.testTemplateName);

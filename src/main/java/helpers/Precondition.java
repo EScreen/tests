@@ -18,8 +18,7 @@ public class Precondition {
         WebDriverRunner.setWebDriver(new ChromeDriver());
         WebDriverRunner.getWebDriver().manage().window().maximize();
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaMainUser", "os123123");
+        LoginPage.login("AnyaMainUser", "os123123");
         $(By.id("profile-details")).waitUntil(appear, 20000);
 
         String handle = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -30,8 +29,7 @@ public class Precondition {
         WebDriverRunner.setWebDriver(new ChromeDriver());
         WebDriverRunner.getWebDriver().manage().window().maximize();
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaSubUser1", "os123123");
+        LoginPage.login("AnyaSubUser1", "os123123");
         $(By.id("profile-details")).waitUntil(appear, 20000);
 
         String handle = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -42,8 +40,7 @@ public class Precondition {
         WebDriverRunner.setWebDriver(new ChromeDriver());
         WebDriverRunner.getWebDriver().manage().window().maximize();
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaSubUser2", "os123123");
+        LoginPage.login("AnyaSubUser2", "os123123");
         $(By.id("profile-details")).waitUntil(appear, 20000);
 
         String handle = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -54,8 +51,18 @@ public class Precondition {
         WebDriverRunner.setWebDriver(new ChromeDriver());
         WebDriverRunner.getWebDriver().manage().window().maximize();
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("AnyaSingle", "AnyaSingle1");
+        LoginPage.login("AnyaSingle", "AnyaSingle1");
+        $(By.id("profile-details")).waitUntil(appear, 20000);
+
+        String handle = WebDriverRunner.getWebDriver().getWindowHandle();
+        WebDriverRunner.getWebDriver().switchTo().window(handle);
+    }
+
+    public static void beforeMainUserTests_Flexible(){
+        WebDriverRunner.setWebDriver(new ChromeDriver());
+        WebDriverRunner.getWebDriver().manage().window().maximize();
+
+        LoginPage.login("test_scheduling_mainuser_static", "mainusertest1");
         $(By.id("profile-details")).waitUntil(appear, 20000);
 
         String handle = WebDriverRunner.getWebDriver().getWindowHandle();

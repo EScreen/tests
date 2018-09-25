@@ -14,13 +14,23 @@ public class FlexibleToolPage {
 
     public SelenideElement
      wrapper = $("div.ruler_wrapper"),
+    portraitOrientation = $(".orientations>div:nth-child(1)>div"),
     confirmButton = $("div.modalFilter > div > div > div.buttons > button > span"),
     infoWindowClose = $(".el-message__closeBtn.el-icon-close"),
+    infoWindow = $("div.info>span"),
+    choosePremadeTmplButton = $("div.bar>div:nth-child(2)>button:nth-child(1)"),
     shapeOnCanvas = $("div.canvas.landscape>div"),
     textButton = $(".firstColumn>div:first-child>div>div>i"),
         textArea = $("div.textBlock.el-tooltip.item"),
         textInput = $("div.textBlock.el-tooltip.item>div"),
         deleteTextButton = $("div.top_bar > div > div > div:nth-child(12) > i"),
+        backgroundColor = $("div.top_bar .panel>div:nth-child(1)>i"),
+        textColor = $("div.top_bar .panel>div:nth-child(2)>i"),
+        saveColorButton = $("div.el-color-dropdown__btns>button:nth-child(3)"),
+        textSizeButton = $("div.top_bar .panel>div:nth-child(3)>i"),
+        textUnderline = $("div.top_bar .panel>div:nth-child(4)>i"),
+        textBold = $("div.top_bar .panel>div:nth-child(5)>i"),
+        textFont = $("div.top_bar .panel>div:nth-child(7)>i"),
     imageButton = $(".firstColumn>div:nth-child(2)>div>div>i"),
         setImage = $("div.setImage>i"),
         uploadButton = $("div.changeContent>span"),
@@ -48,7 +58,7 @@ public class FlexibleToolPage {
     deleteTemplateButton = $("div.buttons>button:nth-child(5)>i"),
     successAlert = $("body > div.el-message.el-message--success.el-message-fade-leave-active.el-message-fade-leave-to > p");
 
-    public ElementsCollection canvasItems = $$("div.canvas.landscape>div");
+    public ElementsCollection canvasItems = $$("div.canvas>div");
 
 
 
